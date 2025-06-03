@@ -726,18 +726,18 @@
 							<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 								<!-- First Name -->
 								<div>
-									<label for="firstName" class="block text-sm font-medium text-gray-300 mb-2">First Name*</label>
+									<label for="firstName" class="block text-sm font-medium text-gray-300 mb-2">First Name<span class="text-accent-yellow">*</span></label>
 									<div class="relative">
-										<input type="text" id="first_name" name="first_name" required class="w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition">
-										<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-											<i class="ri-user-line text-gray-500"></i>
+										<input type="text" id="first_name" name="first_name" required class="peer w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition">
+										<div class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 peer-focus:text-accent-yellow pointer-events-none">
+											<i class="ri-user-line"></i>
 										</div>
 									</div>
 								</div>
 
 								<!-- Last Name -->
 								<div>
-									<label for="lastName" class="block text-sm font-medium text-gray-300 mb-2">Last Name*</label>
+									<label for="lastName" class="block text-sm font-medium text-gray-300 mb-2">Last Name<span class="text-accent-yellow">*</span></label>
 									<div class="relative">
 										<input type="text" id="last_name" name="last_name" required class="w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition">
 										<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -749,7 +749,7 @@
 
 							<!-- Email -->
 							<div>
-								<label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email*</label>
+								<label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email<span class="text-accent-yellow">*</span></label>
 								<div class="relative">
 									<input type="email" id="email" name="email" required class="w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition">
 									<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -771,7 +771,7 @@
 
 							<!-- Inquiry Type -->
 							<div>
-								<label for="inquiryType" class="block text-sm font-medium text-gray-300 mb-2">Inquiry Type*</label>
+								<label for="inquiryType" class="block text-sm font-medium text-gray-300 mb-2">Inquiry Type</label>
 								<div class="relative">
 									<select id="inquiry_type" name="inquiry_type" required class="w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white appearance-none focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition">
 										<option value="" disabled selected>Select an option</option>
@@ -789,7 +789,7 @@
 
 							<!-- Message -->
 							<div>
-								<label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message*</label>
+								<label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message<span class="text-accent-yellow">*</span></label>
 								<textarea id="message" name="message" rows="4" required class="w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition"></textarea>
 							</div>
 

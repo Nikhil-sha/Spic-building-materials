@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>About Us - SPICBM | Premium Building Materials</title>
+	<!-- Tailwind CSS with custom config -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						primary: {
+							black: '#111113',
+							light: '#1E1E20',
+						},
+						accent: {
+							yellow: '#FFD700',
+							dark: '#FFC000',
+						},
+					},
+					animation: {
+						'fade-in': 'fadeIn 0.5s ease-in-out',
+						'float': 'float 6s ease-in-out infinite',
+					},
+					keyframes: {
+						fadeIn: {
+							'0%': { opacity: '0' },
+							'100%': { opacity: '1' },
+						},
+						float: {
+							'0%, 100%': { transform: 'translateY(0)' },
+							'50%': { transform: 'translateY(-10px)' },
+						},
+					},
+				}
+			}
+		}
+	</script>
+	<!-- RemixIcon -->
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+	<style>
+		.hero-pattern {
+			background-image: radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.08) 0%, rgba(17, 17, 19, 0.95) 70%);
+		}
+
+		.card-hover {
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.card-hover:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+		}
+
+		.text-gradient {
+			background: linear-gradient(90deg, #FFD700 0%, #FFC000 100%);
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+		}
+
+		.timeline-item::before {
+			content: '';
+			position: absolute;
+			left: -38px;
+			top: 0;
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			background: #FFD700;
+			border: 3px solid #1E1E20;
+		}
+	</style>
+</head>
+
+<body class="bg-primary-black text-gray-100 font-sans antialiased">
+	<!-- Header/Navigation (placeholder - same as main site) -->
+	<header class="bg-primary-black/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/50">
+		<!-- Navigation content from main site would go here -->
+		<div class="container mx-auto px-4 py-3">
+			[NAVIGATION PLACEHOLDER - SAME AS MAIN SITE]
+		</div>
+	</header>
+
+	<!-- Hero Section -->
+	<section class="hero-pattern relative overflow-hidden">
+		<div class="absolute inset-0 z-0 opacity-20">
+			<div class="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30"></div>
+		</div>
+		<div class="container mx-auto px-4 py-32 flex flex-col items-center text-center relative z-10">
+			<span class="inline-block bg-primary-light text-accent-yellow px-4 py-1 rounded-full text-sm font-medium mb-6 animate-fade-in">OUR STORY</span>
+			<h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
+				Building <span class="text-gradient">Excellence</span><br>Since 2010
+			</h1>
+			<p class="text-xl text-gray-300 max-w-3xl mx-auto animate-fade-in">From humble beginnings to industry leaders, we're committed to revolutionizing construction with innovative materials and sustainable practices.</p>
+		</div>
+	</section>
+
+	<!-- Mission Section -->
+	<section class="py-20 bg-primary-light">
+		<div class="container mx-auto px-4">
+			<div class="flex flex-col lg:flex-row items-center gap-12">
+				<div class="lg:w-1/2">
+					<img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Our Team" class="w-full rounded-xl shadow-2xl">
+				</div>
+				<div class="lg:w-1/2">
+					<span class="inline-block bg-primary-black text-accent-yellow px-4 py-1 rounded-full text-sm font-medium mb-4">OUR MISSION</span>
+					<h2 class="text-3xl md:text-4xl font-bold mb-6">Redefining <span class="text-gradient">Construction</span> Standards</h2>
+					<p class="text-gray-400 mb-6">At SPICBM, we believe that exceptional buildings start with exceptional materials. Our mission is to provide architects, contractors, and homeowners with innovative building solutions that combine durability, sustainability, and aesthetic appeal.</p>
+					<div class="space-y-4">
+						<div class="flex items-start">
+							<div class="flex-shrink-0 mt-1">
+								<div class="w-8 h-8 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center">
+									<i class="ri-check-line"></i>
+								</div>
+							</div>
+							<div class="ml-4">
+								<h4 class="font-bold mb-1">Quality Assurance</h4>
+								<p class="text-gray-400">Every product undergoes rigorous testing to meet international standards.</p>
+							</div>
+						</div>
+						<div class="flex items-start">
+							<div class="flex-shrink-0 mt-1">
+								<div class="w-8 h-8 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center">
+									<i class="ri-check-line"></i>
+								</div>
+							</div>
+							<div class="ml-4">
+								<h4 class="font-bold mb-1">Sustainable Sourcing</h4>
+								<p class="text-gray-400">We prioritize eco-friendly materials and responsible manufacturing.</p>
+							</div>
+						</div>
+						<div class="flex items-start">
+							<div class="flex-shrink-0 mt-1">
+								<div class="w-8 h-8 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center">
+									<i class="ri-check-line"></i>
+								</div>
+							</div>
+							<div class="ml-4">
+								<h4 class="font-bold mb-1">Innovation Focus</h4>
+								<p class="text-gray-400">Our R&D team continuously develops cutting-edge building solutions.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Timeline Section -->
+	<section class="py-20 bg-primary-black">
+		<div class="container mx-auto px-4">
+			<div class="text-center mb-16">
+				<span class="inline-block bg-primary-light text-accent-yellow px-4 py-1 rounded-full text-sm font-medium mb-4">OUR JOURNEY</span>
+				<h2 class="text-3xl md:text-4xl font-bold mb-4">Building <span class="text-gradient">Milestones</span></h2>
+				<p class="text-gray-400 max-w-2xl mx-auto">Key moments that shaped our company's growth and success.</p>
+			</div>
+
+			<div class="relative max-w-3xl mx-auto">
+				<!-- Timeline bar -->
+				<div class="absolute left-4 md:left-1/2 h-full w-0.5 bg-gray-800 transform -translate-x-1/2"></div>
+
+				<!-- Timeline item 1 -->
+				<div class="relative pl-16 md:pl-0 md:pr-16 mb-12">
+					<div class="md:text-right mb-2">
+						<span class="inline-block bg-accent-yellow text-primary-black px-3 py-1 rounded-full text-xs font-bold">2010</span>
+					</div>
+					<div class="md:pl-16">
+						<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 relative card-hover">
+							<h3 class="text-xl font-bold mb-2">Company Founded</h3>
+							<p class="text-gray-400">SPICBM was established with a small warehouse and a big vision to transform the building materials industry.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Timeline item 2 -->
+				<div class="relative pl-16 md:pl-0 md:pr-16 mb-12">
+					<div class="md:text-left mb-2">
+						<span class="inline-block bg-accent-yellow text-primary-black px-3 py-1 rounded-full text-xs font-bold">2014</span>
+					</div>
+					<div class="md:pr-16">
+						<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 relative card-hover">
+							<h3 class="text-xl font-bold mb-2">First Innovation Award</h3>
+							<p class="text-gray-400">Received industry recognition for our revolutionary eco-friendly concrete formula.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Timeline item 3 -->
+				<div class="relative pl-16 md:pl-0 md:pr-16 mb-12">
+					<div class="md:text-right mb-2">
+						<span class="inline-block bg-accent-yellow text-primary-black px-3 py-1 rounded-full text-xs font-bold">2018</span>
+					</div>
+					<div class="md:pl-16">
+						<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 relative card-hover">
+							<h3 class="text-xl font-bold mb-2">National Expansion</h3>
+							<p class="text-gray-400">Opened distribution centers across the country, making our products available nationwide.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Timeline item 4 -->
+				<div class="relative pl-16 md:pl-0 md:pr-16 mb-12">
+					<div class="md:text-left mb-2">
+						<span class="inline-block bg-accent-yellow text-primary-black px-3 py-1 rounded-full text-xs font-bold">2022</span>
+					</div>
+					<div class="md:pr-16">
+						<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 relative card-hover">
+							<h3 class="text-xl font-bold mb-2">Sustainability Certification</h3>
+							<p class="text-gray-400">Achieved Platinum certification for our sustainable manufacturing processes.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Timeline item 5 -->
+				<div class="relative pl-16 md:pl-0 md:pr-16">
+					<div class="md:text-right mb-2">
+						<span class="inline-block bg-accent-yellow text-primary-black px-3 py-1 rounded-full text-xs font-bold">2023</span>
+					</div>
+					<div class="md:pl-16">
+						<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 relative card-hover">
+							<h3 class="text-xl font-bold mb-2">Global Partnerships</h3>
+							<p class="text-gray-400">Established international collaborations to bring cutting-edge materials to our customers.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Team Section -->
+	<section class="py-20 bg-primary-light">
+		<div class="container mx-auto px-4">
+			<div class="text-center mb-16">
+				<span class="inline-block bg-primary-black text-accent-yellow px-4 py-1 rounded-full text-sm font-medium mb-4">OUR TEAM</span>
+				<h2 class="text-3xl md:text-4xl font-bold mb-4">Meet The <span class="text-gradient">Builders</span></h2>
+				<p class="text-gray-400 max-w-2xl mx-auto">The passionate professionals behind our success.</p>
+			</div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+				<!-- Team member 1 -->
+				<div class="bg-primary-black rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+					<div class="relative h-64">
+						<img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="w-full h-full object-cover">
+						<div class="absolute inset-0 bg-gradient-to-t from-primary-black/80 via-transparent to-transparent"></div>
+						<div class="absolute bottom-4 left-4">
+							<h3 class="text-xl font-bold">Sarah Johnson</h3>
+							<p class="text-accent-yellow text-sm">CEO & Founder</p>
+						</div>
+					</div>
+					<div class="p-6">
+						<p class="text-gray-400 mb-4">Visionary leader with 20+ years in construction materials innovation.</p>
+						<div class="flex space-x-3">
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-linkedin-fill"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-twitter-fill"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-mail-line"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Team member 2 -->
+				<div class="bg-primary-black rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+					<div class="relative h-64">
+						<img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="w-full h-full object-cover">
+						<div class="absolute inset-0 bg-gradient-to-t from-primary-black/80 via-transparent to-transparent"></div>
+						<div class="absolute bottom-4 left-4">
+							<h3 class="text-xl font-bold">Michael Chen</h3>
+							<p class="text-accent-yellow text-sm">Chief Innovation Officer</p>
+						</div>
+					</div>
+					<div class="p-6">
+						<p class="text-gray-400 mb-4">Materials scientist leading our R&D efforts and product development.</p>
+						<div class="flex space-x-3">
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-linkedin-fill"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-twitter-fill"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-mail-line"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Team member 3 -->
+				<div class="bg-primary-black rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+					<div class="relative h-64">
+						<img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez" class="w-full h-full object-cover">
+						<div class="absolute inset-0 bg-gradient-to-t from-primary-black/80 via-transparent to-transparent"></div>
+						<div class="absolute bottom-4 left-4">
+							<h3 class="text-xl font-bold">Emma Rodriguez</h3>
+							<p class="text-accent-yellow text-sm">Sustainability Director</p>
+						</div>
+					</div>
+					<div class="p-6">
+						<p class="text-gray-400 mb-4">Ensuring our products and processes meet the highest environmental standards.</p>
+						<div class="flex space-x-3">
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-linkedin-fill"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-twitter-fill"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-mail-line"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Team member 4 -->
+				<div class="bg-primary-black rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+					<div class="relative h-64">
+						<img src="https://randomuser.me/api/portraits/men/75.jpg" alt="David Kim" class="w-full h-full object-cover">
+						<div class="absolute inset-0 bg-gradient-to-t from-primary-black/80 via-transparent to-transparent"></div>
+						<div class="absolute bottom-4 left-4">
+							<h3 class="text-xl font-bold">David Kim</h3>
+							<p class="text-accent-yellow text-sm">Operations Manager</p>
+						</div>
+					</div>
+					<div class="p-6">
+						<p class="text-gray-400 mb-4">Oversees our nationwide distribution network and logistics.</p>
+						<div class="flex space-x-3">
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-linkedin-fill"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-twitter-fill"></i>
+							</a>
+							<a href="#" class="text-gray-400 hover:text-accent-yellow transition">
+								<i class="ri-mail-line"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="text-center mt-12">
+				<button class="bg-primary-black hover:bg-primary-black/90 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 border border-gray-800 hover:border-accent-yellow/30 flex items-center mx-auto group">
+					<i class="ri-team-line mr-2 group-hover:text-accent-yellow transition"></i> View All Team Members
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- Values Section -->
+	<section class="py-20 bg-primary-black">
+		<div class="container mx-auto px-4">
+			<div class="text-center mb-16">
+				<span class="inline-block bg-primary-light text-accent-yellow px-4 py-1 rounded-full text-sm font-medium mb-4">OUR VALUES</span>
+				<h2 class="text-3xl md:text-4xl font-bold mb-4">What <span class="text-gradient">Drives</span> Us</h2>
+				<p class="text-gray-400 max-w-2xl mx-auto">The core principles that guide every decision we make.</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<!-- Value 1 -->
+				<div class="bg-primary-light p-8 rounded-xl card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+					<div class="w-16 h-16 bg-gradient-to-br from-accent-yellow to-accent-dark rounded-xl flex items-center justify-center mb-6 text-primary-black text-2xl shadow-lg shadow-accent-yellow/10">
+						<i class="ri-medal-line"></i>
+					</div>
+					<h3 class="text-xl font-bold mb-3">Quality Excellence</h3>
+					<p class="text-gray-400">We never compromise on quality. Every product must meet our rigorous standards before reaching our customers.</p>
+				</div>
+
+				<!-- Value 2 -->
+				<div class="bg-primary-light p-8 rounded-xl card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+					<div class="w-16 h-16 bg-gradient-to-br from-accent-yellow to-accent-dark rounded-xl flex items-center justify-center mb-6 text-primary-black text-2xl shadow-lg shadow-accent-yellow/10">
+						<i class="ri-leaf-line"></i>
+					</div>
+					<h3 class="text-xl font-bold mb-3">Sustainable Future</h3>
+					<p class="text-gray-400">We're committed to reducing environmental impact through responsible sourcing and manufacturing.</p>
+				</div>
+
+				<!-- Value 3 -->
+				<div class="bg-primary-light p-8 rounded-xl card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+					<div class="w-16 h-16 bg-gradient-to-br from-accent-yellow to-accent-dark rounded-xl flex items-center justify-center mb-6 text-primary-black text-2xl shadow-lg shadow-accent-yellow/10">
+						<i class="ri-lightbulb-flash-line"></i>
+					</div>
+					<h3 class="text-xl font-bold mb-3">Continuous Innovation</h3>
+					<p class="text-gray-400">We invest in research and development to bring breakthrough materials to the construction industry.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="py-20 bg-gradient-to-r from-primary-black to-gray-900">
+		<div class="container mx-auto px-4 text-center relative">
+			<div class="absolute top-0 left-0 w-full h-full opacity-10">
+				<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+			</div>
+			<div class="relative z-10 max-w-3xl mx-auto">
+				<span class="inline-block bg-accent-yellow/20 text-accent-yellow px-4 py-1 rounded-full text-sm font-medium mb-6">JOIN OUR STORY</span>
+				<h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Build <span class="text-gradient">Together</span>?</h2>
+				<p class="text-gray-400 mb-8">Whether you're a contractor, architect, or homeowner, we'd love to be part of your next project.</p>
+				<div class="flex flex-col sm:flex-row justify-center gap-4">
+					<button class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center mx-auto shadow-lg hover:shadow-xl shadow-accent-yellow/20">
+						<i class="ri-phone-line mr-2"></i> Contact Our Team
+					</button>
+					<button class="bg-transparent hover:bg-white/10 border-2 border-white/20 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 flex items-center mx-auto group">
+						<i class="ri-information-line mr-2 group-hover:text-accent-yellow transition"></i> Learn More
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer (placeholder - same as main site) -->
+	<footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800/50">
+		<div class="container mx-auto px-4">
+			[FOOTER PLACEHOLDER - SAME AS MAIN SITE]
+		</div>
+	</footer>
+</body>
+
+</html>
