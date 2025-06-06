@@ -49,6 +49,9 @@ tailwind.config = {
 					WebkitBackgroundClip: 'text',
 					backgroundClip: 'text',
 					color: 'transparent',
+					fontFamily: 'Fredericka the Great',
+					fontWeight: '700',
+					fontSize: 'inherit'
 				},
 			}
 

@@ -121,137 +121,184 @@
 		<section class="py-12">
 			<div class="container mx-auto px-4">
 				<div class="flex flex-col lg:flex-row gap-8">
-					<!-- Filters Sidebar -->
-					<aside class="lg:w-1/4">
-						<div class="bg-primary-light rounded-xl p-6 border border-gray-800/50 sticky top-24">
-							<div class="flex justify-between items-center mb-6">
-								<h2 class="font-bold text-lg">Filters</h2>
-								<button class="text-sm text-accent-yellow hover:text-accent-dark transition">Reset All</button>
+					<!-- Filter Section -->
+					<section class="bg-primary-light p-4 rounded-xl border border-gray-800/50">
+						<!-- Filter Header with Toggle (for mobile) -->
+						<div class="flex justify-between items-center mb-4 lg:mb-6">
+							<h3 class="text-lg font-bold flex items-center">
+								<i class="ri-filter-2-line text-accent-yellow mr-2"></i>
+								Filters
+							</h3>
+							<button class="lg:hidden text-gray-400 hover:text-accent-yellow transition" aria-expanded="false" aria-controls="filter-content">
+								<i class="ri-arrow-down-s-line text-xl"></i>
+							</button>
+						</div>
+
+						<!-- Filter Content (Collapsible on mobile) -->
+						<div id="filter-content" class="lg:block hidden">
+							<!-- Search Filter -->
+							<div class="mb-6">
+								<div class="relative">
+									<input type="text" placeholder="Search products..." class="w-full bg-primary-black border border-gray-800/50 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-accent-yellow/50">
+									<i class="ri-search-line absolute left-3 top-2.5 text-gray-400"></i>
+								</div>
 							</div>
 
-							<!-- Price Range Filter -->
-							<div class="mb-8">
-								<h3 class="font-medium mb-4 flex items-center justify-between">
-									<span>Price Range</span>
-									<i class="ri-arrow-down-s-line text-gray-400"></i>
-								</h3>
-								<div class="px-1">
-									<div class="flex justify-between text-sm text-gray-400 mb-2">
-										<span>$0</span>
-										<span>$500+</span>
-									</div>
+							<!-- Price Range - Vertical Slider Layout -->
+							<div class="mb-6">
+								<div class="flex justify-between items-center mb-3">
+									<h4 class="font-medium">Price Range</h4>
+									<span class="text-sm text-accent-yellow">$0 - $500+</span>
+								</div>
+								<div class="px-2">
 									<input type="range" min="0" max="500" value="250" class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-accent-yellow">
-									<div class="flex justify-between mt-4">
-										<div class="relative w-20">
-											<span class="absolute left-2 top-1.5 text-gray-400 text-xs">$</span>
-											<input type="number" min="0" placeholder="Min" class="bg-primary-black border border-gray-800/50 rounded pl-6 pr-2 py-1 w-full text-sm focus:border-accent-yellow/50 focus:outline-none">
-										</div>
-										<div class="relative w-20">
-											<span class="absolute left-2 top-1.5 text-gray-400 text-xs">$</span>
-											<input type="number" max="500" placeholder="Max" class="bg-primary-black border border-gray-800/50 rounded pl-6 pr-2 py-1 w-full text-sm focus:border-accent-yellow/50 focus:outline-none">
-										</div>
+								</div>
+								<div class="flex justify-between mt-3">
+									<div class="flex items-center w-5/12">
+										<span class="text-gray-400 mr-2">$</span>
+										<input type="number" min="0" max="500" placeholder="Min" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-accent-yellow/50">
+									</div>
+									<div class="flex items-center w-5/12">
+										<span class="text-gray-400 mr-2">$</span>
+										<input type="number" min="0" max="500" placeholder="Max" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-accent-yellow/50">
 									</div>
 								</div>
 							</div>
 
-							<!-- Categories Filter -->
-							<div class="mb-8">
-								<h3 class="font-medium mb-4 flex items-center justify-between">
-									<span>Categories</span>
-									<i class="ri-arrow-down-s-line text-gray-400"></i>
-								</h3>
-								<ul class="space-y-2">
-									<li>
-										<a href="#" class="flex items-center justify-between text-gray-300 hover:text-accent-yellow transition group">
-											<span>Beams & Columns</span>
-											<span class="text-xs bg-gray-800 px-2 py-0.5 rounded group-hover:bg-accent-yellow group-hover:text-primary-black transition">24</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="flex items-center justify-between text-gray-300 hover:text-accent-yellow transition group">
-											<span>Concrete Products</span>
-											<span class="text-xs bg-gray-800 px-2 py-0.5 rounded group-hover:bg-accent-yellow group-hover:text-primary-black transition">18</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="flex items-center justify-between text-gray-300 hover:text-accent-yellow transition group">
-											<span>Structural Steel</span>
-											<span class="text-xs bg-gray-800 px-2 py-0.5 rounded group-hover:bg-accent-yellow group-hover:text-primary-black transition">32</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="flex items-center justify-between text-gray-300 hover:text-accent-yellow transition group">
-											<span>Foundation Materials</span>
-											<span class="text-xs bg-gray-800 px-2 py-0.5 rounded group-hover:bg-accent-yellow group-hover:text-primary-black transition">15</span>
-										</a>
-									</li>
-								</ul>
+							<!-- Categories - Accordion Style -->
+							<div class="mb-6">
+								<button class="filter-accordion-toggle w-full flex justify-between items-center py-2">
+									<h4 class="font-medium">Categories</h4>
+									<i class="ri-arrow-down-s-line text-gray-400 transition-transform duration-200"></i>
+								</button>
+								<div class="filter-accordion-content mt-2 pl-1">
+									<ul class="space-y-2">
+										<li>
+											<a href="#" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+												<span class="text-gray-400 group-hover:text-white">Structural Materials</span>
+												<span class="text-xs bg-gray-800 px-2 py-1 rounded">24</span>
+											</a>
+										</li>
+										<li>
+											<a href="#" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+												<span class="text-gray-400 group-hover:text-white">Finishing Materials</span>
+												<span class="text-xs bg-gray-800 px-2 py-1 rounded">18</span>
+											</a>
+										</li>
+										<li>
+											<a href="#" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+												<span class="text-gray-400 group-hover:text-white">Plumbing & Electrical</span>
+												<span class="text-xs bg-gray-800 px-2 py-1 rounded">32</span>
+											</a>
+										</li>
+									</ul>
+								</div>
 							</div>
 
-							<!-- Material Type Filter -->
-							<div class="mb-8">
-								<h3 class="font-medium mb-4 flex items-center justify-between">
-									<span>Material Type</span>
-									<i class="ri-arrow-down-s-line text-gray-400"></i>
-								</h3>
+							<!-- Material Type - Chip Selection -->
+							<div class="mb-6">
+								<h4 class="font-medium mb-3">Material Type</h4>
+								<div class="flex flex-wrap gap-2">
+									<input type="checkbox" id="wood-filter" class="filter-checkbox hidden" checked>
+									<label for="wood-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
+										<i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
+										Wood
+									</label>
+
+									<input type="checkbox" id="metal-filter" class="filter-checkbox hidden">
+									<label for="metal-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
+										<i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
+										Metal
+									</label>
+
+									<input type="checkbox" id="concrete-filter" class="filter-checkbox hidden" checked>
+									<label for="concrete-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
+										<i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
+										Concrete
+									</label>
+
+									<input type="checkbox" id="eco-filter" class="filter-checkbox hidden">
+									<label for="eco-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
+										<i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
+										Eco-Friendly
+									</label>
+								</div>
+							</div>
+
+							<!-- Rating - Star Selection -->
+							<div class="mb-6">
+								<h4 class="font-medium mb-3">Customer Rating</h4>
 								<div class="space-y-2">
-									<label class="flex items-center space-x-3 cursor-pointer">
-										<input type="checkbox" class="hidden filter-checkbox">
-										<span class="filter-label border border-gray-800/50 rounded px-3 py-1 text-sm hover:border-accent-yellow/30 transition">Steel</span>
-									</label>
-									<label class="flex items-center space-x-3 cursor-pointer">
-										<input type="checkbox" class="hidden filter-checkbox">
-										<span class="filter-label border border-gray-800/50 rounded px-3 py-1 text-sm hover:border-accent-yellow/30 transition">Concrete</span>
-									</label>
-									<label class="flex items-center space-x-3 cursor-pointer">
-										<input type="checkbox" class="hidden filter-checkbox" checked>
-										<span class="filter-label border border-gray-800/50 rounded px-3 py-1 text-sm hover:border-accent-yellow/30 transition">Wood</span>
-									</label>
-									<label class="flex items-center space-x-3 cursor-pointer">
-										<input type="checkbox" class="hidden filter-checkbox">
-										<span class="filter-label border border-gray-800/50 rounded px-3 py-1 text-sm hover:border-accent-yellow/30 transition">Composite</span>
-									</label>
+									<a href="#" class="flex items-center py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+										<div class="flex mr-3">
+											<i class="ri-star-fill text-accent-yellow"></i>
+											<i class="ri-star-fill text-accent-yellow"></i>
+											<i class="ri-star-fill text-accent-yellow"></i>
+											<i class="ri-star-fill text-accent-yellow"></i>
+											<i class="ri-star-fill text-accent-yellow"></i>
+										</div>
+										<span class="text-gray-400 group-hover:text-white">4.5 & up</span>
+									</a>
+									<a href="#" class="flex items-center py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+										<div class="flex mr-3">
+											<i class="ri-star-fill text-accent-yellow"></i>
+											<i class="ri-star-fill text-accent-yellow"></i>
+											<i class="ri-star-fill text-accent-yellow"></i>
+											<i class="ri-star-fill text-accent-yellow"></i>
+											<i class="ri-star-line text-accent-yellow"></i>
+										</div>
+										<span class="text-gray-400 group-hover:text-white">4.0 & up</span>
+									</a>
 								</div>
 							</div>
 
-							<!-- Sustainability Filter -->
-							<div>
-								<h3 class="font-medium mb-4 flex items-center justify-between">
-									<span>Sustainability</span>
-									<i class="ri-arrow-down-s-line text-gray-400"></i>
-								</h3>
-								<div class="space-y-3">
-									<label class="flex items-center space-x-3 cursor-pointer">
-										<div class="relative">
-											<input type="checkbox" class="hidden peer">
-											<div class="w-5 h-5 border border-gray-800/50 rounded flex items-center justify-center peer-checked:bg-accent-yellow peer-checked:border-accent-yellow transition">
-												<i class="ri-check-line text-primary-black text-sm opacity-0 peer-checked:opacity-100 transition"></i>
-											</div>
-										</div>
-										<span class="text-gray-300 hover:text-white transition">Eco-Friendly</span>
-									</label>
-									<label class="flex items-center space-x-3 cursor-pointer">
-										<div class="relative">
-											<input type="checkbox" class="hidden peer" checked>
-											<div class="w-5 h-5 border border-gray-800/50 rounded flex items-center justify-center peer-checked:bg-accent-yellow peer-checked:border-accent-yellow transition">
-												<i class="ri-check-line text-primary-black text-sm opacity-0 peer-checked:opacity-100 transition"></i>
-											</div>
-										</div>
-										<span class="text-gray-300 hover:text-white transition">Recycled Content</span>
-									</label>
-									<label class="flex items-center space-x-3 cursor-pointer">
-										<div class="relative">
-											<input type="checkbox" class="hidden peer">
-											<div class="w-5 h-5 border border-gray-800/50 rounded flex items-center justify-center peer-checked:bg-accent-yellow peer-checked:border-accent-yellow transition">
-												<i class="ri-check-line text-primary-black text-sm opacity-0 peer-checked:opacity-100 transition"></i>
-											</div>
-										</div>
-										<span class="text-gray-300 hover:text-white transition">Low Carbon</span>
-									</label>
-								</div>
+							<!-- Filter Actions -->
+							<div class="flex flex-col sm:flex-row gap-3 pt-2 border-t border-gray-800/50">
+								<button class="w-full bg-accent-yellow hover:bg-accent-dark text-primary-black font-medium py-2.5 px-4 rounded-lg transition">
+									Apply Filters
+								</button>
+								<button class="w-full bg-transparent border border-gray-800/50 hover:border-accent-yellow/30 text-gray-400 hover:text-white font-medium py-2.5 px-4 rounded-lg transition">
+									Reset All
+								</button>
 							</div>
 						</div>
-					</aside>
+					</section>
+
+					<style>
+						.filter-checkbox:checked+.filter-label {
+							background-color: #FFD700;
+							color: #111113;
+							border-color: #FFD700;
+						}
+
+						.filter-checkbox:checked+.filter-label i {
+							color: #111113;
+						}
+					</style>
+
+					<script>
+						// Mobile filter toggle functionality
+						document.querySelector('[aria-controls="filter-content"]').addEventListener('click', function() {
+							const content = document.getElementById('filter-content');
+							const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+							content.classList.toggle('hidden');
+							this.setAttribute('aria-expanded', !isExpanded);
+							this.querySelector('i').classList.toggle('ri-arrow-down-s-line');
+							this.querySelector('i').classList.toggle('ri-arrow-up-s-line');
+						});
+
+						// Accordion functionality for filter sections
+						document.querySelectorAll('.filter-accordion-toggle').forEach(toggle => {
+							toggle.addEventListener('click', function() {
+								const content = this.nextElementSibling;
+								const icon = this.querySelector('i');
+
+								content.classList.toggle('hidden');
+								icon.classList.toggle('rotate-180');
+							});
+						});
+					</script>
 
 					<!-- Product Listing -->
 					<div class="lg:w-3/4">

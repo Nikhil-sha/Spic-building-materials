@@ -22,3 +22,15 @@ const productCarousel = new EmblaCarouselComponent(document.querySelector("._car
 
 const testimonialNodes = Array.from(document.getElementById("_testimonial_carousel").children);
 const testimonialCarousel = new DeckCarousel(document.getElementById("_testimonial_carousel"), testimonialNodes, 4000);
+
+
+// const fonts = ['Poppins', 'Nunito', 'Ubuntu', 'Rubik', 'Inter'];
+// let currentFontIndex = 0;
+
+// function switchFont() {
+// 	document.body.style.fontFamily = fonts[currentFontIndex];
+// 	console.log("current: ", fonts[currentFontIndex]);
+// 	currentFontIndex = (currentFontIndex + 1) % fonts.length;
+// }
+
+// setInterval(switchFont, 2000);

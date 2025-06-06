@@ -24,9 +24,6 @@ const slideButton = document.querySelectorAll(".slide_button");
 const mobileMenu = new MobileMenu("mobile_menu");
 
 
-mobileMenu.hide();
-
-
 let handleOutsideMenuClick = function(e) {
 	if (!mobileMenu.element.contains(e.target)) {
 		mobileMenuClose.click();
