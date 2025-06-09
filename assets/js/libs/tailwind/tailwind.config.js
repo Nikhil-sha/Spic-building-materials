@@ -51,7 +51,7 @@ tailwind.config = {
 					color: 'transparent',
 					fontFamily: 'Fredericka the Great',
 					fontWeight: '700',
-					fontSize: 'inherit'
+					fontSize: 'inherit',
 				},
 			}
 			

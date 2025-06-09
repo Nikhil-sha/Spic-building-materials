@@ -1,9 +1,39 @@
+import './template.js';
 import {
 	CanvasCarousel,
 	EmblaCarouselComponent,
 	DeckCarousel
 } from './classes.js';
-import './template.js';
+import {
+	productCategories,
+	featuredProducts
+} from './product-list.js';
+
+
+function mapCategories() {
+	const nodeContainer = document.querySelector("._category_carousel>._carousel_viewport").firstElementChild;
+	nodeContainer.innerHTML = productCategories.map(category => `
+		<div class="flex-[0_0_100%] md:flex-[0_0_70%] min-w-0 h-80 ml-6 group relative overflow-hidden rounded-xl">
+			<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary-black/80 z-10"></div>
+			<img src="${category.image}" alt="${category.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+			<div class="absolute bottom-0 left-0 p-6 z-20 w-full">
+				<h3 class="text-xl font-bold mb-1 group-hover:text-accent-yellow transition">${category.title}</h3>
+				<p class="text-gray-300 mb-4">${category.description}</p>
+				<a href="${category.url}" class="inline-flex items-center text-accent-yellow font-medium group">
+					Explore
+				</a>
+			</div>
+			<div class="absolute top-4 right-4 bg-accent-yellow text-primary-black px-3 py-1 rounded-full text-xs font-bold z-20">
+				24 Products
+			</div>
+		</div>
+	`).join('');
+	
+	const categoryCarousel = new EmblaCarouselComponent(document.querySelector("._category_carousel"), {
+		autoplay: true,
+		autoplayInterval: 2000
+	});
+}
 
 
 const heroBgCarousel = new CanvasCarousel(document.getElementById("_canvas_carousel"), [
@@ -15,22 +45,8 @@ const heroBgCarousel = new CanvasCarousel(document.getElementById("_canvas_carou
 	"https://picsum.photos/id/1069/1600/900"
 ]);
 
-const productCarousel = new EmblaCarouselComponent(document.querySelector("._carousel"), {
-	autoplay: true,
-	autoplayInterval: 2000
-});
 
 const testimonialNodes = Array.from(document.getElementById("_testimonial_carousel").children);
 const testimonialCarousel = new DeckCarousel(document.getElementById("_testimonial_carousel"), testimonialNodes, 4000);
 
-
-// const fonts = ['Poppins', 'Nunito', 'Ubuntu', 'Rubik', 'Inter'];
-// let currentFontIndex = 0;
-
-// function switchFont() {
-// 	document.body.style.fontFamily = fonts[currentFontIndex];
-// 	console.log("current: ", fonts[currentFontIndex]);
-// 	currentFontIndex = (currentFontIndex + 1) % fonts.length;
-// }
-
-// setInterval(switchFont, 2000);
+mapCategories();
