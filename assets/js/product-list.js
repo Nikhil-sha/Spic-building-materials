@@ -12,13 +12,7 @@ const productCategories = [
 		url: '/products/?category=pots'
 	},
 	{
-		title: 'boundary walls',
-		image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea',
-		description: 'Durable and stylish boundary wall solutions for property demarcation and security',
-		url: '/products/?category=boundary-walls'
-	},
-	{
-		title: 'fencing',
+		title: 'boundary walls and fencing',
 		image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d',
 		description: 'Privacy fences, decorative railings, and garden enclosures in various materials',
 		url: '/products/?category=fencing'
@@ -28,13 +22,7 @@ const productCategories = [
 		image: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6',
 		description: 'Premium paving materials for driveways, walkways, and outdoor surfaces',
 		url: '/products/?category=paving'
-	},
-	{
-		title: 'decor',
-		image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae',
-		description: 'Garden ornaments, statues, fountains, and decorative elements for outdoor spaces',
-		url: '/products/?category=decor'
-	},
+	}
 	
 ];
 
