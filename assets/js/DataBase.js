@@ -57,40 +57,39 @@
 
 
 const productCategories = [
-	{
-		title: 'bricks',
-		image: '/assets/media/images/products/interlocking-red-paver-brick.png',
-		description: ''
-	}
-];
+{
+	title: 'bricks',
+	image: '/assets/media/images/products/interlocking-red-paver-brick.png',
+	description: ''
+}];
 
 
 const productItems = [
 	{
 		// Product Id - bas ek unique number / roll number ki tarah
 		id: 1, // Number
-
+		
 		// Product ka naam
 		name: 'interlocking red paver brick', // String
-
+		
 		// Product ke baare me ek line
 		description: "", // String
-
+		
 		// Product kis category ka hai - bricks/benches/fences/pots…
 		category: "bricks", // String
-
+		
 		// Price aur unit - ₹ [value] / [unit]
 		price: {
 			value: 1, // Number
 			unit: "square Feet" // String
 		}, // Object
-
+		
 		// Product ki quality rating
 		rating: 4.5, // Number/Float
-
+		
 		// Product ka ek image - yeh rehne do
 		image: "./image.png", // String/
-
+		
 		// Product ki sample images - yeh bhi rehne do
 		gallery: [
 			"./image(2).png",

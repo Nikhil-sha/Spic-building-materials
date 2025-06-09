@@ -32,7 +32,7 @@ tailwind.config = {
 		}
 	},
 	plugins: [
-    function({ addUtilities }) {
+		function({ addUtilities }) {
 			const newUtilities = {
 				'.hero-pattern': {
 					backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.08) 0%, rgba(17, 17, 19, 0.95) 70%)',
@@ -54,8 +54,8 @@ tailwind.config = {
 					fontSize: 'inherit'
 				},
 			}
-
+			
 			addUtilities(newUtilities)
-    }
-  ]
+		}
+	]
 }

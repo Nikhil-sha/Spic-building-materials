@@ -2,592 +2,592 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>SPICBM - Product Catalog</title>
-	<!-- Tailwind CSS with custom config -->
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script>
-		tailwind.config = {
-			theme: {
-				extend: {
-					colors: {
-						primary: {
-							black: '#111113',
-							light: '#1E1E20',
-						},
-						accent: {
-							yellow: '#FFD700',
-							dark: '#FFC000',
-						},
-					},
-					animation: {
-						'fade-in': 'fadeIn 0.5s ease-in-out',
-					},
-					keyframes: {
-						fadeIn: {
-							'0%': { opacity: '0' },
-							'100%': { opacity: '1' },
-						},
-					},
-				}
-			}
-		}
-	</script>
-	<!-- RemixIcon -->
-	<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-	<style>
-		.hero-pattern {
-			background-image: radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.08) 0%, rgba(17, 17, 19, 0.95) 70%);
-		}
-
-		.card-hover {
-			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		}
-
-		.card-hover:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-		}
-
-		.text-gradient {
-			background: linear-gradient(90deg, #FFD700 0%, #FFC000 100%);
-			-webkit-background-clip: text;
-			background-clip: text;
-			color: transparent;
-		}
-
-		.filter-checkbox:checked+.filter-label {
-			background-color: #FFD700;
-			color: #111113;
-			border-color: #FFD700;
-		}
-	</style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>SPICBM - Product Catalog</title>
+ <!-- Tailwind CSS with custom config -->
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script>
+  tailwind.config = {
+   theme: {
+    extend: {
+     colors: {
+      primary: {
+       black: '#111113',
+       light: '#1E1E20',
+      },
+      accent: {
+       yellow: '#FFD700',
+       dark: '#FFC000',
+      },
+     },
+     animation: {
+      'fade-in': 'fadeIn 0.5s ease-in-out',
+     },
+     keyframes: {
+      fadeIn: {
+       '0%': { opacity: '0' },
+       '100%': { opacity: '1' },
+      },
+     },
+    }
+   }
+  }
+ </script>
+ <!-- RemixIcon -->
+ <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+ <style>
+  .hero-pattern {
+   background-image: radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.08) 0%, rgba(17, 17, 19, 0.95) 70%);
+  }
+  
+  .card-hover {
+   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-hover:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .text-gradient {
+   background: linear-gradient(90deg, #FFD700 0%, #FFC000 100%);
+   -webkit-background-clip: text;
+   background-clip: text;
+   color: transparent;
+  }
+  
+  .filter-checkbox:checked+.filter-label {
+   background-color: #FFD700;
+   color: #111113;
+   border-color: #FFD700;
+  }
+ </style>
 </head>
 
 <body class="bg-primary-black text-gray-100 font-sans antialiased">
-
-	<!-- Header Placeholder (Same as previous) -->
-	<header class="bg-primary-black/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/50">
-		<!-- Header content would be the same as the previous page -->
-		<div class="container mx-auto px-4 py-3">
-			<div class="text-center py-8">
-				<h1 class="text-2xl font-bold">[HEADER PLACEHOLDER]</h1>
-				<p class="text-gray-400">Navigation menu would appear here</p>
-			</div>
-		</div>
-	</header>
-
-	<!-- Page Content -->
-	<main>
-		<!-- Hero/Breadcrumb Section -->
-		<section class="hero-pattern py-12 border-b border-gray-800/50">
-			<div class="container mx-auto px-4">
-				<div class="flex flex-col md:flex-row justify-between items-start md:items-end">
-					<div>
-						<nav class="flex mb-4" aria-label="Breadcrumb">
-							<ol class="inline-flex items-center space-x-2">
-								<li class="inline-flex items-center">
-									<a href="#" class="text-gray-400 hover:text-accent-yellow transition text-sm">Home</a>
-								</li>
-								<li>
-									<i class="ri-arrow-right-s-line text-gray-500"></i>
-								</li>
-								<li class="inline-flex items-center">
-									<a href="#" class="text-gray-400 hover:text-accent-yellow transition text-sm">Products</a>
-								</li>
-								<li>
-									<i class="ri-arrow-right-s-line text-gray-500"></i>
-								</li>
-								<li aria-current="page">
-									<span class="text-accent-yellow text-sm font-medium">Structural Materials</span>
-								</li>
-							</ol>
-						</nav>
-						<h1 class="text-3xl md:text-4xl font-bold mb-2">Structural <span class="text-gradient">Materials</span></h1>
-						<p class="text-gray-400 max-w-2xl">Premium beams, columns, and foundational elements for all construction needs</p>
-					</div>
-					<div class="mt-6 md:mt-0">
-						<div class="relative">
-							<input type="text" placeholder="Search products..." class="bg-primary-light border border-gray-800/50 rounded-lg py-2 pl-10 pr-4 w-full md:w-64 focus:border-accent-yellow/50 focus:outline-none focus:ring-1 focus:ring-accent-yellow/20 transition">
-							<i class="ri-search-line absolute left-3 top-2.5 text-gray-400"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Main Content Area -->
-		<section class="py-12">
-			<div class="container mx-auto px-4">
-				<div class="flex flex-col lg:flex-row gap-8">
-					<!-- Filter Section -->
-					<section class="bg-primary-light p-4 rounded-xl border border-gray-800/50">
-						<!-- Filter Header with Toggle (for mobile) -->
-						<div class="flex justify-between items-center mb-4 lg:mb-6">
-							<h3 class="text-lg font-bold flex items-center">
-								<i class="ri-filter-2-line text-accent-yellow mr-2"></i>
-								Filters
-							</h3>
-							<button class="lg:hidden text-gray-400 hover:text-accent-yellow transition" aria-expanded="false" aria-controls="filter-content">
-								<i class="ri-arrow-down-s-line text-xl"></i>
-							</button>
-						</div>
-
-						<!-- Filter Content (Collapsible on mobile) -->
-						<div id="filter-content" class="lg:block hidden">
-							<!-- Search Filter -->
-							<div class="mb-6">
-								<div class="relative">
-									<input type="text" placeholder="Search products..." class="w-full bg-primary-black border border-gray-800/50 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-accent-yellow/50">
-									<i class="ri-search-line absolute left-3 top-2.5 text-gray-400"></i>
-								</div>
-							</div>
-
-							<!-- Price Range - Vertical Slider Layout -->
-							<div class="mb-6">
-								<div class="flex justify-between items-center mb-3">
-									<h4 class="font-medium">Price Range</h4>
-									<span class="text-sm text-accent-yellow">$0 - $500+</span>
-								</div>
-								<div class="px-2">
-									<input type="range" min="0" max="500" value="250" class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-accent-yellow">
-								</div>
-								<div class="flex justify-between mt-3">
-									<div class="flex items-center w-5/12">
-										<span class="text-gray-400 mr-2">$</span>
-										<input type="number" min="0" max="500" placeholder="Min" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-accent-yellow/50">
-									</div>
-									<div class="flex items-center w-5/12">
-										<span class="text-gray-400 mr-2">$</span>
-										<input type="number" min="0" max="500" placeholder="Max" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-accent-yellow/50">
-									</div>
-								</div>
-							</div>
-
-							<!-- Categories - Accordion Style -->
-							<div class="mb-6">
-								<button class="filter-accordion-toggle w-full flex justify-between items-center py-2">
-									<h4 class="font-medium">Categories</h4>
-									<i class="ri-arrow-down-s-line text-gray-400 transition-transform duration-200"></i>
-								</button>
-								<div class="filter-accordion-content mt-2 pl-1">
-									<ul class="space-y-2">
-										<li>
-											<a href="#" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
-												<span class="text-gray-400 group-hover:text-white">Structural Materials</span>
-												<span class="text-xs bg-gray-800 px-2 py-1 rounded">24</span>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
-												<span class="text-gray-400 group-hover:text-white">Finishing Materials</span>
-												<span class="text-xs bg-gray-800 px-2 py-1 rounded">18</span>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
-												<span class="text-gray-400 group-hover:text-white">Plumbing & Electrical</span>
-												<span class="text-xs bg-gray-800 px-2 py-1 rounded">32</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Material Type - Chip Selection -->
-							<div class="mb-6">
-								<h4 class="font-medium mb-3">Material Type</h4>
-								<div class="flex flex-wrap gap-2">
-									<input type="checkbox" id="wood-filter" class="filter-checkbox hidden" checked>
-									<label for="wood-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
-										<i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
-										Wood
-									</label>
-
-									<input type="checkbox" id="metal-filter" class="filter-checkbox hidden">
-									<label for="metal-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
-										<i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
-										Metal
-									</label>
-
-									<input type="checkbox" id="concrete-filter" class="filter-checkbox hidden" checked>
-									<label for="concrete-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
-										<i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
-										Concrete
-									</label>
-
-									<input type="checkbox" id="eco-filter" class="filter-checkbox hidden">
-									<label for="eco-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
-										<i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
-										Eco-Friendly
-									</label>
-								</div>
-							</div>
-
-							<!-- Rating - Star Selection -->
-							<div class="mb-6">
-								<h4 class="font-medium mb-3">Customer Rating</h4>
-								<div class="space-y-2">
-									<a href="#" class="flex items-center py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
-										<div class="flex mr-3">
-											<i class="ri-star-fill text-accent-yellow"></i>
-											<i class="ri-star-fill text-accent-yellow"></i>
-											<i class="ri-star-fill text-accent-yellow"></i>
-											<i class="ri-star-fill text-accent-yellow"></i>
-											<i class="ri-star-fill text-accent-yellow"></i>
-										</div>
-										<span class="text-gray-400 group-hover:text-white">4.5 & up</span>
-									</a>
-									<a href="#" class="flex items-center py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
-										<div class="flex mr-3">
-											<i class="ri-star-fill text-accent-yellow"></i>
-											<i class="ri-star-fill text-accent-yellow"></i>
-											<i class="ri-star-fill text-accent-yellow"></i>
-											<i class="ri-star-fill text-accent-yellow"></i>
-											<i class="ri-star-line text-accent-yellow"></i>
-										</div>
-										<span class="text-gray-400 group-hover:text-white">4.0 & up</span>
-									</a>
-								</div>
-							</div>
-
-							<!-- Filter Actions -->
-							<div class="flex flex-col sm:flex-row gap-3 pt-2 border-t border-gray-800/50">
-								<button class="w-full bg-accent-yellow hover:bg-accent-dark text-primary-black font-medium py-2.5 px-4 rounded-lg transition">
-									Apply Filters
-								</button>
-								<button class="w-full bg-transparent border border-gray-800/50 hover:border-accent-yellow/30 text-gray-400 hover:text-white font-medium py-2.5 px-4 rounded-lg transition">
-									Reset All
-								</button>
-							</div>
-						</div>
-					</section>
-
-					<style>
-						.filter-checkbox:checked+.filter-label {
-							background-color: #FFD700;
-							color: #111113;
-							border-color: #FFD700;
-						}
-
-						.filter-checkbox:checked+.filter-label i {
-							color: #111113;
-						}
-					</style>
-
-					<script>
-						// Mobile filter toggle functionality
-						document.querySelector('[aria-controls="filter-content"]').addEventListener('click', function() {
-							const content = document.getElementById('filter-content');
-							const isExpanded = this.getAttribute('aria-expanded') === 'true';
-
-							content.classList.toggle('hidden');
-							this.setAttribute('aria-expanded', !isExpanded);
-							this.querySelector('i').classList.toggle('ri-arrow-down-s-line');
-							this.querySelector('i').classList.toggle('ri-arrow-up-s-line');
-						});
-
-						// Accordion functionality for filter sections
-						document.querySelectorAll('.filter-accordion-toggle').forEach(toggle => {
-							toggle.addEventListener('click', function() {
-								const content = this.nextElementSibling;
-								const icon = this.querySelector('i');
-
-								content.classList.toggle('hidden');
-								icon.classList.toggle('rotate-180');
-							});
-						});
-					</script>
-
-					<!-- Product Listing -->
-					<div class="lg:w-3/4">
-						<!-- Sorting Options -->
-						<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 bg-primary-light rounded-lg p-4 border border-gray-800/50">
-							<p class="text-gray-400 mb-3 sm:mb-0">Showing <span class="text-white">1-12</span> of <span class="text-white">48</span> products</p>
-							<div class="flex items-center space-x-4">
-								<div class="flex items-center">
-									<span class="text-gray-400 mr-2 text-sm">Sort by:</span>
-									<select class="bg-primary-black border border-gray-800/50 rounded px-3 py-1.5 text-sm focus:border-accent-yellow/50 focus:outline-none focus:ring-1 focus:ring-accent-yellow/20 appearance-none pr-8">
-										<option>Featured</option>
-										<option>Price: Low to High</option>
-										<option>Price: High to Low</option>
-										<option>Newest</option>
-										<option>Best Rated</option>
-									</select>
-									<i class="ri-arrow-down-s-line -ml-6 text-gray-400 pointer-events-none"></i>
-								</div>
-								<div class="hidden sm:flex items-center space-x-2">
-									<button class="w-8 h-8 rounded border border-gray-800/50 flex items-center justify-center hover:border-accent-yellow/50 hover:text-accent-yellow transition">
-										<i class="ri-list-check"></i>
-									</button>
-									<button class="w-8 h-8 rounded border border-accent-yellow/50 bg-accent-yellow/10 text-accent-yellow flex items-center justify-center transition">
-										<i class="ri-grid-fill"></i>
-									</button>
-								</div>
-							</div>
-						</div>
-
-						<!-- Product Grid -->
-						<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-							<!-- Product 1 -->
-							<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-								<div class="relative">
-									<img src="https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Premium Hardwood" class="w-full h-48 object-cover">
-									<div class="absolute top-3 right-3 flex flex-col space-y-2">
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-heart-line"></i>
-										</button>
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-eye-line"></i>
-										</button>
-									</div>
-									<div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
-										BESTSELLER
-									</div>
-								</div>
-								<div class="p-5">
-									<div class="flex justify-between items-start mb-2">
-										<h3 class="font-bold">Premium Hardwood Beam</h3>
-										<div class="flex text-accent-yellow text-sm">
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-half-fill"></i>
-										</div>
-									</div>
-									<p class="text-gray-400 text-sm mb-4">4x8 inch structural beam, pressure treated</p>
-									<div class="flex justify-between items-center">
-										<div>
-											<span class="font-bold text-lg">$24.99</span>
-											<span class="text-gray-400 text-sm ml-1">/linear ft</span>
-										</div>
-										<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-											<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<!-- Product 2 -->
-							<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-								<div class="relative">
-									<img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Concrete Column" class="w-full h-48 object-cover">
-									<div class="absolute top-3 right-3 flex flex-col space-y-2">
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-heart-line"></i>
-										</button>
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-eye-line"></i>
-										</button>
-									</div>
-									<div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
-										ECO
-									</div>
-								</div>
-								<div class="p-5">
-									<div class="flex justify-between items-start mb-2">
-										<h3 class="font-bold">Precast Concrete Column</h3>
-										<div class="flex text-accent-yellow text-sm">
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-line"></i>
-										</div>
-									</div>
-									<p class="text-gray-400 text-sm mb-4">12x12 inch, 8ft length, reinforced</p>
-									<div class="flex justify-between items-center">
-										<div>
-											<span class="font-bold text-lg">$149.99</span>
-											<span class="text-gray-400 text-sm ml-1">/each</span>
-										</div>
-										<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-											<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<!-- Product 3 -->
-							<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-								<div class="relative">
-									<img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Steel I-Beam" class="w-full h-48 object-cover">
-									<div class="absolute top-3 right-3 flex flex-col space-y-2">
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-heart-line"></i>
-										</button>
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-eye-line"></i>
-										</button>
-									</div>
-									<div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
-										NEW
-									</div>
-								</div>
-								<div class="p-5">
-									<div class="flex justify-between items-start mb-2">
-										<h3 class="font-bold">Steel I-Beam</h3>
-										<div class="flex text-accent-yellow text-sm">
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-										</div>
-									</div>
-									<p class="text-gray-400 text-sm mb-4">W8x15 structural steel, 20ft length</p>
-									<div class="flex justify-between items-center">
-										<div>
-											<span class="font-bold text-lg">$8.75</span>
-											<span class="text-gray-400 text-sm ml-1">/linear ft</span>
-										</div>
-										<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-											<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<!-- Product 4 -->
-							<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-								<div class="relative">
-									<img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="LVL Beam" class="w-full h-48 object-cover">
-									<div class="absolute top-3 right-3 flex flex-col space-y-2">
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-heart-line"></i>
-										</button>
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-eye-line"></i>
-										</button>
-									</div>
-								</div>
-								<div class="p-5">
-									<div class="flex justify-between items-start mb-2">
-										<h3 class="font-bold">LVL Beam</h3>
-										<div class="flex text-accent-yellow text-sm">
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-half-fill"></i>
-											<i class="ri-star-line"></i>
-										</div>
-									</div>
-									<p class="text-gray-400 text-sm mb-4">1.75x9.5 inch laminated veneer lumber</p>
-									<div class="flex justify-between items-center">
-										<div>
-											<span class="font-bold text-lg">$3.99</span>
-											<span class="text-gray-400 text-sm ml-1">/linear ft</span>
-										</div>
-										<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-											<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<!-- Product 5 -->
-							<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-								<div class="relative">
-									<img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Glulam Beam" class="w-full h-48 object-cover">
-									<div class="absolute top-3 right-3 flex flex-col space-y-2">
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-heart-line"></i>
-										</button>
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-eye-line"></i>
-										</button>
-									</div>
-									<div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
-										ECO
-									</div>
-								</div>
-								<div class="p-5">
-									<div class="flex justify-between items-start mb-2">
-										<h3 class="font-bold">Glulam Beam</h3>
-										<div class="flex text-accent-yellow text-sm">
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-										</div>
-									</div>
-									<p class="text-gray-400 text-sm mb-4">3.5x7 inch glued laminated timber</p>
-									<div class="flex justify-between items-center">
-										<div>
-											<span class="font-bold text-lg">$6.25</span>
-											<span class="text-gray-400 text-sm ml-1">/linear ft</span>
-										</div>
-										<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-											<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<!-- Product 6 -->
-							<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-								<div class="relative">
-									<img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Concrete Pile" class="w-full h-48 object-cover">
-									<div class="absolute top-3 right-3 flex flex-col space-y-2">
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-heart-line"></i>
-										</button>
-										<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-											<i class="ri-eye-line"></i>
-										</button>
-									</div>
-								</div>
-								<div class="p-5">
-									<div class="flex justify-between items-start mb-2">
-										<h3 class="font-bold">Concrete Pile</h3>
-										<div class="flex text-accent-yellow text-sm">
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-half-fill"></i>
-											<i class="ri-star-line"></i>
-										</div>
-									</div>
-									<p class="text-gray-400 text-sm mb-4">12 inch diameter, 20ft length</p>
-									<div class="flex justify-between items-center">
-										<div>
-											<span class="font-bold text-lg">$89.99</span>
-											<span class="text-gray-400 text-sm ml-1">/each</span>
-										</div>
-										<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-											<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Pagination -->
-						<div class="flex justify-center mt-12">
-							<nav class="flex items-center space-x-2">
-								<button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">
-									<i class="ri-arrow-left-s-line"></i>
-								</button>
-								<button class="w-10 h-10 rounded-full bg-accent-yellow text-primary-black border border-accent-yellow flex items-center justify-center font-medium">1</button>
-								<button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">2</button>
-								<button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">3</button>
-								<span class="px-2 text-gray-400">...</span>
-								<button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">8</button>
-								<button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">
-									<i class="ri-arrow-right-s-line"></i>
-								</button>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Newsletter Section -->
-		<!-- <section class="py-16 bg-primary-light border-y border-gray-800/50">
+ 
+ <!-- Header Placeholder (Same as previous) -->
+ <header class="bg-primary-black/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/50">
+  <!-- Header content would be the same as the previous page -->
+  <div class="container mx-auto px-4 py-3">
+   <div class="text-center py-8">
+    <h1 class="text-2xl font-bold">[HEADER PLACEHOLDER]</h1>
+    <p class="text-gray-400">Navigation menu would appear here</p>
+   </div>
+  </div>
+ </header>
+ 
+ <!-- Page Content -->
+ <main>
+  <!-- Hero/Breadcrumb Section -->
+  <section class="hero-pattern py-12 border-b border-gray-800/50">
+   <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end">
+     <div>
+      <nav class="flex mb-4" aria-label="Breadcrumb">
+       <ol class="inline-flex items-center space-x-2">
+        <li class="inline-flex items-center">
+         <a href="#" class="text-gray-400 hover:text-accent-yellow transition text-sm">Home</a>
+        </li>
+        <li>
+         <i class="ri-arrow-right-s-line text-gray-500"></i>
+        </li>
+        <li class="inline-flex items-center">
+         <a href="#" class="text-gray-400 hover:text-accent-yellow transition text-sm">Products</a>
+        </li>
+        <li>
+         <i class="ri-arrow-right-s-line text-gray-500"></i>
+        </li>
+        <li aria-current="page">
+         <span class="text-accent-yellow text-sm font-medium">Structural Materials</span>
+        </li>
+       </ol>
+      </nav>
+      <h1 class="text-3xl md:text-4xl font-bold mb-2">Structural <span class="text-gradient">Materials</span></h1>
+      <p class="text-gray-400 max-w-2xl">Premium beams, columns, and foundational elements for all construction needs</p>
+     </div>
+     <div class="mt-6 md:mt-0">
+      <div class="relative">
+       <input type="text" placeholder="Search products..." class="bg-primary-light border border-gray-800/50 rounded-lg py-2 pl-10 pr-4 w-full md:w-64 focus:border-accent-yellow/50 focus:outline-none focus:ring-1 focus:ring-accent-yellow/20 transition">
+       <i class="ri-search-line absolute left-3 top-2.5 text-gray-400"></i>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  
+  <!-- Main Content Area -->
+  <section class="py-12">
+   <div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row gap-8">
+     <!-- Filter Section -->
+     <section class="bg-primary-light p-4 rounded-xl border border-gray-800/50">
+      <!-- Filter Header with Toggle (for mobile) -->
+      <div class="flex justify-between items-center mb-4 lg:mb-6">
+       <h3 class="text-lg font-bold flex items-center">
+        <i class="ri-filter-2-line text-accent-yellow mr-2"></i>
+        Filters
+       </h3>
+       <button class="lg:hidden text-gray-400 hover:text-accent-yellow transition" aria-expanded="false" aria-controls="filter-content">
+        <i class="ri-arrow-down-s-line text-xl"></i>
+       </button>
+      </div>
+      
+      <!-- Filter Content (Collapsible on mobile) -->
+      <div id="filter-content" class="lg:block hidden">
+       <!-- Search Filter -->
+       <div class="mb-6">
+        <div class="relative">
+         <input type="text" placeholder="Search products..." class="w-full bg-primary-black border border-gray-800/50 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-accent-yellow/50">
+         <i class="ri-search-line absolute left-3 top-2.5 text-gray-400"></i>
+        </div>
+       </div>
+       
+       <!-- Price Range - Vertical Slider Layout -->
+       <div class="mb-6">
+        <div class="flex justify-between items-center mb-3">
+         <h4 class="font-medium">Price Range</h4>
+         <span class="text-sm text-accent-yellow">$0 - $500+</span>
+        </div>
+        <div class="px-2">
+         <input type="range" min="0" max="500" value="250" class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-accent-yellow">
+        </div>
+        <div class="flex justify-between mt-3">
+         <div class="flex items-center w-5/12">
+          <span class="text-gray-400 mr-2">$</span>
+          <input type="number" min="0" max="500" placeholder="Min" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-accent-yellow/50">
+         </div>
+         <div class="flex items-center w-5/12">
+          <span class="text-gray-400 mr-2">$</span>
+          <input type="number" min="0" max="500" placeholder="Max" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-accent-yellow/50">
+         </div>
+        </div>
+       </div>
+       
+       <!-- Categories - Accordion Style -->
+       <div class="mb-6">
+        <button class="filter-accordion-toggle w-full flex justify-between items-center py-2">
+         <h4 class="font-medium">Categories</h4>
+         <i class="ri-arrow-down-s-line text-gray-400 transition-transform duration-200"></i>
+        </button>
+        <div class="filter-accordion-content mt-2 pl-1">
+         <ul class="space-y-2">
+          <li>
+           <a href="#" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+            <span class="text-gray-400 group-hover:text-white">Structural Materials</span>
+            <span class="text-xs bg-gray-800 px-2 py-1 rounded">24</span>
+           </a>
+          </li>
+          <li>
+           <a href="#" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+            <span class="text-gray-400 group-hover:text-white">Finishing Materials</span>
+            <span class="text-xs bg-gray-800 px-2 py-1 rounded">18</span>
+           </a>
+          </li>
+          <li>
+           <a href="#" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+            <span class="text-gray-400 group-hover:text-white">Plumbing & Electrical</span>
+            <span class="text-xs bg-gray-800 px-2 py-1 rounded">32</span>
+           </a>
+          </li>
+         </ul>
+        </div>
+       </div>
+       
+       <!-- Material Type - Chip Selection -->
+       <div class="mb-6">
+        <h4 class="font-medium mb-3">Material Type</h4>
+        <div class="flex flex-wrap gap-2">
+         <input type="checkbox" id="wood-filter" class="filter-checkbox hidden" checked>
+         <label for="wood-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
+          <i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
+          Wood
+         </label>
+         
+         <input type="checkbox" id="metal-filter" class="filter-checkbox hidden">
+         <label for="metal-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
+          <i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
+          Metal
+         </label>
+         
+         <input type="checkbox" id="concrete-filter" class="filter-checkbox hidden" checked>
+         <label for="concrete-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
+          <i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
+          Concrete
+         </label>
+         
+         <input type="checkbox" id="eco-filter" class="filter-checkbox hidden">
+         <label for="eco-filter" class="filter-label cursor-pointer flex items-center border border-gray-800/50 text-gray-400 hover:border-accent-yellow/30 px-3 py-1.5 rounded-full text-sm transition">
+          <i class="ri-checkbox-blank-circle-fill text-xxs mr-1.5"></i>
+          Eco-Friendly
+         </label>
+        </div>
+       </div>
+       
+       <!-- Rating - Star Selection -->
+       <div class="mb-6">
+        <h4 class="font-medium mb-3">Customer Rating</h4>
+        <div class="space-y-2">
+         <a href="#" class="flex items-center py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+          <div class="flex mr-3">
+           <i class="ri-star-fill text-accent-yellow"></i>
+           <i class="ri-star-fill text-accent-yellow"></i>
+           <i class="ri-star-fill text-accent-yellow"></i>
+           <i class="ri-star-fill text-accent-yellow"></i>
+           <i class="ri-star-fill text-accent-yellow"></i>
+          </div>
+          <span class="text-gray-400 group-hover:text-white">4.5 & up</span>
+         </a>
+         <a href="#" class="flex items-center py-1.5 px-2 rounded-lg hover:bg-primary-black/50 transition group">
+          <div class="flex mr-3">
+           <i class="ri-star-fill text-accent-yellow"></i>
+           <i class="ri-star-fill text-accent-yellow"></i>
+           <i class="ri-star-fill text-accent-yellow"></i>
+           <i class="ri-star-fill text-accent-yellow"></i>
+           <i class="ri-star-line text-accent-yellow"></i>
+          </div>
+          <span class="text-gray-400 group-hover:text-white">4.0 & up</span>
+         </a>
+        </div>
+       </div>
+       
+       <!-- Filter Actions -->
+       <div class="flex flex-col sm:flex-row gap-3 pt-2 border-t border-gray-800/50">
+        <button class="w-full bg-accent-yellow hover:bg-accent-dark text-primary-black font-medium py-2.5 px-4 rounded-lg transition">
+         Apply Filters
+        </button>
+        <button class="w-full bg-transparent border border-gray-800/50 hover:border-accent-yellow/30 text-gray-400 hover:text-white font-medium py-2.5 px-4 rounded-lg transition">
+         Reset All
+        </button>
+       </div>
+      </div>
+     </section>
+     
+     <style>
+      .filter-checkbox:checked+.filter-label {
+       background-color: #FFD700;
+       color: #111113;
+       border-color: #FFD700;
+      }
+      
+      .filter-checkbox:checked+.filter-label i {
+       color: #111113;
+      }
+     </style>
+     
+     <script>
+      // Mobile filter toggle functionality
+      document.querySelector('[aria-controls="filter-content"]').addEventListener('click', function() {
+       const content = document.getElementById('filter-content');
+       const isExpanded = this.getAttribute('aria-expanded') === 'true';
+       
+       content.classList.toggle('hidden');
+       this.setAttribute('aria-expanded', !isExpanded);
+       this.querySelector('i').classList.toggle('ri-arrow-down-s-line');
+       this.querySelector('i').classList.toggle('ri-arrow-up-s-line');
+      });
+      
+      // Accordion functionality for filter sections
+      document.querySelectorAll('.filter-accordion-toggle').forEach(toggle => {
+       toggle.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        const icon = this.querySelector('i');
+        
+        content.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+       });
+      });
+     </script>
+     
+     <!-- Product Listing -->
+     <div class="lg:w-3/4">
+      <!-- Sorting Options -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 bg-primary-light rounded-lg p-4 border border-gray-800/50">
+       <p class="text-gray-400 mb-3 sm:mb-0">Showing <span class="text-white">1-12</span> of <span class="text-white">48</span> products</p>
+       <div class="flex items-center space-x-4">
+        <div class="flex items-center">
+         <span class="text-gray-400 mr-2 text-sm">Sort by:</span>
+         <select class="bg-primary-black border border-gray-800/50 rounded px-3 py-1.5 text-sm focus:border-accent-yellow/50 focus:outline-none focus:ring-1 focus:ring-accent-yellow/20 appearance-none pr-8">
+          <option>Featured</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest</option>
+          <option>Best Rated</option>
+         </select>
+         <i class="ri-arrow-down-s-line -ml-6 text-gray-400 pointer-events-none"></i>
+        </div>
+        <div class="hidden sm:flex items-center space-x-2">
+         <button class="w-8 h-8 rounded border border-gray-800/50 flex items-center justify-center hover:border-accent-yellow/50 hover:text-accent-yellow transition">
+          <i class="ri-list-check"></i>
+         </button>
+         <button class="w-8 h-8 rounded border border-accent-yellow/50 bg-accent-yellow/10 text-accent-yellow flex items-center justify-center transition">
+          <i class="ri-grid-fill"></i>
+         </button>
+        </div>
+       </div>
+      </div>
+      
+      <!-- Product Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+       <!-- Product 1 -->
+       <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+        <div class="relative">
+         <img src="https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Premium Hardwood" class="w-full h-48 object-cover">
+         <div class="absolute top-3 right-3 flex flex-col space-y-2">
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-heart-line"></i>
+          </button>
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-eye-line"></i>
+          </button>
+         </div>
+         <div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
+          BESTSELLER
+         </div>
+        </div>
+        <div class="p-5">
+         <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold">Premium Hardwood Beam</h3>
+          <div class="flex text-accent-yellow text-sm">
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-half-fill"></i>
+          </div>
+         </div>
+         <p class="text-gray-400 text-sm mb-4">4x8 inch structural beam, pressure treated</p>
+         <div class="flex justify-between items-center">
+          <div>
+           <span class="font-bold text-lg">$24.99</span>
+           <span class="text-gray-400 text-sm ml-1">/linear ft</span>
+          </div>
+          <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+           <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+          </button>
+         </div>
+        </div>
+       </div>
+       
+       <!-- Product 2 -->
+       <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+        <div class="relative">
+         <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Concrete Column" class="w-full h-48 object-cover">
+         <div class="absolute top-3 right-3 flex flex-col space-y-2">
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-heart-line"></i>
+          </button>
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-eye-line"></i>
+          </button>
+         </div>
+         <div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
+          ECO
+         </div>
+        </div>
+        <div class="p-5">
+         <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold">Precast Concrete Column</h3>
+          <div class="flex text-accent-yellow text-sm">
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-line"></i>
+          </div>
+         </div>
+         <p class="text-gray-400 text-sm mb-4">12x12 inch, 8ft length, reinforced</p>
+         <div class="flex justify-between items-center">
+          <div>
+           <span class="font-bold text-lg">$149.99</span>
+           <span class="text-gray-400 text-sm ml-1">/each</span>
+          </div>
+          <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+           <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+          </button>
+         </div>
+        </div>
+       </div>
+       
+       <!-- Product 3 -->
+       <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+        <div class="relative">
+         <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Steel I-Beam" class="w-full h-48 object-cover">
+         <div class="absolute top-3 right-3 flex flex-col space-y-2">
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-heart-line"></i>
+          </button>
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-eye-line"></i>
+          </button>
+         </div>
+         <div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
+          NEW
+         </div>
+        </div>
+        <div class="p-5">
+         <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold">Steel I-Beam</h3>
+          <div class="flex text-accent-yellow text-sm">
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+          </div>
+         </div>
+         <p class="text-gray-400 text-sm mb-4">W8x15 structural steel, 20ft length</p>
+         <div class="flex justify-between items-center">
+          <div>
+           <span class="font-bold text-lg">$8.75</span>
+           <span class="text-gray-400 text-sm ml-1">/linear ft</span>
+          </div>
+          <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+           <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+          </button>
+         </div>
+        </div>
+       </div>
+       
+       <!-- Product 4 -->
+       <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+        <div class="relative">
+         <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="LVL Beam" class="w-full h-48 object-cover">
+         <div class="absolute top-3 right-3 flex flex-col space-y-2">
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-heart-line"></i>
+          </button>
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-eye-line"></i>
+          </button>
+         </div>
+        </div>
+        <div class="p-5">
+         <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold">LVL Beam</h3>
+          <div class="flex text-accent-yellow text-sm">
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-half-fill"></i>
+           <i class="ri-star-line"></i>
+          </div>
+         </div>
+         <p class="text-gray-400 text-sm mb-4">1.75x9.5 inch laminated veneer lumber</p>
+         <div class="flex justify-between items-center">
+          <div>
+           <span class="font-bold text-lg">$3.99</span>
+           <span class="text-gray-400 text-sm ml-1">/linear ft</span>
+          </div>
+          <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+           <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+          </button>
+         </div>
+        </div>
+       </div>
+       
+       <!-- Product 5 -->
+       <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+        <div class="relative">
+         <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Glulam Beam" class="w-full h-48 object-cover">
+         <div class="absolute top-3 right-3 flex flex-col space-y-2">
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-heart-line"></i>
+          </button>
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-eye-line"></i>
+          </button>
+         </div>
+         <div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
+          ECO
+         </div>
+        </div>
+        <div class="p-5">
+         <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold">Glulam Beam</h3>
+          <div class="flex text-accent-yellow text-sm">
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+          </div>
+         </div>
+         <p class="text-gray-400 text-sm mb-4">3.5x7 inch glued laminated timber</p>
+         <div class="flex justify-between items-center">
+          <div>
+           <span class="font-bold text-lg">$6.25</span>
+           <span class="text-gray-400 text-sm ml-1">/linear ft</span>
+          </div>
+          <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+           <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+          </button>
+         </div>
+        </div>
+       </div>
+       
+       <!-- Product 6 -->
+       <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+        <div class="relative">
+         <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Concrete Pile" class="w-full h-48 object-cover">
+         <div class="absolute top-3 right-3 flex flex-col space-y-2">
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-heart-line"></i>
+          </button>
+          <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+           <i class="ri-eye-line"></i>
+          </button>
+         </div>
+        </div>
+        <div class="p-5">
+         <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold">Concrete Pile</h3>
+          <div class="flex text-accent-yellow text-sm">
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-fill"></i>
+           <i class="ri-star-half-fill"></i>
+           <i class="ri-star-line"></i>
+          </div>
+         </div>
+         <p class="text-gray-400 text-sm mb-4">12 inch diameter, 20ft length</p>
+         <div class="flex justify-between items-center">
+          <div>
+           <span class="font-bold text-lg">$89.99</span>
+           <span class="text-gray-400 text-sm ml-1">/each</span>
+          </div>
+          <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+           <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+          </button>
+         </div>
+        </div>
+       </div>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="flex justify-center mt-12">
+       <nav class="flex items-center space-x-2">
+        <button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">
+         <i class="ri-arrow-left-s-line"></i>
+        </button>
+        <button class="w-10 h-10 rounded-full bg-accent-yellow text-primary-black border border-accent-yellow flex items-center justify-center font-medium">1</button>
+        <button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">2</button>
+        <button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">3</button>
+        <span class="px-2 text-gray-400">...</span>
+        <button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">8</button>
+        <button class="w-10 h-10 rounded-full border border-gray-800/50 flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black hover:border-accent-yellow transition">
+         <i class="ri-arrow-right-s-line"></i>
+        </button>
+       </nav>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  
+  <!-- Newsletter Section -->
+  <!-- <section class="py-16 bg-primary-light border-y border-gray-800/50">
 			<div class="container mx-auto px-4">
 				<div class="max-w-3xl mx-auto text-center">
 					<h2 class="text-2xl md:text-3xl font-bold mb-4">Stay Updated With Our <span class="text-gradient">Latest Products</span></h2>
@@ -601,17 +601,17 @@
 				</div>
 			</div>
 		</section> -->
-	</main>
-
-	<!-- Footer Placeholder -->
-	<footer class="bg-gray-900 pt-12 pb-8">
-		<div class="container mx-auto px-4">
-			<div class="text-center py-8 border-t border-gray-800/50">
-				<h2 class="text-2xl font-bold mb-2">[FOOTER PLACEHOLDER]</h2>
-				<p class="text-gray-400">Footer content would appear here</p>
-			</div>
-		</div>
-	</footer>
+ </main>
+ 
+ <!-- Footer Placeholder -->
+ <footer class="bg-gray-900 pt-12 pb-8">
+  <div class="container mx-auto px-4">
+   <div class="text-center py-8 border-t border-gray-800/50">
+    <h2 class="text-2xl font-bold mb-2">[FOOTER PLACEHOLDER]</h2>
+    <p class="text-gray-400">Footer content would appear here</p>
+   </div>
+  </div>
+ </footer>
 </body>
 
 </html>

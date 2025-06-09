@@ -11,14 +11,14 @@ class Toggler {
 		this.states = states;
 		this.state = "idle";
 	}
-
+	
 	show() {
 		if (this.hideClasses.every(cls => this.element.classList.contains(cls))) {
 			this.element.classList.replace(...this.hideClasses, ...this.showClasses);
 			this.state = this.states.show;
 		}
 	}
-
+	
 	hide() {
 		if (this.showClasses.every(cls => this.element.classList.contains(cls))) {
 			this.element.classList.replace(...this.showClasses, ...this.hideClasses);
@@ -38,11 +38,11 @@ class Popup {
 		this.iconEl = clone.querySelector('.popup-icon');
 		this.contentEl = clone.querySelector('.popup-content');
 		this.actionsEl = clone.querySelector('.popup-actions');
-
+		
 		this.titleEl.textContent = title || 'Popup';
 		if (iconClass) this.iconEl.className = `popup-icon ${iconClass}`;
 		this.contentEl.innerHTML = contentHTML || '';
-
+		
 		this.actionsEl.innerHTML = '';
 		if (Array.isArray(actions)) {
 			actions.forEach(({ label, class: className, value }) => {
@@ -54,21 +54,21 @@ class Popup {
 				this.actionsEl.appendChild(button);
 			});
 		}
-
+		
 		document.body.appendChild(this.dialog);
-
+		
 		this.dialog.addEventListener('close', () => {
 			document.body.style.overflow = 'auto';
 			this._onClose && this._onClose(this.dialog.returnValue);
 			this.dialog.remove();
 		});
 	}
-
+	
 	show() {
 		this.dialog.showModal();
 		document.body.style.overflow = 'hidden';
 	}
-
+	
 	onClose(callback) {
 		this._onClose = callback;
 	}
@@ -88,12 +88,12 @@ class CanvasCarousel {
 		this.interval = 2500;
 		this.width = canvas.clientWidth;
 		this.height = canvas.clientHeight;
-
+		
 		this.canvas.width = this.width;
 		this.canvas.height = this.height;
-
+		
 		this.loadImages();
-
+		
 		window.addEventListener("resize", () => {
 			this.width = canvas.clientWidth;
 			this.height = canvas.clientHeight;
@@ -101,7 +101,7 @@ class CanvasCarousel {
 			canvas.height = this.height;
 		});
 	}
-
+	
 	loadImages() {
 		let loaded = 0;
 		this.imageUrls.forEach((src, i) => {
@@ -116,24 +116,24 @@ class CanvasCarousel {
 			};
 		});
 	}
-
+	
 	start() {
 		this.loop();
 		setInterval(() => this.prepareNextImage(), this.interval);
 	}
-
+	
 	prepareNextImage() {
 		this.currentIndex = this.nextIndex;
 		this.nextIndex = (this.nextIndex + 1) % this.images.length;
 		this.opacity = 0;
 	}
-
+	
 	drawCoverImage(img) {
 		const imgRatio = img.width / img.height;
 		const canvasRatio = this.width / this.height;
-
+		
 		let drawWidth, drawHeight;
-
+		
 		if (imgRatio > canvasRatio) {
 			drawHeight = this.height;
 			drawWidth = img.width * (this.height / img.height);
@@ -141,25 +141,25 @@ class CanvasCarousel {
 			drawWidth = this.width;
 			drawHeight = img.height * (this.width / img.width);
 		}
-
+		
 		const offsetX = (this.width - drawWidth) / 2;
 		const offsetY = (this.height - drawHeight) / 2;
-
+		
 		this.ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
 	}
-
+	
 	loop() {
 		requestAnimationFrame(() => this.loop());
-
+		
 		this.ctx.clearRect(0, 0, this.width, this.height);
-
+		
 		if (this.opacity < 1) {
 			this.ctx.globalAlpha = 1;
 			this.drawCoverImage(this.images[this.currentIndex]);
-
+			
 			this.ctx.globalAlpha = this.opacity;
 			this.drawCoverImage(this.images[this.nextIndex]);
-
+			
 			this.opacity += this.fadeSpeed;
 		} else {
 			this.ctx.globalAlpha = 1;
@@ -178,84 +178,84 @@ class EmblaCarouselComponent {
 			autoplayInterval: 2000,
 			...options
 		};
-
+		
 		this.emblaApi = null;
 		this.cleanupFunctions = [];
-
+		
 		this.init();
 	}
-
+	
 	init() {
 		const viewportNode = this.node.querySelector('._carousel_viewport');
 		const prevBtnNode = this.node.querySelector('._carousel_btn_prev');
 		const nextBtnNode = this.node.querySelector('._carousel_btn_next');
 		const dotsNode = this.node.querySelector('._carousel_dots');
-
+		
 		if (!viewportNode) return;
-
+		
 		this.emblaApi = EmblaCarousel(viewportNode, {
 			loop: this.options.loop,
 			speed: this.options.speed
 		});
-
+		
 		if (prevBtnNode && nextBtnNode) {
 			const removePrevNextHandlers = addPrevNextBtnsClickHandlers(
 				this.emblaApi, prevBtnNode, nextBtnNode
 			);
 			this.cleanupFunctions.push(removePrevNextHandlers);
 		}
-
+		
 		if (dotsNode) {
 			const removeDotHandlers = addDotBtnsAndClickHandlers(
 				this.emblaApi, dotsNode
 			);
 			this.cleanupFunctions.push(removeDotHandlers);
 		}
-
+		
 		if (this.options.autoplay) {
 			const cleanupAutoplay = this.setupAutoplay(this.options.autoplayInterval);
 			this.cleanupFunctions.push(cleanupAutoplay);
 		}
-
+		
 		this.emblaApi.on('destroy', () => {
 			this.cleanupFunctions.forEach(cleanup => cleanup());
 			this.cleanupFunctions = [];
 		});
 	}
-
+	
 	setupAutoplay(interval = 3000) {
 		if (!this.emblaApi) return () => {};
-
+		
 		let timer = 0;
-
+		
 		const play = () => {
 			this.emblaApi.canScrollNext() ?
 				this.emblaApi.scrollNext() :
 				this.emblaApi.scrollTo(0);
 		};
-
+		
 		const start = () => {
 			if (!timer) timer = setInterval(play, interval);
 		};
-
+		
 		const stop = () => {
 			clearInterval(timer);
 			timer = 0;
 		};
-
+		
 		start();
-
+		
 		const eventListeners = [
 			{ event: 'mouseenter', handler: stop },
 			{ event: 'mouseleave', handler: start },
 			{ event: 'focusin', handler: stop },
 			{ event: 'focusout', handler: start }
-    ];
-
+		];
+		
 		eventListeners.forEach(({ event, handler }) => {
 			this.node.addEventListener(event, handler);
 		});
-
+		
 		return () => {
 			stop();
 			eventListeners.forEach(({ event, handler }) => {
@@ -263,7 +263,7 @@ class EmblaCarouselComponent {
 			});
 		};
 	}
-
+	
 	destroy() {
 		if (this.emblaApi) {
 			this.emblaApi.destroy();
@@ -280,13 +280,13 @@ class DeckCarousel {
 		this.timer = null;
 		this.currentIndex = 0;
 		this.slides = [];
-
+		
 		this.init();
 	}
-
+	
 	init() {
 		this.container.innerHTML = "";
-
+		
 		this.nodes.forEach((node, i) => {
 			node.classList.add("testimonial-card");
 			if (i === 0) {
@@ -297,41 +297,41 @@ class DeckCarousel {
 			this.container.appendChild(node);
 			this.slides.push(node);
 		});
-
+		
 		this.updateContainerHeight();
 		this.start();
 	}
-
+	
 	start() {
 		this.stop();
 		this.timer = setInterval(() => this.next(), this.interval);
 	}
-
+	
 	stop() {
 		if (this.timer) clearInterval(this.timer);
 		this.timer = null;
 	}
-
+	
 	next() {
 		const current = this.slides[this.currentIndex];
 		const nextIndex = (this.currentIndex + 1) % this.slides.length;
 		const next = this.slides[nextIndex];
-
+		
 		current.classList.remove("z-[2]");
 		current.classList.add("z-[3]", "opacity-0", "transform", "rotate-45", "translate-x-[120%]", "scale-[1.1]");
-
+		
 		next.classList.remove("z-[1]", "transform", "scale-[0.5]", "translate-y-[12px]");
 		next.classList.add("z-[2]");
-
+		
 		setTimeout(() => {
 			current.classList.remove("z-[3]", "opacity-0", "transform", "rotate-45", "translate-x-[120%]", "scale-[1.1]");
 			current.classList.add("z-[1]", "transform", "scale-[0.5]", "translate-y-[12px]");
 		}, 1100);
-
+		
 		this.currentIndex = nextIndex;
 		this.updateContainerHeight();
 	}
-
+	
 	updateContainerHeight() {
 		const active = this.slides[this.currentIndex];
 		requestAnimationFrame(() => {
@@ -344,14 +344,14 @@ class DeckCarousel {
 class HashRouter {
 	constructor({ offset = 0 } = {}) {
 		this.offset = offset;
-
+		
 		this._bindLinks();
 		window.addEventListener('hashchange', () => this._scrollToHash());
 		window.addEventListener('DOMContentLoaded', () => {
 			this._scrollToHash();
 		});
 	}
-
+	
 	_bindLinks() {
 		document.querySelectorAll('[data-route]').forEach(anchor => {
 			anchor.addEventListener('click', (e) => {
@@ -364,20 +364,20 @@ class HashRouter {
 			});
 		});
 	}
-
+	
 	_scrollToHash() {
 		const hash = window.location.hash.replace("#/", "");
 		if (hash && document.getElementById(hash)) {
 			this._scrollToElement(hash);
 		}
 	}
-
+	
 	_scrollToElement(selector) {
 		const target = document.getElementById(selector);
 		if (!target) return;
-
+		
 		const top = target.getBoundingClientRect().top + window.scrollY - this.offset;
-
+		
 		window.scrollTo({
 			top,
 			behavior: 'smooth'

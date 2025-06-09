@@ -58,16 +58,16 @@ window.googleTranslateElementInit = function() {
 		includedLanguages: 'en,hi,bho',
 		layout: google.translate.TranslateElement.InlineLayout.VERTICAL
 	}, 'google_translate_element');
-
+	
 	const observer = new MutationObserver((mutations, obs) => {
 		const lang = document.documentElement.lang || 'en';
 		console.log("🌐 Language changed to:", lang);
-
+		
 		onLanguageChange(lang);
-
+		
 		obs.disconnect();
 	});
-
+	
 	observer.observe(document.documentElement, {
 		attributes: true,
 		attributeFilter: ['lang']
@@ -90,20 +90,19 @@ function showLangPopup() {
 		<div id="google_translate_element"></div>
 	`,
 		actions: [
-			{
-				label: '<i class="ri-check-fill mr-2"></i> Done',
-				class: 'flex-1 bg-accent-yellow hover:bg-accent-dark text-primary-black font-medium py-2 px-4 rounded-lg transition',
-				value: 'done'
-		}
-	]
+		{
+			label: '<i class="ri-check-fill mr-2"></i> Done',
+			class: 'flex-1 bg-accent-yellow hover:bg-accent-dark text-primary-black font-medium py-2 px-4 rounded-lg transition',
+			value: 'done'
+		}]
 	});
-
+	
 	popup.onClose((returnValue) => {
 		console.log('Language changed:', returnValue);
 	});
-
+	
 	popup.show();
-
+	
 	if (!document.querySelector('script[data-google-translate]')) {
 		const googleTranslateScript = document.createElement("script");
 		googleTranslateScript.src = './assets/js/libs/google/google-translate-widget.js';
