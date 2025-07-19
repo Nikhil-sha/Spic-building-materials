@@ -342,8 +342,9 @@ class DeckCarousel {
 
 
 class HashRouter {
-	constructor({ offset = 0 } = {}) {
+	constructor({ offset = 0, callback = null } = {}) {
 		this.offset = offset;
+		this.callback = callback;
 		
 		this._bindLinks();
 		window.addEventListener('hashchange', () => this._scrollToHash());
@@ -369,6 +370,9 @@ class HashRouter {
 		const hash = window.location.hash.replace("#/", "");
 		if (hash && document.getElementById(hash)) {
 			this._scrollToElement(hash);
+			if (this.callback && typeof this.callback === "function") {
+				this.callback();
+			}
 		}
 	}
 	
@@ -386,9 +390,118 @@ class HashRouter {
 }
 
 
+class Toast {
+	constructor() {
+		this.container = this.createContainer();
+		document.body.appendChild(this.container);
+		this.injectStyles();
+	}
+	
+	createContainer() {
+		const container = document.createElement('div');
+		container.id = 'toast-container';
+		container.className = 'fixed bottom-4 right-4 space-y-2 z-[1000]';
+		return container;
+	}
+	
+	injectStyles() {
+		const style = document.createElement('style');
+		style.textContent = `
+      .toast-notification {
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.25s cubic-bezier(0.21, 1.02, 0.73, 1);
+      }
+      .toast-notification.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    `;
+		document.head.appendChild(style);
+	}
+	
+	show({ type = 'info', message = '', duration = 3000 }) {
+		const toast = document.createElement('div');
+		toast.className = `toast-notification flex items-center px-4 py-3 rounded-md shadow-md ${this.getBgClass(type)}`;
+		
+		toast.innerHTML = `
+      <span class="${this.getIconClass(type)} mr-2 mt-0.5">${this.getIcon(type)}</span>
+      <span class="text-sm">${message}</span>
+    `;
+		
+		this.container.appendChild(toast);
+		
+		// Trigger animation
+		setTimeout(() => toast.classList.add('show'), 10);
+		
+		// Auto-remove
+		if (duration > 0) {
+			setTimeout(() => this.removeToast(toast), duration);
+		}
+		
+		return toast;
+	}
+	
+	removeToast(toast) {
+		toast.classList.remove('show');
+		setTimeout(() => toast.remove(), 250);
+	}
+	
+	// Helper methods
+	getBgClass(type) {
+		return {
+			success: 'bg-gray-800 text-green-400',
+			error: 'bg-gray-800 text-red-400',
+			info: 'bg-gray-800 text-blue-400',
+			warning: 'bg-gray-800 text-yellow-400'
+		} [type] || 'bg-gray-800 text-blue-400';
+	}
+	
+	getIconClass(type) {
+		return `text-base ${this.getTextClass(type)}`;
+	}
+	
+	getTextClass(type) {
+		return {
+			success: 'text-green-400',
+			error: 'text-red-400',
+			info: 'text-blue-400',
+			warning: 'text-yellow-400'
+		} [type] || 'text-blue-400';
+	}
+	
+	getIcon(type) {
+		return {
+			success: '<i class="ri-check-line"></i>',
+			error: '<i class="ri-close-line"></i>',
+			info: '<i class="ri-information-line"></i>',
+			warning: '<i class="ri-alert-line"></i>'
+		} [type] || '<i class="ri-information-line"></i>';
+	}
+	
+	// Convenience methods
+	success(message, duration = 5000) {
+		return this.show({ type: 'success', message, duration });
+	}
+	
+	error(message, duration = 5000) {
+		return this.show({ type: 'error', message, duration });
+	}
+	
+	info(message, duration = 5000) {
+		return this.show({ type: 'info', message, duration });
+	}
+	
+	warning(message, duration = 5000) {
+		return this.show({ type: 'warning', message, duration });
+	}
+}
+
+
 export {
 	Toggler,
 	Popup,
+	Toast,
 	CanvasCarousel,
 	EmblaCarouselComponent,
 	DeckCarousel,

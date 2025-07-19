@@ -29,10 +29,12 @@ function mapCategories() {
 		</div>
 	`).join('');
 	
-	const categoryCarousel = new EmblaCarouselComponent(document.querySelector("._category_carousel"), {
-		autoplay: true,
-		autoplayInterval: 2000
-	});
+	setTimeout(() => {
+		const categoryCarousel = new EmblaCarouselComponent(document.querySelector("._category_carousel"), {
+			autoplay: true,
+			autoplayInterval: 2000
+		});
+	}, 1000);
 }
 
 

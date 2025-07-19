@@ -1,28 +1,22 @@
 const productCategories = [
 	{
 		title: 'blocks',
-		image: 'https://images.unsplash.com/photo-1605152276897-4f618f831968',
+		image: '/assets/media/images/products/interlocking-red-paver-block-min.png',
 		description: 'High-quality construction blocks including pavers, hollow blocks, and retaining wall systems',
 		url: '/products/?category=blocks'
 	},
 	{
 		title: 'pots',
-		image: 'https://images.unsplash.com/photo-1591951425328-48c0ac857ca1',
+		image: '/assets/media/images/products/pastel-coloured-cement-flower-pot-min.png',
 		description: 'Beautiful planters and pots in various materials including ceramic, terracotta, and metal',
 		url: '/products/?category=pots'
 	},
 	{
 		title: 'boundary walls and fencing',
-		image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d',
+		image: '/assets/media/images/products/polished-cement-bench-min.png',
 		description: 'Privacy fences, decorative railings, and garden enclosures in various materials',
 		url: '/products/?category=fencing'
 	},
-	{
-		title: 'paving',
-		image: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6',
-		description: 'Premium paving materials for driveways, walkways, and outdoor surfaces',
-		url: '/products/?category=paving'
-	}
 	
 ];
 
