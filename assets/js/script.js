@@ -1,8 +1,9 @@
-import './template.js';
+// import './template.js';
 import {
+	DeckCarousel,
 	CanvasCarousel,
-	EmblaCarouselComponent,
-	DeckCarousel
+	ContactForm,
+	EmblaCarouselComponent
 } from './classes.js';
 import {
 	productCategories,
@@ -50,5 +51,19 @@ const heroBgCarousel = new CanvasCarousel(document.getElementById("_canvas_carou
 
 const testimonialNodes = Array.from(document.getElementById("_testimonial_carousel").children);
 const testimonialCarousel = new DeckCarousel(document.getElementById("_testimonial_carousel"), testimonialNodes, 4000);
+
+const contactForm = new ContactForm(
+	'contact_form',
+	'contact_form_result',
+	'https://api.web3forms.com/submit',
+	{
+		'Content-Type': 'application/json',
+		'Accept': 'application/json'
+	},
+	{
+		access_key: 'a29ab12c-b21d-41a1-a8e6-424c7a9b28ed',
+		from_name: 'Contact form submission from SPIC Building Materials',
+	}
+);
 
 mapCategories();

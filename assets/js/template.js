@@ -14,11 +14,35 @@ class MobileMenu extends Toggler {
 			states: { show: "open", hide: "close" }
 		});
 	}
+	
+	isListening = false;
+	bindedOutsideClick = this.handleOutsideClick.bind(this);
+	
+	open() {
+		super.show();
+		if (!this.isListening) {
+			window.addEventListener("click", this.bindedOutsideClick);
+			this.isListening = true;
+		}
+	}
+	
+	close() {
+		super.hide();
+		if (this.isListening) {
+			window.removeEventListener("click", this.bindedOutsideClick);
+			this.isListening = false;
+		}
+	}
+	
+	handleOutsideClick(e) {
+		if (!this.element.contains(e.target)) {
+			this.close();
+		}
+	}
 }
 
 
-const router = new HashRouter({ offset: 12, callback: () => { mobileMenu.hide() } });
-const toast = new Toast();
+const router = new HashRouter({ offset: 12, callback: () => mobileMenu.hide() });
 const languageDialogOpen = document.getElementById("language_dialog");
 const mobileMenuOpen = document.getElementById("mobile_menu_open");
 const mobileMenuClose = document.getElementById("mobile_menu_close");
@@ -35,32 +59,15 @@ function scrollToTop() {
 }
 
 
-toast.success('Added to cart', 'Premium oak flooring added to your cart');
-toast.error('Payment failed', 'Could not process your credit card');
-toast.info('New feature', 'Save products to your favorites');
-toast.warning('Low stock', 'Only 3 units remaining');
-
-
-function handleOutsideMenuClick(e) {
-	if (!mobileMenu.element.contains(e.target)) {
-		mobileMenuClose.click();
-	}
-};
-
-
 languageDialogOpen?.addEventListener("click", showLangPopup);
 
 mobileMenuOpen?.addEventListener("click", () => {
 	mobileMenu.show();
-	setTimeout(() => {
-		window.addEventListener("click", handleOutsideMenuClick);
-	}, 0);
 });
 
 
 mobileMenuClose?.addEventListener("click", () => {
 	mobileMenu.hide();
-	window.removeEventListener("click", handleOutsideMenuClick);
 });
 
 
@@ -171,6 +178,8 @@ window.googleTranslateElementInit = function() {
 function onLanguageChange(lang) {
 	const skiptranslate = document.querySelector('.skiptranslate');
 	skiptranslate.remove();
+	
+	new Toast('success', `Language changed to ${lang}`).create();
 }
 
 
@@ -208,4 +217,4 @@ function showLangPopup() {
 	}
 }
 
-// showLangPopup();
+showLangPopup();

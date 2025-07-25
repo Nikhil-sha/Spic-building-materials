@@ -15,29 +15,47 @@
 </head>
 
 <body class="bg-primary-black text-gray-100">
-	<template id="popup-template">
-		<dialog class="popup-dialog bg-transparent backdrop:bg-black/70 backdrop:backdrop-blur-sm p-0 rounded-xl w-full max-w-md border border-white/10 overflow-hidden">
+	<template id="popup_template">
+		<dialog class="popup_dialog bg-transparent backdrop:bg-black/70 backdrop:backdrop-blur-sm p-0 rounded-xl w-full max-w-md border border-white/10 overflow-hidden">
 			<form method="dialog" class="bg-primary-black text-white flex flex-col h-full">
 				<!-- Header -->
-				<div class="popup-header p-6 pb-2 border-b border-white/10 flex justify-between items-center">
+				<div class="popup_header p-6 pb-2 border-b border-white/10 flex justify-between items-center">
 					<div class="flex items-center gap-2">
-						<i class="popup-icon ri-alert-line text-accent-yellow text-xl"></i>
-						<h3 class="popup-title text-xl font-bold">Popup Title</h3>
+						<i class="popup_icon ri-alert-line text-accent-yellow text-xl"></i>
+						<h3 class="popup_title text-xl font-bold">Popup Title</h3>
 					</div>
-					<button type="submit" value="close" class="popup-close p-1 rounded-full hover:bg-primary-light transition text-gray-400 hover:text-white">
+					<button type="submit" value="close" class="popup_close p-1 rounded-full hover:bg-primary-light transition text-gray-400 hover:text-white">
 						<i class="ri-close-line text-xl"></i>
 					</button>
 				</div>
 				
 				<!-- Content -->
-				<div class="popup-content p-6 pt-2 flex-1 overflow-y-auto">
+				<div class="popup_content p-6 pt-2 flex-1 overflow-y-auto">
 					<p>Default content</p>
 				</div>
 				
 				<!-- Footer Buttons -->
-				<div class="popup-actions p-6 pt-2 flex gap-3"></div>
+				<div class="popup_actions p-6 pt-2 flex gap-3"></div>
 			</form>
 		</dialog>
+	</template>
+	
+	<!-- Toast Template -->
+	<template id="toast_template">
+		<div class="toast flex items-center w-80 bg-gray-800/70 backdrop-blur rounded-xl shadow-lg overflow-hidden transition-all duration-500 transform translate-x-full opacity-0">
+			<div class="toast_icon flex items-center justify-center w-12 h-12 rounded-full m-4 flex-shrink-0">
+				<i class="text-gray-800 text-2xl"></i>
+			</div>
+			<div class="toast_content py-4 pr-4 flex-1">
+				<p class="toast_message text-sm text-gray-300 mt-1"></p>
+			</div>
+			<button class="toast_close absolute top-2 right-2 text-gray-400 hover:text-white transition-colors">
+				<i class="ri-close-line"></i>
+			</button>
+			<div class="absolute bottom-0 left-0 h-px w-full">
+				<div class="toast_progress_bar h-full w-full bg-accent-yellow animate-progress-left"></div>
+			</div>
+		</div>
 	</template>
 	
 	<!-- Header/Navigation -->
@@ -652,11 +670,11 @@
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 					<!-- Contact Form -->
 					<div class="bg-primary-light p-8 rounded-xl border border-gray-800/50">
-						<form id="contact_form" class="space-y-6">
+						<form id="contact_form" method="POST" class="space-y-6">
 							<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 								<!-- First Name -->
 								<div>
-									<label for="firstName" class="block text-sm font-medium text-gray-300 mb-2">First Name<span class="text-accent-yellow">*</span></label>
+									<label for="first_name" class="block text-sm font-medium text-gray-300 mb-2">First Name<span class="text-accent-yellow">*</span></label>
 									<div class="relative">
 										<input type="text" id="first_name" name="first_name" required class="peer w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition">
 										<div class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 peer-focus:text-accent-yellow pointer-events-none">
@@ -667,7 +685,7 @@
 								
 								<!-- Last Name -->
 								<div>
-									<label for="lastName" class="block text-sm font-medium text-gray-300 mb-2">Last Name<span class="text-accent-yellow">*</span></label>
+									<label for="last_name" class="block text-sm font-medium text-gray-300 mb-2">Last Name<span class="text-accent-yellow">*</span></label>
 									<div class="relative">
 										<input type="text" id="last_name" name="last_name" required class="w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition">
 										<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -701,15 +719,15 @@
 							
 							<!-- Inquiry Type -->
 							<div>
-								<label for="inquiryType" class="block text-sm font-medium text-gray-300 mb-2">Inquiry Type</label>
+								<label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Inquiry Type</label>
 								<div class="relative">
-									<select id="inquiry_type" name="inquiry_type" required class="w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white appearance-none focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition">
+									<select id="subject" name="subject" required class="w-full bg-primary-black border border-gray-800/50 focus:border-accent-yellow/50 rounded-lg px-4 py-3 text-white appearance-none focus:outline-none focus:ring-1 focus:ring-accent-yellow/30 transition">
 										<option value="" disabled selected>Select an option</option>
-										<option value="product">Product Information</option>
-										<option value="quote">Request a Quote</option>
-										<option value="technical">Technical Support</option>
-										<option value="project">Project Consultation</option>
-										<option value="other">Other</option>
+										<option value="Request for Product Information">Product Information</option>
+										<option value="Request a Quote">Request a Quote</option>
+										<option value="Request for Technical Support">Technical Support</option>
+										<option value="Request for Project Consultation">Project Consultation</option>
+										<option value="Request for Other Information">Other</option>
 									</select>
 									<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
 										<i class="ri-arrow-down-s-line text-gray-500"></i>
@@ -724,11 +742,61 @@
 							</div>
 							
 							<!-- Submit Button -->
-							<div class="pt-2">
+							<div class="pt-2 flex gap-2">
+								<button type="reset" class="w-full bg-transparent hover:bg-white/10 border-2 border-white/20 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 flex items-center justify-center group">
+									<i class="ri-restart-line mr-2 group-hover:text-accent-yellow transition"></i> Reset
+								</button>
+								
 								<button type="submit" class="w-full bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center shadow-lg hover:shadow-xl shadow-accent-yellow/20">
-									<i class="ri-send-plane-fill mr-2"></i> Send Message
+									<i class="ri-send-plane-fill mr-2"></i> Submit
 								</button>
 							</div>
+							
+							<div class="bg-green-900/20 border border-green-700/50 rounded-xl p-4 mb-6 backdrop-blur-sm animate-fade-in">
+								<div class="flex items-start">
+									<div class="flex-shrink-0">
+										<i class="ri-checkbox-circle-fill text-green-400 text-2xl"></i>
+									</div>
+									<div class="ml-3">
+										<h3 class="text-green-400 font-medium">Thank you for your message!</h3>
+										<div class="mt-2 text-green-300 text-sm">
+											<p>We've received your inquiry and our team will get back to you within 24 hours.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="bg-primary-light/20 border border-accent-yellow/30 rounded-xl p-4 mb-6 backdrop-blur-sm animate-fade-in">
+								<div class="flex items-start">
+									<div class="flex-shrink-0 animate-spin">
+										<i class="ri-loader-4-line text-accent-yellow text-2xl"></i>
+									</div>
+									<div class="ml-3">
+										<h3 class="text-accent-yellow font-medium">Processing your request</h3>
+										<div class="mt-2 text-gray-400 text-sm">
+											<p>Please wait until we submit your form...</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="bg-red-900/20 border border-red-700/50 rounded-xl p-4 mb-6 backdrop-blur-sm animate-fade-in">
+								<div class="flex items-start">
+									<div class="flex-shrink-0">
+										<i class="ri-error-warning-fill text-red-400 text-2xl"></i>
+									</div>
+									<div class="ml-3">
+										<h3 class="text-red-400 font-medium">Please fix these issues</h3>
+										<div class="mt-2 text-red-300 text-sm">
+											<ul class="list-disc pl-5 space-y-1">
+												<li>Email address is required</li>
+												<li>Message must be at least 20 characters</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							
 						</form>
 					</div>
 					
@@ -919,8 +987,11 @@
 		</div>
 	</footer>
 	
-	<script type="module" src="./assets/js/script.js"></script>
-	<!-- <script defer src="./assets/js/libs/google/google-translate-widget.js"></script> -->
+	<!-- Toast Container (pre-defined in HTML) -->
+	<div id="toast_container" class="fixed top-4 right-4 space-y-3 z-50 transition"></div>
+	
+	<script type="module" src="/assets/js/script.js"></script>
+	<script type="module" src="/assets/js/template.js"></script>
 	
 </body>
 

@@ -32,43 +32,57 @@
 </head>
 
 <body class="bg-primary-black text-gray-100 antialiased">
+	<div class="fixed inset-0 w-vw h-vh z-[99] flex items-center justify-center backdrop-blur pointer-event-none">
+		<div class="bg-primary-light/80 px-6 py-3 rounded-full border border-accent-dark">
+			<p class="text-accent-yellow font-semibold font-medium">
+				Page Under development
+			</p>
+		</div>
+	</div>
+	
 	<!-- Header/Navigation -->
-	<header class="bg-primary-black/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/50">
+	<header class="bg-primary-black/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/40">
 		<div class="container mx-auto px-4 py-3 flex justify-between items-center">
-			<a href="/" class="flex items-center space-x-2 group">
-				<i class="ri-home-gear-line text-accent-yellow text-2xl transition group-hover:rotate-12"></i>
-				<h1 class="text-xl font-bold group-hover:text-accent-yellow transition">Build<span class="text-gradient">Craft</span></h1>
-			</a>
+			<div class="flex items-center space-x-2 group">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="text-accent-yellow text-2xl transform transition-transform group-hover:-translate-y-0.5">
+					<path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
+				</svg>
+				<h1 class="text-xl font-bold group-hover:tracking-widest transition-all">SPIC<span class="text-gradient">BM</span></h1>
+			</div>
 			
 			<nav class="hidden md:flex space-x-6">
+				<a href="/" class="relative group">
+					<span class="hover:text-accent-yellow transition">Home</span>
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+				</a>
 				<a href="/products" class="relative group">
 					<span class="hover:text-accent-yellow transition">Products</span>
-					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
-				</a>
-				<a href="/solutions" class="relative group">
-					<span class="hover:text-accent-yellow transition">Solutions</span>
-					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
-				</a>
-				<a href="/projects" class="relative group">
-					<span class="hover:text-accent-yellow transition">Projects</span>
 					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
 				</a>
 				<a href="/about" class="relative group">
 					<span class="hover:text-accent-yellow transition">About</span>
 					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
 				</a>
+				<a href="#/categories" class="relative group">
+					<span class="hover:text-accent-yellow transition">Categories</span>
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+				</a>
+				<a href="#/testimonials" class="relative group">
+					<span class="hover:text-accent-yellow transition">Testimonials</span>
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+				</a>
 			</nav>
 			
-			<div class="flex items-center space-x-4">
-				<button class="p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
-					<i class="ri-search-line text-xl group-hover:text-accent-yellow transition"></i>
+			<div class="flex items-center space-x-2">
+				<button id="language_dialog" class="p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
+					<i class="ri-translate-2 ri-lg size-5 group-hover:text-accent-yellow transition"></i>
 				</button>
 				<button class="p-2 rounded-full hover:bg-primary-light transition-all duration-300 group relative">
-					<i class="ri-shopping-cart-line text-xl group-hover:text-accent-yellow transition"></i>
+					<i class="ri-shopping-cart-2-line ri-lg size-5 group-hover:text-accent-yellow transition"></i>
 					<span class="absolute -top-1 -right-1 bg-accent-yellow text-primary-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">3</span>
 				</button>
-				<button class="md:hidden p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
-					<i class="ri-menu-line text-xl group-hover:text-accent-yellow transition"></i>
+				<button id="mobile_menu_open" class="md:hidden p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
+					<i class="ri-menu-3-line ri-lg size-5 group-hover:text-accent-yellow transition"></i>
 				</button>
 			</div>
 		</div>

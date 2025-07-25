@@ -14,6 +14,7 @@ tailwind.config = {
 			animation: {
 				'fade-in': 'fadeIn 0.5s ease-in-out',
 				'float': 'float 6s ease-in-out infinite',
+				'progress-left': 'progressLeft 4s linear forwards',
 			},
 			keyframes: {
 				fadeIn: {
@@ -27,6 +28,10 @@ tailwind.config = {
 				fadeInUp: {
 					'0%': { opacity: '0', transform: 'translateY(10px)' },
 					'100%': { opacity: '1', transform: 'translateY(0px)' },
+				},
+				progressLeft: {
+					'0%': { width: '100%' },
+					'100%': { width: '0%' },
 				}
 			},
 		}
