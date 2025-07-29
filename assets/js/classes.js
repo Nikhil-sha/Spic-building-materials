@@ -457,17 +457,31 @@ class Toast {
 
 
 class ContactForm {
-  constructor(formId, resultId, endpoint, headers, additional = {}) {
+  constructor(formId, additional = {}) {
     this.form = document.getElementById(formId);
-    this.result = document.getElementById(resultId);
-    this.endpoint = endpoint;
-    this.headers = headers;
+    this.pending = document.getElementById('result_pending');
+    this.success = document.getElementById('result_success');
+    this.error = document.getElementById('result_error');
     this.additional = additional;
     
     this.form.addEventListener('submit', (e) => {
       e.preventDefault();
       this.submit();
     });
+    
+    this.setState();
+  }
+  
+  isStateHidden(state) {
+    return state.classList.contains('hidden');
+  }
+  
+  setState(to) {
+    if (!this.isStateHidden(this.pending)) this.pending.classList.add('hidden');
+    if (!this.isStateHidden(this.success)) this.success.classList.add('hidden');
+    if (!this.isStateHidden(this.error)) this.error.classList.add('hidden');
+    
+    if (to) to.classList.remove('hidden')
   }
   
   extractData() {
@@ -489,15 +503,23 @@ class ContactForm {
   async submit() {
     const data = this.extractData();
     try {
-      const response = await fetch(this.endpoint, {
+      this.setState(this.pending);
+      
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: this.headers,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(data)
       });
       const resultData = await response.json();
-      this.result.innerText = `Success: ${JSON.stringify(resultData)}`;
+      
+      if (resultData) {
+        this.setState(this.success);
+      }
     } catch (error) {
-      this.result.innerText = `Error: ${error.message}`;
+      this.setState(this.error);
     }
   }
 }

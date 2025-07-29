@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Get a Quote | BuildCraft</title>
+	<!-- Tailwind CSS with custom config -->
+	<script src="/assets/js/libs/tailwind/Tailwind@3.4.16.js"></script>
+	<script src="/assets/js/libs/tailwind/tailwind.config.js"></script>
+	
+	<link rel="stylesheet" href="/assets/css/styles.css">
+	<link href="/assets/css/remixicon@3.5.0.css" rel="stylesheet">
+	
+	<style>
+		.split-layout {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			min-height: 100vh;
+		}
+		
+		.form-pattern {
+			background-image: radial-gradient(circle at 70% 30%, rgba(255, 215, 0, 0.05) 0%, rgba(17, 17, 19, 0.98) 70%);
+		}
+		
+		.text-gradient {
+			background: linear-gradient(90deg, #FFD700 0%, #FFC000 100%);
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+		}
+		
+		.card-hover {
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+		
+		.card-hover:hover {
+			transform: translateY(-3px);
+		}
+	</style>
+</head>
+
+<body class="bg-primary-black text-gray-100 font-sans antialiased">
+	<!-- Template Header Component -->
+	<!-- {% include 'header.html' %} -->
+	<div class="border-b border-gray-800/50 py-4 bg-primary-black/90 backdrop-blur-md sticky top-0 z-50">
+		<div class="container mx-auto px-4">
+			[HEADER COMPONENT WILL BE INSERTED HERE]
+		</div>
+	</div>
+	
+	<!-- Split Layout -->
+	<div class="split-layout">
+		<!-- Left Side - Visual/Info Panel -->
+		<div class="hidden md:block bg-[url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center relative">
+			<div class="absolute inset-0 bg-gradient-to-t from-primary-black via-primary-black/80 to-transparent"></div>
+			<div class="relative z-10 h-full flex flex-col justify-between p-12">
+				<div>
+					<div class="flex items-center mb-8">
+						<i class="ri-home-gear-line text-accent-yellow text-2xl mr-2"></i>
+						<h2 class="text-xl font-bold">Build<span class="text-gradient">Craft</span></h2>
+					</div>
+					<h1 class="text-4xl font-bold mb-6">Get Your Custom <span class="text-gradient">Quote</span></h1>
+					<p class="text-lg text-gray-300 mb-8 max-w-md">
+						Complete this form and our specialists will prepare a detailed estimate tailored to your project requirements.
+					</p>
+				</div>
+				
+				<div class="space-y-6">
+					<div class="flex items-start space-x-4">
+						<div class="flex-shrink-0 w-12 h-12 bg-accent-yellow/10 text-accent-yellow rounded-lg flex items-center justify-center mt-1">
+							<i class="ri-time-line text-xl"></i>
+						</div>
+						<div>
+							<h3 class="font-bold mb-1">Quick Response</h3>
+							<p class="text-gray-400">Typically within 24 hours</p>
+						</div>
+					</div>
+					<div class="flex items-start space-x-4">
+						<div class="flex-shrink-0 w-12 h-12 bg-accent-yellow/10 text-accent-yellow rounded-lg flex items-center justify-center mt-1">
+							<i class="ri-medal-line text-xl"></i>
+						</div>
+						<div>
+							<h3 class="font-bold mb-1">Competitive Pricing</h3>
+							<p class="text-gray-400">Best value for premium materials</p>
+						</div>
+					</div>
+					<div class="flex items-start space-x-4">
+						<div class="flex-shrink-0 w-12 h-12 bg-accent-yellow/10 text-accent-yellow rounded-lg flex items-center justify-center mt-1">
+							<i class="ri-customer-service-2-line text-xl"></i>
+						</div>
+						<div>
+							<h3 class="font-bold mb-1">Expert Advice</h3>
+							<p class="text-gray-400">Guidance from construction specialists</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Right Side - Form Content -->
+		<div class="form-pattern p-8 md:p-12 overflow-y-auto">
+			<div class="max-w-2xl mx-auto">
+				<!-- Mobile Header -->
+				<div class="md:hidden mb-8">
+					<h1 class="text-3xl font-bold mb-4">Get Your <span class="text-gradient">Quote</span></h1>
+					<p class="text-gray-400">
+						Complete this form and our specialists will prepare a detailed estimate for your project.
+					</p>
+				</div>
+				
+				<!-- Progress Steps -->
+				<div class="flex justify-between items-center mb-12 relative">
+					<div class="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-800/50 -z-10"></div>
+					<div class="flex flex-col items-center">
+						<div class="w-10 h-10 rounded-full bg-accent-yellow text-primary-black flex items-center justify-center mb-2">
+							<i class="ri-user-line"></i>
+						</div>
+						<span class="text-sm font-medium">Contact</span>
+					</div>
+					<div class="flex flex-col items-center">
+						<div class="w-10 h-10 rounded-full bg-gray-800 text-gray-400 flex items-center justify-center mb-2">
+							<i class="ri-building-2-line"></i>
+						</div>
+						<span class="text-sm text-gray-400">Project</span>
+					</div>
+					<div class="flex flex-col items-center">
+						<div class="w-10 h-10 rounded-full bg-gray-800 text-gray-400 flex items-center justify-center mb-2">
+							<i class="ri-file-list-2-line"></i>
+						</div>
+						<span class="text-sm text-gray-400">Review</span>
+					</div>
+				</div>
+				
+				<!-- Quote Form -->
+				<form class="space-y-8">
+					<!-- Contact Section -->
+					<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 card-hover">
+						<h2 class="text-xl font-bold mb-6 flex items-center">
+							<i class="ri-user-3-line text-accent-yellow mr-3"></i>
+							Contact Information
+						</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<label for="firstName" class="block text-sm font-medium mb-2">First Name*</label>
+								<input type="text" id="firstName" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition" required>
+							</div>
+							<div>
+								<label for="lastName" class="block text-sm font-medium mb-2">Last Name*</label>
+								<input type="text" id="lastName" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition" required>
+							</div>
+						</div>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+							<div>
+								<label for="email" class="block text-sm font-medium mb-2">Email*</label>
+								<input type="email" id="email" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition" required>
+							</div>
+							<div>
+								<label for="phone" class="block text-sm font-medium mb-2">Phone</label>
+								<input type="tel" id="phone" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition">
+							</div>
+						</div>
+						<div class="mt-4">
+							<label for="company" class="block text-sm font-medium mb-2">Company</label>
+							<input type="text" id="company" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition">
+						</div>
+					</div>
+					
+					<!-- Project Section -->
+					<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 card-hover">
+						<h2 class="text-xl font-bold mb-6 flex items-center">
+							<i class="ri-building-2-line text-accent-yellow mr-3"></i>
+							Project Details
+						</h2>
+						<div>
+							<label for="projectType" class="block text-sm font-medium mb-2">Project Type*</label>
+							<select id="projectType" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition appearance-none" required>
+								<option value="" disabled selected>Select project type</option>
+								<option value="new-construction">New Construction</option>
+								<option value="renovation">Renovation</option>
+								<option value="commercial">Commercial</option>
+								<option value="landscaping">Landscaping</option>
+								<option value="other">Other</option>
+							</select>
+						</div>
+						<div class="mt-4">
+							<label for="projectDesc" class="block text-sm font-medium mb-2">Project Description*</label>
+							<textarea id="projectDesc" rows="4" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition" placeholder="Describe your project including size, scope, and any special requirements..." required></textarea>
+						</div>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+							<div>
+								<label for="location" class="block text-sm font-medium mb-2">Location*</label>
+								<input type="text" id="location" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition" required>
+							</div>
+							<div>
+								<label for="timeline" class="block text-sm font-medium mb-2">Project Timeline</label>
+								<select id="timeline" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition">
+									<option value="" disabled selected>Select timeline</option>
+									<option value="0-3">0-3 months</option>
+									<option value="3-6">3-6 months</option>
+									<option value="6-12">6-12 months</option>
+									<option value="12+">12+ months</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Materials Section -->
+					<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 card-hover">
+						<h2 class="text-xl font-bold mb-6 flex items-center">
+							<i class="ri-stack-line text-accent-yellow mr-3"></i>
+							Materials Needed
+						</h2>
+						<div class="space-y-4">
+							<label class="block text-sm font-medium mb-2">Select Material Categories*</label>
+							<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+								<label class="flex items-center space-x-3 p-3 bg-primary-black rounded-lg border border-gray-800/50 hover:border-accent-yellow/30 transition cursor-pointer">
+									<input type="checkbox" class="h-5 w-5 text-accent-yellow focus:ring-accent-yellow border-gray-800 rounded bg-primary-black">
+									<span>Structural Materials</span>
+								</label>
+								<label class="flex items-center space-x-3 p-3 bg-primary-black rounded-lg border border-gray-800/50 hover:border-accent-yellow/30 transition cursor-pointer">
+									<input type="checkbox" class="h-5 w-5 text-accent-yellow focus:ring-accent-yellow border-gray-800 rounded bg-primary-black">
+									<span>Finishing Materials</span>
+								</label>
+								<label class="flex items-center space-x-3 p-3 bg-primary-black rounded-lg border border-gray-800/50 hover:border-accent-yellow/30 transition cursor-pointer">
+									<input type="checkbox" class="h-5 w-5 text-accent-yellow focus:ring-accent-yellow border-gray-800 rounded bg-primary-black">
+									<span>Plumbing & Electrical</span>
+								</label>
+								<label class="flex items-center space-x-3 p-3 bg-primary-black rounded-lg border border-gray-800/50 hover:border-accent-yellow/30 transition cursor-pointer">
+									<input type="checkbox" class="h-5 w-5 text-accent-yellow focus:ring-accent-yellow border-gray-800 rounded bg-primary-black">
+									<span>Outdoor & Landscaping</span>
+								</label>
+							</div>
+						</div>
+						<div class="mt-4">
+							<label for="specificMaterials" class="block text-sm font-medium mb-2">Specific Materials (if known)</label>
+							<input type="text" id="specificMaterials" class="w-full bg-primary-black border border-gray-800/50 rounded-lg px-4 py-3 focus:border-accent-yellow/50 focus:ring-1 focus:ring-accent-yellow/30 transition" placeholder="e.g., Oak flooring, copper piping, etc.">
+						</div>
+					</div>
+					
+					<!-- Attachments Section -->
+					<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 card-hover">
+						<h2 class="text-xl font-bold mb-6 flex items-center">
+							<i class="ri-attachment-2 text-accent-yellow mr-3"></i>
+							Attachments (Optional)
+						</h2>
+						<div class="border-2 border-dashed border-gray-800/50 rounded-lg p-6 text-center hover:border-accent-yellow/30 transition cursor-pointer">
+							<i class="ri-upload-cloud-2-line text-3xl text-gray-400 mb-3"></i>
+							<h3 class="font-medium mb-1">Upload Files</h3>
+							<p class="text-sm text-gray-400 mb-3">Drag & drop files here or click to browse</p>
+							<p class="text-xs text-gray-500">Supported formats: PDF, JPG, PNG, DOC (Max 10MB each)</p>
+							<input type="file" class="hidden">
+						</div>
+					</div>
+					
+					<!-- Submit Section -->
+					<div class="bg-primary-light p-6 rounded-xl border border-gray-800/50 card-hover">
+						<div class="flex items-start space-x-4 mb-6">
+							<div class="flex-shrink-0 w-12 h-12 bg-accent-yellow/10 text-accent-yellow rounded-lg flex items-center justify-center mt-1">
+								<i class="ri-shield-check-line text-xl"></i>
+							</div>
+							<div>
+								<h3 class="font-bold mb-2">Your Privacy Matters</h3>
+								<p class="text-sm text-gray-400">We'll only use your information to prepare your quote and won't share it with third parties.</p>
+							</div>
+						</div>
+						<button type="submit" class="w-full bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-4 px-6 rounded-lg transition flex items-center justify-center">
+							<i class="ri-send-plane-line mr-2"></i> Submit Quote Request
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Template Footer Component -->
+	<!-- {% include 'footer.html' %} -->
+	<div class="border-t border-gray-800/50 py-8 bg-gray-900">
+		<div class="container mx-auto px-4">
+			[FOOTER COMPONENT WILL BE INSERTED HERE]
+		</div>
+	</div>
+</body>
+
+</html>
