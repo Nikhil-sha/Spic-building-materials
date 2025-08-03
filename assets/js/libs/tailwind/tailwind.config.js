@@ -34,7 +34,7 @@ tailwind.config = {
 					'100%': { width: '0%' },
 				}
 			},
-		}
+		},
 	},
 	plugins: [
 		function({ addUtilities }) {

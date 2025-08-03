@@ -3,26 +3,123 @@ import { addPrevNextBtnsClickHandlers } from './libs/embla/EmblaCarouselArrowBut
 import { addDotBtnsAndClickHandlers } from './libs/embla/EmblaCarouselDotButton.js';
 
 
-class Toggler {
-  constructor(selector, { show, hide, states }) {
+class MobileMenu {
+  constructor(selector) {
     this.element = document.getElementById(selector);
-    this.showClasses = [].concat(show);
-    this.hideClasses = [].concat(hide);
-    this.states = states;
-    this.state = "idle";
+    this.showClass = "translate-x-0";
+    this.hideClass = "translate-x-full";
+    this.bindedOutsideClick = this.handleOutsideClick.bind(this);
+  }
+  
+  handleOutsideClick(e) {
+    if (!this.element.contains(e.target)) {
+      this.hide();
+    }
+    
+    console.log('click outside fired!')
   }
   
   show() {
-    if (this.hideClasses.every(cls => this.element.classList.contains(cls))) {
-      this.element.classList.replace(...this.hideClasses, ...this.showClasses);
-      this.state = this.states.show;
+    if (this.element.classList.contains(this.hideClass)) {
+      this.element.classList.remove(this.hideClass);
+      this.element.classList.add(this.showClass);
+      
+      setTimeout(() => window.addEventListener("click", this.bindedOutsideClick), 10);
     }
+    
+    console.log('show fired!')
   }
   
   hide() {
-    if (this.showClasses.every(cls => this.element.classList.contains(cls))) {
-      this.element.classList.replace(...this.showClasses, ...this.hideClasses);
-      this.state = this.states.hide;
+    if (this.element.classList.contains(this.showClass)) {
+      this.element.classList.remove(this.showClass);
+      this.element.classList.add(this.hideClass);
+      
+      window.removeEventListener("click", this.bindedOutsideClick);
+    }
+    
+    console.log('hide fired!')
+  }
+}
+
+
+class BreadcrumbGenerator {
+  constructor(options = {}) {
+    this.options = {
+      customLabels: {},
+      usePageTitle: false,
+      titleSeparator: '|',
+      includeHome: true,
+      ...options
+    };
+    this.container = document.querySelector('._breadcrumb_nav ol');
+    this.homeItem = this.container.querySelector('li:first-child');
+  }
+  
+  generate() {
+    const segments = window.location.pathname.split('/').filter(Boolean);
+    this.container.innerHTML = '';
+    
+    if (this.options.includeHome && this.homeItem) {
+      this.container.appendChild(this.homeItem);
+    }
+    
+    let accumulatedPath = '';
+    segments.forEach((segment, index) => {
+      accumulatedPath += `/${segment}`;
+      this.createCrumb(segment, accumulatedPath, index === segments.length - 1);
+    });
+    
+    this.handleHomeOnlyCase(segments);
+  }
+  
+  createCrumb(segment, path, isLast) {
+    const li = document.createElement('li');
+    const label = this.getLabel(segment, path, isLast);
+    
+    if (isLast) {
+      li.setAttribute('aria-current', 'page');
+      li.innerHTML = this.getCrumbHTML(label, false);
+    } else {
+      li.innerHTML = this.getCrumbHTML(label, path);
+    }
+    
+    this.container.appendChild(li);
+  }
+  
+  getLabel(segment, path, isLast) {
+    return this.options.customLabels[segment] ||
+      this.options.customLabels[path] ||
+      (isLast && this.options.usePageTitle ? this.getPageTitle() : this.formatSegment(segment));
+  }
+  
+  getPageTitle() {
+    const title = document.title.split(this.options.titleSeparator)[0].trim();
+    return title || this.formatSegment(window.location.pathname.split('/').pop());
+  }
+  
+  formatSegment(segment) {
+    return segment
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+  
+  getCrumbHTML(label, path) {
+    return `
+      <div class="flex items-center">
+        <i class="ri-arrow-right-s-line text-gray-500 mx-1 md:mx-2"></i>
+        ${path ? `<a href="${path}" class="ml-1 text-sm font-medium text-gray-400 hover:text-accent-yellow transition md:ml-2">${label}</a>` : `<span class="ml-1 text-sm font-medium text-accent-yellow md:ml-2">${label}</span>`}
+      </div>
+    `;
+  }
+  
+  handleHomeOnlyCase(segments) {
+    if (segments.length === 0 && this.options.includeHome) {
+      const homeLi = this.container.querySelector('li:first-child');
+      homeLi.setAttribute('aria-current', 'page');
+      const link = homeLi.querySelector('a');
+      link.classList.replace('text-gray-400 hover:text-accent-yellow', 'text-accent-yellow');
     }
   }
 }
@@ -85,7 +182,7 @@ class CanvasCarousel {
     this.nextIndex = 1;
     this.opacity = 0;
     this.fadeSpeed = 0.06;
-    this.interval = 2500;
+    this.interval = 3000;
     this.width = canvas.clientWidth;
     this.height = canvas.clientHeight;
     
@@ -528,10 +625,11 @@ class ContactForm {
 export {
   Toast,
   Popup,
-  Toggler,
+  MobileMenu,
   HashRouter,
   ContactForm,
   DeckCarousel,
   CanvasCarousel,
+  BreadcrumbGenerator,
   EmblaCarouselComponent
 };

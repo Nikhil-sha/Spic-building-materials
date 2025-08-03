@@ -4,12 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>SPICBM - Modern Building Materials</title>
-	<script src="./assets/js/libs/tailwind/Tailwind@3.4.16.js"></script>
-	<script src="./assets/js/libs/tailwind/tailwind.config.js"></script>
+	<title>SC&BE - Modern Building Materials</title>
+	<script src="/assets/js/libs/tailwind/Tailwind@3.4.16.js"></script>
+	<script src="/assets/js/libs/tailwind/tailwind.config.js"></script>
 	
-	<link rel="stylesheet" href="./assets/css/styles.css">
-	<link href="./assets/css/remixicon@3.5.0.css" rel="stylesheet">
+	<link href="/assets/css/styles.css" rel="stylesheet">
+	<link href="/assets/css/remixicon@3.5.0.css" rel="stylesheet">
 	
 	<meta name="theme-color" content="#111113">
 </head>
@@ -18,7 +18,6 @@
 	<template id="popup_template">
 		<dialog class="popup_dialog bg-transparent backdrop:bg-black/70 backdrop:backdrop-blur-sm p-0 rounded-xl w-full max-w-md border border-white/10 overflow-hidden">
 			<form method="dialog" class="bg-primary-black text-white flex flex-col h-full">
-				<!-- Header -->
 				<div class="popup_header p-6 pb-2 border-b border-white/10 flex justify-between items-center">
 					<div class="flex items-center gap-2">
 						<i class="popup_icon ri-alert-line text-accent-yellow text-xl"></i>
@@ -29,18 +28,15 @@
 					</button>
 				</div>
 				
-				<!-- Content -->
 				<div class="popup_content p-6 pt-2 flex-1 overflow-y-auto">
 					<p>Default content</p>
 				</div>
 				
-				<!-- Footer Buttons -->
 				<div class="popup_actions p-6 pt-2 flex gap-3"></div>
 			</form>
 		</dialog>
 	</template>
 	
-	<!-- Toast Template -->
 	<template id="toast_template">
 		<div class="toast flex items-center w-80 bg-gray-800/70 backdrop-blur rounded-xl shadow-lg overflow-hidden transition-all duration-500 transform translate-x-full opacity-0">
 			<div class="toast_icon flex items-center justify-center w-12 h-12 rounded-full m-4 flex-shrink-0">
@@ -58,34 +54,31 @@
 		</div>
 	</template>
 	
-	<!-- Header/Navigation -->
 	<header class="bg-primary-black/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/40">
 		<div class="container mx-auto px-4 py-3 flex justify-between items-center">
-			<div class="flex items-center space-x-2 group">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="text-accent-yellow text-2xl transform transition-transform group-hover:-translate-y-0.5">
-					<path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-				</svg>
-				<h1 class="text-xl font-bold group-hover:tracking-widest transition-all">SPIC<span class="text-gradient">BM</span></h1>
+			<div class="flex items-center space-x-2" translate="no">
+				<i class="ri-building-fill text-accent-yellow text-2xl"></i>
+				<h1 class="text-xl font-bold">SC<span class="text-gradient">&</span>BE</h1>
 			</div>
 			
 			<nav class="hidden md:flex space-x-6">
-				<a href="./" class="relative group">
+				<a href="/" class="relative group">
 					<span class="hover:text-accent-yellow transition">Home</span>
 					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
 				</a>
-				<a href="./products" class="relative group">
+				<a href="/products" class="relative group">
 					<span class="hover:text-accent-yellow transition">Products</span>
 					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
 				</a>
-				<a href="./about" class="relative group">
+				<a href="/about" class="relative group">
 					<span class="hover:text-accent-yellow transition">About</span>
 					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
 				</a>
-				<a href="#/categories" class="relative group">
+				<a href="/#/categories" class="relative group">
 					<span class="hover:text-accent-yellow transition">Categories</span>
 					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
 				</a>
-				<a href="#/testimonials" class="relative group">
+				<a href="/#/testimonials" class="relative group">
 					<span class="hover:text-accent-yellow transition">Testimonials</span>
 					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
 				</a>
@@ -106,11 +99,11 @@
 		</div>
 	</header>
 	
-	<aside id="mobile_menu" class="fixed right-0 inset-0 z-50 h-full w-full bg-primary-black flex flex-col overflow-y-auto transition-transform duration-[0.5s] translate-x-full">
+	<aside id="mobile_menu" class="fixed right-0 inset-y-0 z-50 h-full w-[85%] bg-primary-black flex flex-col overflow-y-auto transition-transform duration-[0.5s] translate-x-full">
 		<div class="p-4 border-b border-gray-800/50 flex justify-between items-center">
 			<div class="flex items-center space-x-2">
-				<i class="ri-home-gear-line text-accent-yellow text-2xl"></i>
-				<h3 class="text-xl font-bold">SPIC<span class="text-gradient">BM</span></h3>
+				<i class="ri-building-fill text-accent-yellow text-2xl"></i>
+				<h3 class="text-xl font-bold">SC<span class="text-gradient">&</span>BE</h3>
 			</div>
 			<button id="mobile_menu_close" class="p-2 rounded-full hover:bg-primary-light transition">
 				<i class="ri-close-line text-xl"></i>
@@ -118,57 +111,60 @@
 		</div>
 		
 		<nav class="flex-1 p-4 space-y-2">
-			<a href="./" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+			<a href="/" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
 				<i class="ri-home-3-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
 				<span>Home</span>
 			</a>
 			
-			<a href="./products" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+			<a href="/products" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
 				<i class="ri-stack-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
 				<span>Products</span>
 				<i class="ri-arrow-right-s-line ml-auto text-gray-400 group-hover:text-accent-yellow transition"></i>
 			</a>
 			
-			<a href="./about" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+			<a href="/about" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
 				<i class="ri-information-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
 				<span>About</span>
 				<i class="ri-arrow-right-s-line ml-auto text-gray-400 group-hover:text-accent-yellow transition"></i>
 			</a>
 			
-			<a href="#/categories" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+			<a href="/#/categories" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
 				<i class="ri-building-2-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
 				<span>Top Categories</span>
 			</a>
 			
-			<a href="#/featured" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+			<a href="/#/featured" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
 				<i class="ri-building-2-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
 				<span>Featured Products</span>
 			</a>
 			
-			<a href="#/testimonials" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+			<a href="/#/testimonials" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
 				<i class="ri-building-2-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
 				<span>Testimonials</span>
 			</a>
 			
-			<a href="#/contact" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+			<a href="/#/contact" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
 				<i class="ri-phone-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
 				<span>Contact</span>
 			</a>
 			
-			<a href="#/get-started" class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold flex items-center justify-center py-3 rounded-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center mx-auto shadow-lg hover:shadow-xl shadow-accent-yellow/20">
+			<a href="/#/get-started" class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold flex items-center justify-center py-3 rounded-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center mx-auto shadow-lg hover:shadow-xl shadow-accent-yellow/20">
 				<span>Get Started</span>
 			</a>
 		</nav>
 		
 		<div class="p-4 border-t border-gray-800/50 flex space-x-4">
-			<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+			<a href="$facebook" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
 				<i class="ri-facebook-fill"></i>
 			</a>
-			<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+			<a href="$twitter" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
 				<i class="ri-twitter-fill"></i>
 			</a>
-			<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+			<a href="$instagram" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
 				<i class="ri-instagram-line"></i>
+			</a>
+			<a href="$whatsapp" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+				<i class="ri-whatsapp-line"></i>
 			</a>
 		</div>
 	</aside>
@@ -177,9 +173,9 @@
 		<button id="go_to_top" class="w-12 h-12 bg-primary-black rounded-full flex items-center justify-center border border-gray-800 hover:bg-accent-yellow hover:text-primary-black transition-all shadow-lg">
 			<i class="ri-arrow-up-s-line text-xl"></i>
 		</button>
-		<button class="w-12 h-12 bg-primary-black rounded-full flex items-center justify-center border border-gray-800 hover:bg-accent-yellow hover:text-primary-black transition-all shadow-lg">
+		<a href="https://wa.me/$number" class="w-12 h-12 bg-primary-black rounded-full flex items-center justify-center border border-gray-800 hover:bg-accent-yellow hover:text-primary-black transition-all shadow-lg">
 			<i class="ri-whatsapp-line text-xl"></i>
-		</button>
+		</a>
 	</nav>
 	
 	<!-- Optimized Hero Section -->
@@ -316,6 +312,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 	</section>
 	
 	<!-- Featured Products -->
@@ -487,80 +484,6 @@
 				<p class="text-gray-400 max-w-2xl mx-auto">Hear from architects, contractors, and homeowners who trust our materials.</p>
 			</div>
 			
-			<!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-				<div class="bg-primary-light p-8 rounded-xl card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-					<div class="flex items-center mb-6">
-						<div class="shrink-0 w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-accent-yellow/50">
-							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzcnOCIcS6DikNq9Li65jNctbDJREUtz0mjVQ0wW9wi1ZSe9LmUCFDPo09&s=10" alt="Sarah Johnson" class="w-full h-full object-cover">
-						</div>
-						<div>
-							<h4 class="font-bold">Nikhil Sharma</h4>
-							<p class="text-gray-400 text-sm">Me | Self-taught Computer Science Student</p>
-						</div>
-					</div>
-					<div class="flex text-accent-yellow mb-4">
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-					</div>
-					<p class="text-gray-300 mb-6">"The quality of materials from SPICBM exceeded my expectations. Their hardwood flooring transformed my entire home with its durability and beautiful finish."</p>
-					<div class="flex items-center text-gray-400 text-sm">
-						<i class="ri-calendar-line mr-2"></i>
-						<span>May 15, 2023</span>
-					</div>
-				</div>
-
-				<div class="bg-primary-light p-8 rounded-xl card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-					<div class="flex items-center mb-6">
-						<div class="shrink-0 w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-accent-yellow/50">
-							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzcnOCIcS6DikNq9Li65jNctbDJREUtz0mjVQ0wW9wi1ZSe9LmUCFDPo09&s=10" alt="someone" class="w-full h-full object-cover">
-						</div>
-						<div>
-							<h4 class="font-bold">Someone</h4>
-							<p class="text-gray-400 text-sm">Something</p>
-						</div>
-					</div>
-					<div class="flex text-accent-yellow mb-4">
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-half-fill"></i>
-					</div>
-					<p class="text-gray-300 mb-6">"As a contractor, I rely on SPICBM for consistent quality and reliable delivery. Their customer service team is knowledgeable and responsive to our project needs."</p>
-					<div class="flex items-center text-gray-400 text-sm">
-						<i class="ri-calendar-line mr-2"></i>
-						<span>April 2, 2023</span>
-					</div>
-				</div>
-
-				<div class="bg-primary-light p-8 rounded-xl card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-					<div class="flex items-center mb-6">
-						<div class="shrink-0 w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-accent-yellow/50">
-							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzcnOCIcS6DikNq9Li65jNctbDJREUtz0mjVQ0wW9wi1ZSe9LmUCFDPo09&s=10" alt="Himesh Gupta" class="w-full h-full object-cover">
-						</div>
-						<div>
-							<h4 class="font-bold">Himesh Gupta</h4>
-							<p class="text-gray-400 text-sm">Friend</p>
-						</div>
-					</div>
-					<div class="flex text-accent-yellow mb-4">
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-						<i class="ri-star-fill"></i>
-					</div>
-					<p class="text-gray-300 mb-6">"The eco-friendly options from SPICBM helped me achieve my sustainable design goals without compromising on aesthetics or structural integrity."</p>
-					<div class="flex items-center text-gray-400 text-sm">
-						<i class="ri-calendar-line mr-2"></i>
-						<span>March 20, 2023</span>
-					</div>
-				</div>
-			</div> -->
-			
 			<div id="_testimonial_carousel" class="relative w-full md:w-2/3 mx-auto transition-[height] duration-500 ease-in-out overflow-visible">
 				<div class="bg-primary-light p-8 rounded-xl border border-gray-800/50 hover:border-accent-yellow/30 absolute left-0 top-0 transition duration-[1.3s] ease">
 					<div class="flex items-center mb-6">
@@ -634,27 +557,23 @@
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</section>
 	
 	<!-- CTA Section -->
 	<section id="get-started" class="py-20 bg-gradient-to-r from-primary-black to-gray-900">
 		<div class="container mx-auto px-4 text-center">
-			<!-- <div class="absolute top-0 left-0 w-full h-full opacity-10">
-				<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-			</div> -->
-			<div class="relative z-10 max-w-3xl mx-auto">
+			<div class="z-10 max-w-3xl mx-auto">
 				<span class="inline-block bg-accent-yellow/20 text-accent-yellow px-4 py-1 rounded-full text-sm font-medium mb-6">READY TO BUILD?</span>
 				<h2 class="text-3xl md:text-4xl font-bold mb-6">Start Your Project With <span class="text-gradient">Premium</span> Materials</h2>
 				<p class="text-gray-400 mb-8">Get expert advice and the highest quality materials for your next construction or renovation project. Our team is ready to assist you from planning to completion.</p>
 				<div class="flex flex-col sm:flex-row justify-center gap-4">
-					<button class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center mx-auto shadow-lg hover:shadow-xl shadow-accent-yellow/20">
+					<button data-route="contact" class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center mx-auto shadow-lg hover:shadow-xl shadow-accent-yellow/20">
 						<i class="ri-phone-line mr-2"></i> Contact Our Experts
 					</button>
-					<button class="bg-transparent hover:bg-white/10 border-2 border-white/20 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 flex items-center mx-auto group">
+					<a href="/quote" class="bg-transparent hover:bg-white/10 border-2 border-white/20 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 flex items-center mx-auto group">
 						<i class="ri-mail-line mr-2 group-hover:text-accent-yellow transition"></i> Get a Quote
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -662,7 +581,7 @@
 	
 	<section id="contact" class="py-20 bg-primary-black">
 		<div class="container mx-auto px-4">
-			<div class="max-w-4xl mx-auto">
+			<div class="max-w-3xl mx-auto">
 				<div class="text-center mb-16">
 					<span class="inline-block bg-primary-light text-accent-yellow px-4 py-1 rounded-full text-sm font-medium mb-4">GET IN TOUCH</span>
 					<h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Our <span class="text-gradient">Experts</span></h2>
@@ -876,85 +795,60 @@
 		</div>
 	</section>
 	
-	<!-- Footer -->
 	<footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800/50">
 		<div class="container mx-auto px-4">
-			<div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-				<!-- Column 1 -->
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
 				<div>
-					<div class="flex items-center space-x-2 mb-6 group">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="text-accent-yellow text-2xl transform transition-transform group-hover:-translate-y-0.5">
-							<path stoke-width="1.8" d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-						</svg>
-						<h1 class="text-xl font-bold group-hover:tracking-widest transition-all">SPIC<span class="text-gradient">BM</span></h1>
-					</div>
-					
+					<h1 class="text-xl font-bold mb-3">Siddharth Concrete <span class="text-gradient">&</span> Bricks Enterprise<span class="text-gradient">.</span></h1>
 					<p class="text-gray-400 mb-6">Premium building materials for professionals and homeowners who demand the best in quality, sustainability, and innovation.</p>
 					
 					<div class="flex space-x-4">
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+						<a href="$facebook" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
 							<i class="ri-facebook-fill"></i>
 						</a>
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+						<a href="$twitter" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
 							<i class="ri-twitter-fill"></i>
 						</a>
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+						<a href="$instagram" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
 							<i class="ri-instagram-line"></i>
 						</a>
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+						<a href="$linkedin" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
 							<i class="ri-linkedin-fill"></i>
 						</a>
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+						<a href="$youtube" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
 							<i class="ri-youtube-fill"></i>
 						</a>
 					</div>
 				</div>
 				
-				<!-- Column 2 -->
 				<div>
 					<h4 class="text-lg font-bold mb-6 text-white">Company</h4>
-					<ul class="space-y-3">
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+					<ul class="space-y-3 mb-10">
+						<li><a href="/about" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
 								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> About Us
 							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+						<li><a href="/about/#/team" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
 								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Our Team
 							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Careers
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> News
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Sustainability
+						<li><a href="/policy" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Our Policies
 							</a></li>
 					</ul>
-				</div>
-				
-				<!-- Column 3 -->
-				<div>
+					
 					<h4 class="text-lg font-bold mb-6 text-white">Resources</h4>
 					<ul class="space-y-3">
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Blog
+						<li><a href="/products" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Products
 							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Guides
+						<li><a href="/quote" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Quote
 							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Videos
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> FAQ
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+						<li><a href="/#/contact" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
 								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Support
 							</a></li>
 					</ul>
 				</div>
 				
-				<!-- Column 4 -->
 				<div>
 					<h4 class="text-lg font-bold mb-6 text-white">Contact</h4>
 					<ul class="space-y-4">
@@ -964,11 +858,11 @@
 						</li>
 						<li class="flex items-center">
 							<i class="ri-phone-line text-accent-yellow mr-3"></i>
-							<span class="text-gray-400">(555) 123-4567</span>
+							<span class="text-gray-400">$number</span>
 						</li>
 						<li class="flex items-center">
 							<i class="ri-mail-line text-accent-yellow mr-3"></i>
-							<span class="text-gray-400">info@spicbm.com</span>
+							<span class="text-gray-400">$email</span>
 						</li>
 						<li class="flex items-center">
 							<i class="ri-time-line text-accent-yellow mr-3"></i>
@@ -981,21 +875,19 @@
 			<div class="border-t border-gray-800/50 pt-8 flex flex-col md:flex-row justify-between items-center">
 				<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 SPICBM. All rights reserved.</p>
 				<div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-					<a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Privacy Policy</a>
-					<a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Terms of Service</a>
-					<a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Shipping Policy</a>
-					<a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Cookie Policy</a>
+					<a href="/policy/#/privacy" class="text-gray-500 hover:text-accent-yellow text-sm transition">Privacy Policy</a>
+					<a href="/policy/#/terms" class="text-gray-500 hover:text-accent-yellow text-sm transition">Terms of Service</a>
+					<a href="/policy/#/shipping" class="text-gray-500 hover:text-accent-yellow text-sm transition">Shipping Policy</a>
+					<a href="/policy/#/cookie" class="text-gray-500 hover:text-accent-yellow text-sm transition">Cookie Policy</a>
 				</div>
 			</div>
 		</div>
 	</footer>
 	
-	<!-- Toast Container (pre-defined in HTML) -->
 	<div id="toast_container" class="fixed top-4 right-4 space-y-3 z-50 transition"></div>
 	
-	<script type="module" src="./assets/js/script.js"></script>
-	<script type="module" src="./assets/js/template.js"></script>
-	
+	<script src="/assets/js/template.js" type="module" charset="utf-8"></script>
+	<script src="/assets/js/main.js" type="module" charset="utf-8"></script>
 </body>
 
 </html>

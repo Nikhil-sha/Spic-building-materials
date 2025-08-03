@@ -1,99 +1,73 @@
 import {
-	Popup,
-	Toast,
-	Toggler,
-	HashRouter
+  Popup,
+  Toast,
+  HashRouter,
+  MobileMenu,
+  BreadcrumbGenerator
 } from './classes.js';
 
 
-class MobileMenu extends Toggler {
-	constructor(selector) {
-		super(selector, {
-			show: "translate-x-0",
-			hide: "translate-x-full",
-			states: { show: "open", hide: "close" }
-		});
-	}
-	
-	isListening = false;
-	bindedOutsideClick = this.handleOutsideClick.bind(this);
-	
-	open() {
-		super.show();
-		if (!this.isListening) {
-			window.addEventListener("click", this.bindedOutsideClick);
-			this.isListening = true;
-		}
-	}
-	
-	close() {
-		super.hide();
-		if (this.isListening) {
-			window.removeEventListener("click", this.bindedOutsideClick);
-			this.isListening = false;
-		}
-	}
-	
-	handleOutsideClick(e) {
-		if (!this.element.contains(e.target)) {
-			this.close();
-		}
-	}
-}
-
-
+const mobileMenu = new MobileMenu("mobile_menu");
 const router = new HashRouter({ offset: 12, callback: () => mobileMenu.hide() });
 const languageDialogOpen = document.getElementById("language_dialog");
 const mobileMenuOpen = document.getElementById("mobile_menu_open");
 const mobileMenuClose = document.getElementById("mobile_menu_close");
 const contactForm = document.getElementById("contact_form");
 const goToTop = document.getElementById("go_to_top");
-const mobileMenu = new MobileMenu("mobile_menu");
+
+
+function checkBreadcrumb() {
+  if (!document.querySelector('._breadcrumb_nav')) {
+    return null;
+  }
+  
+  return new BreadcrumbGenerator({
+    customLabels: {
+      '/products': 'Our Products',
+      '/gallery': 'Product Information',
+      '/policy': 'Our Policies',
+      '/about': 'About Us',
+      '/quote': 'Get A Quote'
+    }
+  }).generate();
+}
+const breadcrumb = checkBreadcrumb();
 
 
 function scrollToTop() {
-	window.scrollTo({
-		top: 0,
-		behavior: 'smooth'
-	});
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 }
 
 
-languageDialogOpen?.addEventListener("click", showLangPopup);
-
-mobileMenuOpen?.addEventListener("click", () => {
-	mobileMenu.show();
-});
-
-
-mobileMenuClose?.addEventListener("click", () => {
-	mobileMenu.hide();
-});
-
-
+languageDialogOpen.addEventListener("click", showLangPopup);
+mobileMenuOpen.addEventListener("click", () => mobileMenu.show());
+mobileMenuClose.addEventListener("click", () => mobileMenu.hide());
 goToTop.addEventListener('click', scrollToTop);
 
 
 window.googleTranslateElementInit = function() {
-	new google.translate.TranslateElement({
-		pageLanguage: 'en',
-		includedLanguages: 'en,hi,bho',
-		layout: google.translate.TranslateElement.InlineLayout.VERTICAL
-	}, 'google_translate_element');
-	
-	const observer = new MutationObserver((mutations, obs) => {
-		const lang = document.documentElement.lang || 'en';
-		console.log("Language changed to:", lang);
-		
-		onLanguageChange(lang);
-		
-		obs.disconnect();
-	});
-	
-	observer.observe(document.documentElement, {
-		attributes: true,
-		attributeFilter: ['lang']
-	});
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,hi,bho',
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+  
+  const observer = new MutationObserver((mutations, obs) => {
+    const lang = document.documentElement.lang || 'en';
+    console.log("Language changed to:", lang);
+    
+    onLanguageChange(lang);
+    
+    obs.disconnect();
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang']
+  });
 }
 
 
@@ -176,18 +150,23 @@ window.googleTranslateElementInit = function() {
 
 
 function onLanguageChange(lang) {
-	const skiptranslate = document.querySelector('.skiptranslate');
-	skiptranslate.remove();
-	
-	new Toast('success', `Language changed to ${lang}`).create();
+  console.log(lang)
+  if (lang == 'from') {
+    window.location.reload();
+  }
+  
+  const skiptranslate = document.querySelector('.skiptranslate');
+  skiptranslate.remove();
+  
+  new Toast('success', `Language changed to ${lang}`).create();
 }
 
 
 function showLangPopup() {
-	const popup = new Popup({
-		title: 'Language preference',
-		iconClass: 'ri-earth-line text-accent-yellow text-xl',
-		contentHTML: `
+  const popup = new Popup({
+    title: 'Language preference',
+    iconClass: 'ri-earth-line text-accent-yellow text-xl',
+    contentHTML: `
 		<p class="mb-4">Choose a language.</p>
 		<div class="h-20 relative">
 			<div aria-label="loading language options" class="w-full flex justify-center items-center absolute inset-0">
@@ -196,25 +175,29 @@ function showLangPopup() {
 			<div id="google_translate_element" class="w-full min-h-0 absolute z-10 bg-primary-black"></div>
 		</div>
 	`,
-		actions: [
-		{
-			label: '<i class="ri-check-fill mr-2"></i> Done',
-			class: 'flex-1 bg-accent-yellow hover:bg-accent-dark text-primary-black font-medium py-2 px-4 rounded-lg transition',
-			value: 'done'
-		}]
-	});
-	
-	popup.onClose((returnValue) => {
-		console.log('Language changed:', returnValue);
-	});
-	
-	popup.show();
-	
-	if (!document.querySelector('script[data-google-translate]')) {
-		const googleTranslateScript = document.createElement("script");
-		googleTranslateScript.src = './assets/js/libs/google/google-translate-widget.js';
-		document.body.appendChild(googleTranslateScript);
-	}
+    actions: [
+    {
+      label: '<i class="ri-check-fill mr-2"></i> Done',
+      class: 'flex-1 bg-accent-yellow hover:bg-accent-dark text-primary-black font-medium py-2 px-4 rounded-lg transition',
+      value: 'done'
+    }]
+  });
+  
+  popup.onClose((returnValue) => {
+    console.log('Language changed:', returnValue);
+  });
+  
+  popup.show();
+  
+  if (!document.querySelector('script[data-google-translate]')) {
+    const googleTranslateScript = document.createElement("script");
+    googleTranslateScript.src = './assets/js/libs/google/google-translate-widget.js';
+    document.body.appendChild(googleTranslateScript);
+  }
 }
 
-showLangPopup();
+// showLangPopup();
+
+window.addEventListener('DOMContentLoaded', function() {
+  
+});

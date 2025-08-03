@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SC&BE - Modern Building Materials</title>
+	<script src="/assets/js/libs/tailwind/Tailwind@3.4.16.js"></script>
+	<script src="/assets/js/libs/tailwind/tailwind.config.js"></script>
+	
+	<link href="/assets/css/styles.css" rel="stylesheet">
+	<link href="/assets/css/remixicon@3.5.0.css" rel="stylesheet">
+	
+	<meta name="theme-color" content="#111113">
+</head>
+
+<body class="bg-primary-black text-gray-100">
+	<template id="popup_template">
+		<dialog class="popup_dialog bg-transparent backdrop:bg-black/70 backdrop:backdrop-blur-sm p-0 rounded-xl w-full max-w-md border border-white/10 overflow-hidden">
+			<form method="dialog" class="bg-primary-black text-white flex flex-col h-full">
+				<div class="popup_header p-6 pb-2 border-b border-white/10 flex justify-between items-center">
+					<div class="flex items-center gap-2">
+						<i class="popup_icon ri-alert-line text-accent-yellow text-xl"></i>
+						<h3 class="popup_title text-xl font-bold">Popup Title</h3>
+					</div>
+					<button type="submit" value="close" class="popup_close p-1 rounded-full hover:bg-primary-light transition text-gray-400 hover:text-white">
+						<i class="ri-close-line text-xl"></i>
+					</button>
+				</div>
+				
+				<div class="popup_content p-6 pt-2 flex-1 overflow-y-auto">
+					<p>Default content</p>
+				</div>
+				
+				<div class="popup_actions p-6 pt-2 flex gap-3"></div>
+			</form>
+		</dialog>
+	</template>
+	
+	<template id="toast_template">
+		<div class="toast flex items-center w-80 bg-gray-800/70 backdrop-blur rounded-xl shadow-lg overflow-hidden transition-all duration-500 transform translate-x-full opacity-0">
+			<div class="toast_icon flex items-center justify-center w-12 h-12 rounded-full m-4 flex-shrink-0">
+				<i class="text-gray-800 text-2xl"></i>
+			</div>
+			<div class="toast_content py-4 pr-4 flex-1">
+				<p class="toast_message text-sm text-gray-300 mt-1"></p>
+			</div>
+			<button class="toast_close absolute top-2 right-2 text-gray-400 hover:text-white transition-colors">
+				<i class="ri-close-line"></i>
+			</button>
+			<div class="absolute bottom-0 left-0 h-px w-full">
+				<div class="toast_progress_bar h-full w-full bg-accent-yellow animate-progress-left"></div>
+			</div>
+		</div>
+	</template>
+	
+	<header class="bg-primary-black/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/40">
+		<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+			<div class="flex items-center space-x-2" translate="no">
+				<i class="ri-building-fill text-accent-yellow text-2xl"></i>
+				<h1 class="text-xl font-bold">SC<span class="text-gradient">&</span>BE</h1>
+			</div>
+			
+			<nav class="hidden md:flex space-x-6">
+				<a href="/" class="relative group">
+					<span class="hover:text-accent-yellow transition">Home</span>
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+				</a>
+				<a href="/products" class="relative group">
+					<span class="hover:text-accent-yellow transition">Products</span>
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+				</a>
+				<a href="/about" class="relative group">
+					<span class="hover:text-accent-yellow transition">About</span>
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+				</a>
+				<a href="/#/categories" class="relative group">
+					<span class="hover:text-accent-yellow transition">Categories</span>
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+				</a>
+				<a href="/#/testimonials" class="relative group">
+					<span class="hover:text-accent-yellow transition">Testimonials</span>
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+				</a>
+			</nav>
+			
+			<div class="flex items-center space-x-2">
+				<button id="language_dialog" class="p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
+					<i class="ri-translate-2 ri-lg size-5 group-hover:text-accent-yellow transition"></i>
+				</button>
+				<button class="p-2 rounded-full hover:bg-primary-light transition-all duration-300 group relative">
+					<i class="ri-shopping-cart-2-line ri-lg size-5 group-hover:text-accent-yellow transition"></i>
+					<span class="absolute -top-1 -right-1 bg-accent-yellow text-primary-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">3</span>
+				</button>
+				<button id="mobile_menu_open" class="md:hidden p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
+					<i class="ri-menu-3-line ri-lg size-5 group-hover:text-accent-yellow transition"></i>
+				</button>
+			</div>
+		</div>
+	</header>
+	
+	<aside id="mobile_menu" class="fixed right-0 inset-y-0 z-50 h-full w-[85%] bg-primary-black flex flex-col overflow-y-auto transition-transform duration-[0.5s] translate-x-full">
+		<div class="p-4 border-b border-gray-800/50 flex justify-between items-center">
+			<div class="flex items-center space-x-2">
+				<i class="ri-building-fill text-accent-yellow text-2xl"></i>
+				<h3 class="text-xl font-bold">SC<span class="text-gradient">&</span>BE</h3>
+			</div>
+			<button id="mobile_menu_close" class="p-2 rounded-full hover:bg-primary-light transition">
+				<i class="ri-close-line text-xl"></i>
+			</button>
+		</div>
+		
+		<nav class="flex-1 p-4 space-y-2">
+			<a href="/" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+				<i class="ri-home-3-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
+				<span>Home</span>
+			</a>
+			
+			<a href="/products" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+				<i class="ri-stack-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
+				<span>Products</span>
+				<i class="ri-arrow-right-s-line ml-auto text-gray-400 group-hover:text-accent-yellow transition"></i>
+			</a>
+			
+			<a href="/about" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+				<i class="ri-information-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
+				<span>About</span>
+				<i class="ri-arrow-right-s-line ml-auto text-gray-400 group-hover:text-accent-yellow transition"></i>
+			</a>
+			
+			<a href="/#/categories" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+				<i class="ri-building-2-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
+				<span>Top Categories</span>
+			</a>
+			
+			<a href="/#/featured" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+				<i class="ri-building-2-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
+				<span>Featured Products</span>
+			</a>
+			
+			<a href="/#/testimonials" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+				<i class="ri-building-2-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
+				<span>Testimonials</span>
+			</a>
+			
+			<a href="/#/contact" class="flex items-center px-4 py-3 rounded-lg hover:bg-primary-light hover:text-accent-yellow transition group">
+				<i class="ri-phone-line mr-3 text-gray-400 group-hover:text-accent-yellow transition"></i>
+				<span>Contact</span>
+			</a>
+			
+			<a href="/#/get-started" class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold flex items-center justify-center py-3 rounded-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center mx-auto shadow-lg hover:shadow-xl shadow-accent-yellow/20">
+				<span>Get Started</span>
+			</a>
+		</nav>
+		
+		<div class="p-4 border-t border-gray-800/50 flex space-x-4">
+			<a href="$facebook" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+				<i class="ri-facebook-fill"></i>
+			</a>
+			<a href="$twitter" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+				<i class="ri-twitter-fill"></i>
+			</a>
+			<a href="$instagram" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+				<i class="ri-instagram-line"></i>
+			</a>
+			<a href="$whatsapp" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+				<i class="ri-whatsapp-line"></i>
+			</a>
+		</div>
+	</aside>
+	
+	<nav class="fixed bottom-3 right-3 z-40 flex flex-col gap-3">
+		<button id="go_to_top" class="w-12 h-12 bg-primary-black rounded-full flex items-center justify-center border border-gray-800 hover:bg-accent-yellow hover:text-primary-black transition-all shadow-lg">
+			<i class="ri-arrow-up-s-line text-xl"></i>
+		</button>
+		<a href="https://wa.me/$number" class="w-12 h-12 bg-primary-black rounded-full flex items-center justify-center border border-gray-800 hover:bg-accent-yellow hover:text-primary-black transition-all shadow-lg">
+			<i class="ri-whatsapp-line text-xl"></i>
+		</a>
+	</nav>
+	
+	<nav class="_breadcrumb_nav w-full my-3 border-y border-gray-800/50" aria-label="Breadcrumb">
+		<ol class="px-4 py-3 w-full max-w-3xl mx-auto flex items-center space-x-2 md:space-x-3">
+			<li class="inline-flex items-center">
+				<a href="/" class="inline-flex items-center text-sm font-medium text-gray-400 hover:text-accent-yellow transition group">
+					<i class="ri-home-4-line mr-2 group-hover:text-accent-yellow transition"></i>
+					Home
+				</a>
+			</li>
+		</ol>
+	</nav>
+	
+	<!-- Main Content -->
+	<main class="min-h-screen">
+		<!-- Interactive Hero Section -->
+		<section class="hero-pattern relative overflow-hidden">
+			<!-- <div class="absolute inset-0 z-0 opacity-20">
+				<div class="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30"></div>
+			</div> -->
+			<div class="container mx-auto px-4 py-32 relative z-10">
+				<div class="max-w-4xl mx-auto text-center">
+					<div class="inline-flex items-center bg-primary-light/20 border border-gray-800/50 rounded-full px-4 py-1 mb-6 animate-fade-in">
+						<span class="text-accent-yellow text-sm font-medium">POLICY UPDATES</span>
+						<span class="ml-2 text-xs text-gray-400">Last updated: 03 July 2025</span>
+					</div>
+					<h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in leading-tight">
+						Our <span class="text-gradient">Privacy</span> <br>Commitment
+					</h1>
+					<p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto animate-fade-in">
+						Transparency and trust are the foundation of our relationship with you. Explore how we protect your data.
+					</p>
+					<div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in">
+						<button class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center mx-auto shadow-lg hover:shadow-xl shadow-accent-yellow/20">
+							<i class="ri-download-line mr-2"></i> Download PDF
+						</button>
+						<button class="bg-transparent hover:bg-white/10 border-2 border-white/20 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 flex items-center mx-auto group">
+							<i class="ri-question-line mr-2 group-hover:text-accent-yellow transition"></i> Ask Questions
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-primary-black to-transparent z-10"></div> -->
+			<!-- <div class="absolute right-20 bottom-20 w-32 h-32 rounded-full bg-accent-yellow/10 blur-xl animate-float"></div> -->
+			<!-- <div class="absolute left-20 top-1/3 w-24 h-24 rounded-full bg-accent-yellow/5 blur-xl animate-float animation-delay-2000"></div> -->
+		</section>
+		
+		<!-- Blog-Style Policy Content -->
+		<section class="py-20 bg-primary-black">
+			<div class="container mx-auto px-4 max-w-3xl">
+				<!-- Table of Contents -->
+				<div class="bg-primary-light border border-gray-800/50 rounded-xl p-6 mb-16">
+					<h3 class="text-lg font-bold mb-4 flex items-center text-accent-yellow">
+						<i class="ri-list-check mr-2"></i> Table of Contents
+					</h3>
+					<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+						<a href="#information-collection" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+							<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Information Collection
+						</a>
+						<a href="#use-of-information" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+							<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Use of Information
+						</a>
+						<a href="#data-disclosure" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+							<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Data Disclosure
+						</a>
+						<a href="#tracking-tech" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+							<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Tracking Technologies
+						</a>
+						<a href="#policy-updates" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+							<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Policy Updates
+						</a>
+						<a href="#contact" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+							<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Contact Us
+						</a>
+					</div>
+				</div>
+				
+				<!-- Policy Articles -->
+				<div class="space-y-16">
+					<!-- Information Collection -->
+					<article id="information-collection" class="card-hover border border-gray-800/50 hover:border-accent-yellow/30 bg-primary-light rounded-xl p-8 animate-fade-in">
+						<div class="flex flex-col md:flex-row gap-8">
+							<div class="md:w-1/2">
+								<div class="flex items-center mb-6">
+									<div class="w-12 h-12 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow mr-4">
+										<i class="ri-database-2-line text-2xl"></i>
+									</div>
+									<h2 class="text-2xl md:text-3xl font-bold">Information We Collect</h2>
+								</div>
+								<p class="text-gray-400 mb-6">
+									At BuildCraft, we collect various types of information to provide and improve our services to you. This includes both personal and non-personal data that helps us understand our customers better while respecting your privacy.
+								</p>
+								<div class="space-y-4">
+									<div class="flex items-start">
+										<i class="ri-checkbox-circle-fill text-accent-yellow mt-1 mr-3"></i>
+										<div>
+											<h3 class="font-bold text-gray-300">Personal Data</h3>
+											<p class="text-gray-400">Name, email, address, phone number, and payment information when you make a purchase.</p>
+										</div>
+									</div>
+									<div class="flex items-start">
+										<i class="ri-checkbox-circle-fill text-accent-yellow mt-1 mr-3"></i>
+										<div>
+											<h3 class="font-bold text-gray-300">Usage Data</h3>
+											<p class="text-gray-400">Information about how you interact with our website, including IP address, browser type, and pages visited.</p>
+										</div>
+									</div>
+									<div class="flex items-start">
+										<i class="ri-checkbox-circle-fill text-accent-yellow mt-1 mr-3"></i>
+										<div>
+											<h3 class="font-bold text-gray-300">Cookies</h3>
+											<p class="text-gray-400">Small data files stored on your device to enhance your browsing experience.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="md:w-1/2">
+								<div class="bg-gray-900/50 rounded-lg overflow-hidden h-full">
+									<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Data Collection" class="w-full h-full object-cover opacity-90">
+								</div>
+							</div>
+						</div>
+					</article>
+					
+					<!-- Use of Information -->
+					<article id="terms" class="card-hover border border-gray-800/50 hover:border-accent-yellow/30 bg-primary-light rounded-xl p-8 animate-fade-in">
+						<div class="flex flex-col md:flex-row-reverse gap-8">
+							<div class="md:w-1/2">
+								<div class="flex items-center mb-6">
+									<div class="w-12 h-12 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow mr-4">
+										<i class="ri-line-chart-line text-2xl"></i>
+									</div>
+									<h2 class="text-2xl md:text-3xl font-bold">Use of Your Information</h2>
+								</div>
+								<p class="text-gray-400 mb-6">
+									The information we collect serves multiple purposes to enhance your experience with BuildCraft. We're committed to using your data responsibly and transparently.
+								</p>
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<div class="bg-primary-light/10 p-4 rounded-lg">
+										<i class="ri-shopping-cart-2-line text-accent-yellow text-xl mb-2"></i>
+										<h3 class="font-bold text-gray-300 mb-1">Order Processing</h3>
+										<p class="text-gray-400 text-sm">To process and fulfill your purchases and requests</p>
+									</div>
+									<div class="bg-primary-light/10 p-4 rounded-lg">
+										<i class="ri-customer-service-2-line text-accent-yellow text-xl mb-2"></i>
+										<h3 class="font-bold text-gray-300 mb-1">Customer Support</h3>
+										<p class="text-gray-400 text-sm">To respond to your inquiries and provide service</p>
+									</div>
+									<div class="bg-primary-light/10 p-4 rounded-lg">
+										<i class="ri-flashlight-line text-accent-yellow text-xl mb-2"></i>
+										<h3 class="font-bold text-gray-300 mb-1">Improvements</h3>
+										<p class="text-gray-400 text-sm">To enhance and personalize your experience</p>
+									</div>
+									<div class="bg-primary-light/10 p-4 rounded-lg">
+										<i class="ri-mail-send-line text-accent-yellow text-xl mb-2"></i>
+										<h3 class="font-bold text-gray-300 mb-1">Communications</h3>
+										<p class="text-gray-400 text-sm">To send important notices and updates</p>
+									</div>
+								</div>
+							</div>
+							<div class="md:w-1/2">
+								<div class="bg-gray-900/50 rounded-lg overflow-hidden h-full">
+									<img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Data Usage" class="w-full h-full object-cover opacity-90">
+								</div>
+							</div>
+						</div>
+					</article>
+					
+					<!-- Data Disclosure -->
+					<article id="privacy" class="card-hover border border-gray-800/50 hover:border-accent-yellow/30 bg-primary-light rounded-xl p-8 animate-fade-in">
+						<div class="flex flex-col md:flex-row gap-8">
+							<div class="md:w-1/2">
+								<div class="flex items-center mb-6">
+									<div class="w-12 h-12 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow mr-4">
+										<i class="ri-share-forward-line text-2xl"></i>
+									</div>
+									<h2 class="text-2xl md:text-3xl font-bold">Disclosure of Your Information</h2>
+								</div>
+								<p class="text-gray-400 mb-6">
+									We may share your information in limited circumstances with trusted partners and service providers. We never sell your personal data to third parties.
+								</p>
+								<div class="space-y-6">
+									<div>
+										<h3 class="text-xl font-bold text-gray-300 mb-3 hover-underline inline-block">Service Providers</h3>
+										<p class="text-gray-400">We engage certain trusted third parties to perform functions and provide services to us, including payment processing and data analysis.</p>
+									</div>
+									<div>
+										<h3 class="text-xl font-bold text-gray-300 mb-3 hover-underline inline-block">Business Transfers</h3>
+										<p class="text-gray-400">If we're involved in a merger or acquisition, your information may be transferred as part of that deal.</p>
+									</div>
+									<div>
+										<h3 class="text-xl font-bold text-gray-300 mb-3 hover-underline inline-block">Legal Requirements</h3>
+										<p class="text-gray-400">We may disclose your information if required to do so by law or in response to valid requests by public authorities.</p>
+									</div>
+								</div>
+							</div>
+							<div class="md:w-1/2">
+								<div class="bg-gray-900/50 rounded-lg overflow-hidden h-full">
+									<img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Data Sharing" class="w-full h-full object-cover opacity-90">
+								</div>
+							</div>
+						</div>
+					</article>
+					
+					<!-- Tracking Technologies -->
+					<article id="cookie" class="card-hover border border-gray-800/50 hover:border-accent-yellow/30 bg-primary-light rounded-xl p-8 animate-fade-in">
+						<div class="flex flex-col md:flex-row-reverse gap-8">
+							<div class="md:w-1/2">
+								<div class="flex items-center mb-6">
+									<div class="w-12 h-12 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow mr-4">
+										<i class="ri-fingerprint-line text-2xl"></i>
+									</div>
+									<h2 class="text-2xl md:text-3xl font-bold">Tracking Technologies</h2>
+								</div>
+								<p class="text-gray-400 mb-6">
+									We use various technologies to collect and store information when you visit our services, which may include cookies and similar tracking technologies.
+								</p>
+								<div class="overflow-x-auto">
+									<table class="min-w-full divide-y divide-gray-800/50">
+										<thead>
+											<tr>
+												<th class="px-4 py-3 text-left text-xs font-medium text-accent-yellow uppercase tracking-wider">Technology</th>
+												<th class="px-4 py-3 text-left text-xs font-medium text-accent-yellow uppercase tracking-wider">Purpose</th>
+												<th class="px-4 py-3 text-left text-xs font-medium text-accent-yellow uppercase tracking-wider">Control</th>
+											</tr>
+										</thead>
+										<tbody class="divide-y divide-gray-800/50">
+											<tr>
+												<td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-300">Cookies</td>
+												<td class="px-4 py-4 text-sm text-gray-400">Session management, preferences</td>
+												<td class="px-4 py-4 text-sm text-gray-400">Browser settings</td>
+											</tr>
+											<tr>
+												<td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-300">Web Beacons</td>
+												<td class="px-4 py-4 text-sm text-gray-400">Page analytics</td>
+												<td class="px-4 py-4 text-sm text-gray-400">Tracking protection</td>
+											</tr>
+											<tr>
+												<td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-300">Local Storage</td>
+												<td class="px-4 py-4 text-sm text-gray-400">Site functionality</td>
+												<td class="px-4 py-4 text-sm text-gray-400">Browser settings</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="md:w-1/2">
+								<div class="bg-gray-900/50 rounded-lg overflow-hidden h-full">
+									<img src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Tracking Technologies" class="w-full h-full object-cover opacity-90">
+								</div>
+							</div>
+						</div>
+					</article>
+					
+					<!-- Policy Updates -->
+					<article id="shipping" class="card-hover border border-gray-800/50 hover:border-accent-yellow/30 bg-primary-light rounded-xl p-8 animate-fade-in">
+						<div class="flex flex-col md:flex-row gap-8">
+							<div class="md:w-1/2">
+								<div class="flex items-center mb-6">
+									<div class="w-12 h-12 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow mr-4">
+										<i class="ri-calendar-event-line text-2xl"></i>
+									</div>
+									<h2 class="text-2xl md:text-3xl font-bold">Policy Updates</h2>
+								</div>
+								<p class="text-gray-400 mb-6">
+									We may update this Privacy Policy from time to time to reflect changes in our practices, technologies, legal requirements, and other factors.
+								</p>
+								<div class="bg-primary-light/10 rounded-lg p-6 mb-6">
+									<h3 class="text-lg font-bold text-accent-yellow mb-3">Change Notification Process</h3>
+									<ul class="list-disc pl-6 space-y-2 text-gray-400">
+										<li>We will notify you of significant changes through email or website notices</li>
+										<li>The "Last Updated" date at the top will reflect the most recent changes</li>
+										<li>We encourage periodic review of this policy</li>
+									</ul>
+								</div>
+								<div class="flex items-center text-gray-400 text-sm">
+									<i class="ri-history-line mr-2"></i>
+									<span>Next scheduled review: 04 July 2025</span>
+								</div>
+							</div>
+							<div class="md:w-1/2">
+								<div class="bg-gray-900/50 rounded-lg overflow-hidden h-full">
+									<img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Policy Updates" class="w-full h-full object-cover opacity-90">
+								</div>
+							</div>
+						</div>
+					</article>
+					
+					<!-- Contact Info -->
+					<div class="space-y-8">
+						<div class="bg-primary-light p-8 rounded-xl border border-gray-800/50 h-fit">
+							<h3 class="text-xl font-bold mb-6 text-white">Contact Us</h3>
+							
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+								<!-- Contact Card 1 -->
+								<div class="flex items-start group">
+									<div class="w-12 h-12 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow mr-4 group-hover:bg-accent-yellow group-hover:text-primary-black transition">
+										<i class="ri-phone-fill text-xl"></i>
+									</div>
+									<div>
+										<h4 class="font-bold text-gray-300 mb-1">Call Us</h4>
+										<p class="text-gray-400 mb-1">+1 (555) 123-4567</p>
+										<p class="text-gray-500 text-sm">Mon-Fri, 8:00 AM - 6:00 PM EST</p>
+									</div>
+								</div>
+								
+								<!-- Contact Card 2 -->
+								<div class="flex items-start group">
+									<div class="w-12 h-12 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow mr-4 group-hover:bg-accent-yellow group-hover:text-primary-black transition">
+										<i class="ri-mail-fill text-xl"></i>
+									</div>
+									<div>
+										<h4 class="font-bold text-gray-300 mb-1">Email Us</h4>
+										<p class="text-gray-400 mb-1">info@spicbm.com</p>
+										<p class="text-gray-500 text-sm">Response within 24 hours</p>
+									</div>
+								</div>
+								
+								<!-- Contact Card 3 -->
+								<div class="flex items-start group">
+									<div class="w-12 h-12 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow mr-4 group-hover:bg-accent-yellow group-hover:text-primary-black transition">
+										<i class="ri-map-pin-2-fill text-xl"></i>
+									</div>
+									<div>
+										<h4 class="font-bold text-gray-300 mb-1">Visit Us</h4>
+										<p class="text-gray-400 mb-1">123 Construction Ave</p>
+										<p class="text-gray-500 text-sm">GZP City, LMN 12345</p>
+										<a href="#" class="inline-flex items-center text-accent-yellow text-sm mt-2 group">
+											Get Directions
+											<i class="ri-arrow-right-line ml-1 transition-transform group-hover:translate-x-1"></i>
+										</a>
+									</div>
+								</div>
+								
+								<!-- Contact Card 3 -->
+								<div class="flex items-start group">
+									<div class="w-12 h-12 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow mr-4 group-hover:bg-accent-yellow group-hover:text-primary-black transition">
+										<i class="ri-map-pin-2-fill text-xl"></i>
+									</div>
+									<div>
+										<h4 class="font-bold text-gray-300 mb-1">Visit Us</h4>
+										<p class="text-gray-400 mb-1">123 Construction Ave</p>
+										<p class="text-gray-500 text-sm">GZP City, LMN 12345</p>
+										<a href="#" class="inline-flex items-center text-accent-yellow text-sm mt-2 group">
+											Get Directions
+											<i class="ri-arrow-right-line ml-1 transition-transform group-hover:translate-x-1"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Divider -->
+							<div class="border-t border-gray-800/50 my-8"></div>
+							
+							<!-- Social Media -->
+							<div>
+								<h4 class="font-bold text-gray-300 mb-4">Connect With Us</h4>
+								<div class="flex items-center space-x-3">
+									<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow rounded-full flex items-center justify-center text-gray-300 hover:text-primary-black transition">
+										<i class="ri-facebook-fill"></i>
+									</a>
+									<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow rounded-full flex items-center justify-center text-gray-300 hover:text-primary-black transition">
+										<i class="ri-twitter-fill"></i>
+									</a>
+									<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow rounded-full flex items-center justify-center text-gray-300 hover:text-primary-black transition">
+										<i class="ri-linkedin-fill"></i>
+									</a>
+									<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow rounded-full flex items-center justify-center text-gray-300 hover:text-primary-black transition">
+										<i class="ri-instagram-line"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+	<footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800/50">
+		<div class="container mx-auto px-4">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+				<div>
+					<h1 class="text-xl font-bold mb-3">Siddharth Concrete <span class="text-gradient">&</span> Bricks Enterprise<span class="text-gradient">.</span></h1>
+					<p class="text-gray-400 mb-6">Premium building materials for professionals and homeowners who demand the best in quality, sustainability, and innovation.</p>
+					
+					<div class="flex space-x-4">
+						<a href="$facebook" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+							<i class="ri-facebook-fill"></i>
+						</a>
+						<a href="$twitter" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+							<i class="ri-twitter-fill"></i>
+						</a>
+						<a href="$instagram" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+							<i class="ri-instagram-line"></i>
+						</a>
+						<a href="$linkedin" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+							<i class="ri-linkedin-fill"></i>
+						</a>
+						<a href="$youtube" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+							<i class="ri-youtube-fill"></i>
+						</a>
+					</div>
+				</div>
+				
+				<div>
+					<h4 class="text-lg font-bold mb-6 text-white">Company</h4>
+					<ul class="space-y-3 mb-10">
+						<li><a href="/about" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> About Us
+							</a></li>
+						<li><a href="/about/#/team" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Our Team
+							</a></li>
+						<li><a href="/policy" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Our Policies
+							</a></li>
+					</ul>
+					
+					<h4 class="text-lg font-bold mb-6 text-white">Resources</h4>
+					<ul class="space-y-3">
+						<li><a href="/products" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Products
+							</a></li>
+						<li><a href="/quote" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Quote
+							</a></li>
+						<li><a href="/#/contact" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Support
+							</a></li>
+					</ul>
+				</div>
+				
+				<div>
+					<h4 class="text-lg font-bold mb-6 text-white">Contact</h4>
+					<ul class="space-y-4">
+						<li class="flex items-start">
+							<i class="ri-map-pin-line text-accent-yellow mt-1 mr-3"></i>
+							<span class="text-gray-400">123 Construction Ave, GZP City, LMN 12345</span>
+						</li>
+						<li class="flex items-center">
+							<i class="ri-phone-line text-accent-yellow mr-3"></i>
+							<span class="text-gray-400">$number</span>
+						</li>
+						<li class="flex items-center">
+							<i class="ri-mail-line text-accent-yellow mr-3"></i>
+							<span class="text-gray-400">$email</span>
+						</li>
+						<li class="flex items-center">
+							<i class="ri-time-line text-accent-yellow mr-3"></i>
+							<span class="text-gray-400">Mon-Fri: 8AM-6PM</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="border-t border-gray-800/50 pt-8 flex flex-col md:flex-row justify-between items-center">
+				<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 SPICBM. All rights reserved.</p>
+				<div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+					<a href="/policy/#/privacy" class="text-gray-500 hover:text-accent-yellow text-sm transition">Privacy Policy</a>
+					<a href="/policy/#/terms" class="text-gray-500 hover:text-accent-yellow text-sm transition">Terms of Service</a>
+					<a href="/policy/#/shipping" class="text-gray-500 hover:text-accent-yellow text-sm transition">Shipping Policy</a>
+					<a href="/policy/#/cookie" class="text-gray-500 hover:text-accent-yellow text-sm transition">Cookie Policy</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+	<div id="toast_container" class="fixed top-4 right-4 space-y-3 z-50 transition"></div>
+	
+	<script src="/assets/js/template.js" type="module" charset="utf-8"></script>
+	<script src="" type="module" charset="utf-8"></script>
+</body>
+
+</html>

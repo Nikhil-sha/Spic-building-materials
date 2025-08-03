@@ -2,798 +2,671 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Product Details | BuildCraft</title>
-	<!-- Tailwind CSS with custom config -->
-	<script src=".../assets/js/libs/tailwind/Tailwind@3.4.16.js"></script>
-	<script src=".../assets/js/libs/tailwind/tailwind.config.js"></script>
-	
-	<link rel="stylesheet" href=".../assets/css/styles.css">
-	<link rel="stylesheet" href=".../assets/css/remixicon@3.5.0.css">
-	<style>
-		.product-gallery-thumbnail {
-			transition: all 0.3s ease;
-		}
-		
-		.product-gallery-thumbnail:hover,
-		.product-gallery-thumbnail.active {
-			border-color: #FFD700;
-		}
-		
-		.specs-table-row {
-			transition: background-color 0.2s ease;
-		}
-		
-		.specs-table-row:hover {
-			background-color: rgba(255, 215, 0, 0.05);
-		}
-	</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | BuildCraft</title>
+  <!-- Tailwind CSS with custom config -->
+  <script src="/assets/js/libs/tailwind/Tailwind@3.4.16.js"></script>
+  <script src="/assets/js/libs/tailwind/tailwind.config.js"></script>
+  
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/remixicon@3.5.0.css">
+  <style>
+    .product-gallery-thumbnail {
+      transition: all 0.3s ease;
+    }
+    
+    .product-gallery-thumbnail:hover,
+    .product-gallery-thumbnail.active {
+      border-color: #FFD700;
+    }
+    
+    .specs-table-row {
+      transition: background-color 0.2s ease;
+    }
+    
+    .specs-table-row:hover {
+      background-color: rgba(255, 215, 0, 0.05);
+    }
+  </style>
 </head>
 
 <body class="bg-primary-black text-gray-100 antialiased">
-	<div class="fixed inset-0 w-vw h-vh z-[99] flex items-center justify-center backdrop-blur pointer-event-none">
-		<div class="bg-primary-light/80 px-6 py-3 rounded-full border border-accent-dark">
-			<p class="text-accent-yellow font-semibold font-medium">
-				Page Under development
-			</p>
-		</div>
-	</div>
-	
-	<!-- Header/Navigation -->
-	<header class="bg-primary-black/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/40">
-		<div class="container mx-auto px-4 py-3 flex justify-between items-center">
-			<div class="flex items-center space-x-2 group">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="text-accent-yellow text-2xl transform transition-transform group-hover:-translate-y-0.5">
-					<path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-				</svg>
-				<h1 class="text-xl font-bold group-hover:tracking-widest transition-all">SPIC<span class="text-gradient">BM</span></h1>
-			</div>
-			
-			<nav class="hidden md:flex space-x-6">
-				<a href="/" class="relative group">
-					<span class="hover:text-accent-yellow transition">Home</span>
-					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
-				</a>
-				<a href="/products" class="relative group">
-					<span class="hover:text-accent-yellow transition">Products</span>
-					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
-				</a>
-				<a href="/about" class="relative group">
-					<span class="hover:text-accent-yellow transition">About</span>
-					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
-				</a>
-				<a href="#/categories" class="relative group">
-					<span class="hover:text-accent-yellow transition">Categories</span>
-					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
-				</a>
-				<a href="#/testimonials" class="relative group">
-					<span class="hover:text-accent-yellow transition">Testimonials</span>
-					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
-				</a>
-			</nav>
-			
-			<div class="flex items-center space-x-2">
-				<button id="language_dialog" class="p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
-					<i class="ri-translate-2 ri-lg size-5 group-hover:text-accent-yellow transition"></i>
-				</button>
-				<button class="p-2 rounded-full hover:bg-primary-light transition-all duration-300 group relative">
-					<i class="ri-shopping-cart-2-line ri-lg size-5 group-hover:text-accent-yellow transition"></i>
-					<span class="absolute -top-1 -right-1 bg-accent-yellow text-primary-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">3</span>
-				</button>
-				<button id="mobile_menu_open" class="md:hidden p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
-					<i class="ri-menu-3-line ri-lg size-5 group-hover:text-accent-yellow transition"></i>
-				</button>
-			</div>
-		</div>
-	</header>
-	
-	<!-- No Product Selected Component -->
-	<div class="min-h-[50vh] flex items-center justify-center py-12">
-		<div class="max-w-lg mx-auto px-4 text-center backdrop-blur-sm">
-			<!-- Icon -->
-			<div class="w-20 h-20 bg-accent-yellow/10 border-2 border-accent-yellow/30 rounded-full flex items-center justify-center mx-auto mb-6">
-				<i class="ri-search-line text-3xl text-accent-yellow"></i>
-			</div>
-			
-			<!-- Heading -->
-			<h2 class="text-2xl font-bold mb-3">No Product Selected</h2>
-			
-			<!-- Description -->
-			<p class="text-gray-400 mb-6">
-				Please select a product from our catalog to view detailed information, specifications, and purchasing options.
-			</p>
-			
-			<!-- Action Buttons -->
-			<div class="flex flex-col sm:flex-row gap-3 justify-center">
-				<a href="/products" class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-medium py-2 px-6 rounded-lg transition flex items-center justify-center">
-					<i class="ri-store-2-line mr-2"></i> Browse Products
-				</a>
-				<a href="/categories" class="bg-transparent hover:bg-white/10 border border-gray-700 text-white font-medium py-2 px-6 rounded-lg transition flex items-center justify-center">
-					<i class="ri-list-check mr-2"></i> View Categories
-				</a>
-			</div>
-			
-			<!-- Additional Help -->
-			<div class="mt-8 pt-6 border-t border-gray-800/30">
-				<p class="text-sm text-gray-500 mb-3">Need help finding what you're looking for?</p>
-				<a href="/contact" class="inline-flex items-center text-accent-yellow text-sm group">
-					<i class="ri-customer-service-2-line mr-2"></i> Contact Our Support Team
-					<i class="ri-arrow-right-line ml-1 transition-transform group-hover:translate-x-1"></i>
-				</a>
-			</div>
-		</div>
-	</div>
-	
-	<!-- Product Details Section -->
-	<main class="py-5">
-		<div class="container mx-auto px-4">
-			<!-- Breadcrumb Navigation -->
-			<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-				<ol class="flex items-center space-x-2 md:space-x-3">
-					<!-- Home Link (always present) -->
-					<li class="inline-flex items-center">
-						<a href="/" class="inline-flex items-center text-sm font-medium text-gray-400 hover:text-accent-yellow transition group">
-							<i class="ri-home-4-line mr-2 group-hover:text-accent-yellow transition"></i>
-							Home
-						</a>
-					</li>
-					<!-- Dynamic breadcrumbs will be injected here -->
-				</ol>
-			</nav>
-			
-			<!-- Product Content -->
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-				<!-- Product Gallery -->
-				<div class="lg:sticky lg:top-24 self-start">
-					<!-- Main Image -->
-					<div class="bg-primary-light rounded-xl overflow-hidden mb-4 border border-gray-800/50">
-						<img id="main-product-image" src="https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Premium Hardwood Flooring" class="w-full h-auto max-h-[500px] object-cover">
-					</div>
-					
-					<!-- Thumbnail Gallery -->
-					<div class="grid grid-cols-4 gap-3">
-						<button onclick="changeMainImage('https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" class="product-gallery-thumbnail active bg-primary-light rounded-lg overflow-hidden border-2 border-transparent">
-							<img src="https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Premium Hardwood Flooring" class="w-full h-20 object-cover">
-						</button>
-						<button onclick="changeMainImage('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" class="product-gallery-thumbnail bg-primary-light rounded-lg overflow-hidden border-2 border-transparent">
-							<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Premium Hardwood Flooring installed" class="w-full h-20 object-cover">
-						</button>
-						<button onclick="changeMainImage('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" class="product-gallery-thumbnail bg-primary-light rounded-lg overflow-hidden border-2 border-transparent">
-							<img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Premium Hardwood Flooring close-up" class="w-full h-20 object-cover">
-						</button>
-						<button onclick="changeMainImage('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')" class="product-gallery-thumbnail bg-primary-light rounded-lg overflow-hidden border-2 border-transparent">
-							<img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Premium Hardwood Flooring texture" class="w-full h-20 object-cover">
-						</button>
-					</div>
-				</div>
-				
-				<!-- Product Info -->
-				<div>
-					<!-- Product Header -->
-					<div class="mb-6">
-						<span class="inline-block bg-accent-yellow/20 text-accent-yellow px-3 py-1 rounded-full text-xs font-medium mb-3">BESTSELLER</span>
-						<h1 class="text-3xl md:text-4xl font-bold mb-2">Premium Oak Hardwood Flooring</h1>
-						<div class="flex items-center mb-4">
-							<div class="flex text-accent-yellow mr-3">
-								<i class="ri-star-fill"></i>
-								<i class="ri-star-fill"></i>
-								<i class="ri-star-fill"></i>
-								<i class="ri-star-fill"></i>
-								<i class="ri-star-half-fill"></i>
-							</div>
-							<span class="text-gray-400 text-sm">4.7 (128 reviews)</span>
-						</div>
-						<p class="text-gray-300">Experience the timeless elegance and durability of our premium oak hardwood flooring. Perfect for both traditional and contemporary spaces.</p>
-					</div>
-					
-					<!-- Pricing -->
-					<div class="bg-primary-light/50 border border-gray-800/50 rounded-xl p-6 mb-8">
-						<div class="flex items-baseline mb-4">
-							<span class="text-3xl font-bold">$24.99</span>
-							<span class="text-gray-400 ml-2">/sqft</span>
-							<span class="bg-green-900/50 text-green-400 text-xs font-medium px-2 py-0.5 rounded ml-3">In Stock</span>
-						</div>
-						<div class="flex items-center text-gray-400 text-sm mb-6">
-							<i class="ri-truck-line mr-2"></i>
-							<span>Free shipping on orders over $500</span>
-						</div>
-						
-						<!-- Quantity Selector -->
-						<div class="mb-6">
-							<label class="block text-sm font-medium text-gray-300 mb-2">Quantity</label>
-							<div class="flex">
-								<button class="w-10 h-10 bg-primary-black border border-gray-700 rounded-l-lg flex items-center justify-center hover:bg-gray-800 transition">
-									<i class="ri-subtract-line"></i>
-								</button>
-								<input type="number" value="1" min="1" class="w-16 h-10 bg-primary-black border-t border-b border-gray-700 text-center text-white">
-								<button class="w-10 h-10 bg-primary-black border border-gray-700 rounded-r-lg flex items-center justify-center hover:bg-gray-800 transition">
-									<i class="ri-add-line"></i>
-								</button>
-								<span class="ml-3 text-sm text-gray-400 flex items-center">(Minimum order: 20 sqft)</span>
-							</div>
-						</div>
-						
-						<!-- Action Buttons -->
-						<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-							<button class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center">
-								<i class="ri-shopping-cart-2-line mr-2"></i> Add to Cart
-							</button>
-							<button class="bg-transparent hover:bg-white/10 border border-gray-700 text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center">
-								<i class="ri-heart-line mr-2"></i> Save for Later
-							</button>
-						</div>
-					</div>
-					
-					<!-- Product Tabs -->
-					<div class="border-b border-gray-800 mb-6">
-						<ul class="flex flex-wrap -mb-px" id="product-tabs" role="tablist">
-							<li class="mr-2" role="presentation">
-								<button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-accent-yellow hover:border-accent-yellow/50 transition" id="details-tab" data-tabs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">
-									Details
-								</button>
-							</li>
-							<li class="mr-2" role="presentation">
-								<button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-accent-yellow hover:border-accent-yellow/50 transition" id="specs-tab" data-tabs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="false">
-									Specifications
-								</button>
-							</li>
-							<li class="mr-2" role="presentation">
-								<button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-accent-yellow hover:border-accent-yellow/50 transition" id="reviews-tab" data-tabs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">
-									Reviews
-								</button>
-							</li>
-							<li role="presentation">
-								<button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-accent-yellow hover:border-accent-yellow/50 transition" id="shipping-tab" data-tabs-target="#shipping" type="button" role="tab" aria-controls="shipping" aria-selected="false">
-									Shipping
-								</button>
-							</li>
-						</ul>
-					</div>
-					
-					<!-- Tab Content -->
-					<div id="product-tab-content">
-						<!-- Details Tab -->
-						<div class="hidden p-4 rounded-lg bg-primary-light/20" id="details" role="tabpanel" aria-labelledby="details-tab">
-							<h3 class="text-xl font-bold mb-4">Product Description</h3>
-							<div class="prose prose-invert max-w-none text-gray-300">
-								<p>Our premium oak hardwood flooring is crafted from sustainably sourced white oak, offering exceptional durability and a beautiful natural grain pattern. Each plank is precision-milled for a perfect fit and finished with a ultra-durable matte coating that resists scratches and wear while maintaining the wood's natural beauty.</p>
-								<ul class="list-disc pl-5 space-y-2 mt-4">
-									<li>100% solid white oak construction</li>
-									<li>3/4" thickness for superior stability</li>
-									<li>Pre-finished with 7-layer UV-cured aluminum oxide coating</li>
-									<li>Available in widths from 3" to 7"</li>
-									<li>Low-VOC, environmentally friendly finish</li>
-									<li>25-year residential warranty</li>
-								</ul>
-							</div>
-						</div>
-						
-						<!-- Specifications Tab -->
-						<div class="hidden p-4 rounded-lg bg-primary-light/20" id="specs" role="tabpanel" aria-labelledby="specs-tab">
-							<h3 class="text-xl font-bold mb-4">Technical Specifications</h3>
-							<div class="overflow-x-auto">
-								<table class="w-full text-sm text-left text-gray-400">
-									<tbody>
-										<tr class="specs-table-row border-b border-gray-800">
-											<th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Material</th>
-											<td class="px-4 py-3">Solid White Oak</td>
-										</tr>
-										<tr class="specs-table-row border-b border-gray-800">
-											<th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Thickness</th>
-											<td class="px-4 py-3">3/4" (19mm)</td>
-										</tr>
-										<tr class="specs-table-row border-b border-gray-800">
-											<th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Width</th>
-											<td class="px-4 py-3">3", 5", 7" options</td>
-										</tr>
-										<tr class="specs-table-row border-b border-gray-800">
-											<th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Length</th>
-											<td class="px-4 py-3">12" - 84" random lengths</td>
-										</tr>
-										<tr class="specs-table-row border-b border-gray-800">
-											<th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Finish</th>
-											<td class="px-4 py-3">Matte UV-cured aluminum oxide</td>
-										</tr>
-										<tr class="specs-table-row border-b border-gray-800">
-											<th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Janka Hardness</th>
-											<td class="px-4 py-3">1360 (excellent durability)</td>
-										</tr>
-										<tr class="specs-table-row border-b border-gray-800">
-											<th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Moisture Content</th>
-											<td class="px-4 py-3">6-8% at time of shipping</td>
-										</tr>
-										<tr class="specs-table-row">
-											<th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Warranty</th>
-											<td class="px-4 py-3">25-year residential, 10-year commercial</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						
-						<!-- Reviews Tab -->
-						<div class="hidden p-4 rounded-lg bg-primary-light/20" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-							<h3 class="text-xl font-bold mb-6">Customer Reviews</h3>
-							
-							<!-- Review Summary -->
-							<div class="bg-primary-light rounded-xl p-6 mb-8">
-								<div class="flex flex-col md:flex-row md:items-center md:justify-between">
-									<div class="mb-4 md:mb-0">
-										<div class="text-4xl font-bold mb-1">4.7</div>
-										<div class="flex text-accent-yellow mb-2">
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-fill"></i>
-											<i class="ri-star-half-fill"></i>
-										</div>
-										<div class="text-sm text-gray-400">Based on 128 reviews</div>
-									</div>
-									<div class="w-full md:w-auto">
-										<button class="w-full md:w-auto bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-2 px-6 rounded-lg transition">
-											Write a Review
-										</button>
-									</div>
-								</div>
-							</div>
-							
-							<!-- Reviews -->
-							<div class="space-y-6">
-								<!-- Review 1 -->
-								<div class="border-b border-gray-800 pb-6">
-									<div class="flex items-center mb-3">
-										<div class="w-10 h-10 rounded-full bg-gray-700 mr-3 overflow-hidden">
-											<img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="w-full h-full object-cover">
-										</div>
-										<div>
-											<h4 class="font-medium">Sarah Johnson</h4>
-											<div class="flex items-center">
-												<div class="flex text-accent-yellow mr-2">
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-												</div>
-												<span class="text-gray-400 text-xs">2 weeks ago</span>
-											</div>
-										</div>
-									</div>
-									<h5 class="font-medium mb-2">Beautiful and Durable</h5>
-									<p class="text-gray-300 text-sm">We installed this flooring throughout our entire first floor and couldn't be happier. The quality is exceptional and it has held up perfectly to our two dogs and active kids. The matte finish hides scratches beautifully.</p>
-								</div>
-								
-								<!-- Review 2 -->
-								<div class="border-b border-gray-800 pb-6">
-									<div class="flex items-center mb-3">
-										<div class="w-10 h-10 rounded-full bg-gray-700 mr-3 overflow-hidden">
-											<img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen" class="w-full h-full object-cover">
-										</div>
-										<div>
-											<h4 class="font-medium">Michael Chen</h4>
-											<div class="flex items-center">
-												<div class="flex text-accent-yellow mr-2">
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-half-fill text-sm"></i>
-												</div>
-												<span class="text-gray-400 text-xs">1 month ago</span>
-											</div>
-										</div>
-									</div>
-									<h5 class="font-medium mb-2">Great product, professional service</h5>
-									<p class="text-gray-300 text-sm">As a contractor, I've used many hardwood products and this is among the best. The milling is precise making installation straightforward. My clients love the natural variation in the grain. Only minor complaint is some boards had slight color variation.</p>
-								</div>
-								
-								<!-- Review 3 -->
-								<div class="pb-6">
-									<div class="flex items-center mb-3">
-										<div class="w-10 h-10 rounded-full bg-gray-700 mr-3 overflow-hidden">
-											<img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez" class="w-full h-full object-cover">
-										</div>
-										<div>
-											<h4 class="font-medium">Emma Rodriguez</h4>
-											<div class="flex items-center">
-												<div class="flex text-accent-yellow mr-2">
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-													<i class="ri-star-fill text-sm"></i>
-												</div>
-												<span class="text-gray-400 text-xs">2 months ago</span>
-											</div>
-										</div>
-									</div>
-									<h5 class="font-medium mb-2">Worth every penny</h5>
-									<p class="text-gray-300 text-sm">After researching for months, we chose this flooring and have zero regrets. It's transformed our home. The oak has such character and the finish is holding up beautifully to daily life. Delivery was prompt and the ordering process was simple.</p>
-								</div>
-							</div>
-							
-							<!-- Load More -->
-							<div class="text-center mt-8">
-								<button class="bg-primary-light hover:bg-primary-light/80 text-white font-medium py-2 px-6 rounded-lg transition border border-gray-800">
-									Load More Reviews
-								</button>
-							</div>
-						</div>
-						
-						<!-- Shipping Tab -->
-						<div class="hidden p-4 rounded-lg bg-primary-light/20" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
-							<h3 class="text-xl font-bold mb-4">Shipping & Delivery Information</h3>
-							<div class="prose prose-invert max-w-none text-gray-300 space-y-4">
-								<p>We offer fast and reliable shipping options to get your materials to your job site or home as quickly as possible.</p>
-								
-								<h4 class="font-bold text-lg text-gray-200">Shipping Options</h4>
-								<ul class="list-disc pl-5 space-y-2">
-									<li><strong>Standard Shipping:</strong> 3-5 business days (Free on orders over $500)</li>
-									<li><strong>Express Shipping:</strong> 2-3 business days ($25 flat rate)</li>
-									<li><strong>White Glove Delivery:</strong> Curbside or in-home delivery available (Price varies by location)</li>
-								</ul>
-								
-								<h4 class="font-bold text-lg text-gray-200">Returns Policy</h4>
-								<p>Unopened, unused materials may be returned within 30 days of delivery for a full refund. Special order items and cut materials cannot be returned. Return shipping is the customer's responsibility.</p>
-								
-								<h4 class="font-bold text-lg text-gray-200">International Shipping</h4>
-								<p>We currently ship to the continental US only. For international inquiries, please contact our sales team.</p>
-								
-								<div class="bg-primary-light rounded-xl p-4 mt-6">
-									<div class="flex items-start">
-										<i class="ri-customer-service-2-line text-accent-yellow text-2xl mr-3"></i>
-										<div>
-											<h5 class="font-bold mb-1">Need help with your order?</h5>
-											<p class="text-sm text-gray-400">Our customer service team is available Monday-Friday, 8AM-6PM EST to answer any questions about shipping or delivery.</p>
-											<a href="#" class="inline-flex items-center text-accent-yellow text-sm mt-2 group">
-												Contact Support
-												<i class="ri-arrow-right-line ml-1 transition-transform group-hover:translate-x-1"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<!-- Related Products -->
-			<section class="mt-20">
-				<h2 class="text-2xl font-bold mb-8">Related <span class="text-gradient">Products</span></h2>
-				
-				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-					<!-- Related Product 1 -->
-					<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-						<div class="relative">
-							<img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Copper Piping" class="w-full h-48 object-cover">
-							<div class="absolute top-3 right-3 flex flex-col space-y-2">
-								<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-									<i class="ri-heart-line"></i>
-								</button>
-							</div>
-						</div>
-						<div class="p-5">
-							<h3 class="font-bold mb-1">Copper Piping</h3>
-							<p class="text-gray-400 text-sm mb-4">1/2 inch diameter</p>
-							<div class="flex justify-between items-center">
-								<span class="font-bold text-lg">$8.75<small class="text-gray-400 text-sm font-normal">/ft</small></span>
-								<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-									<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-					
-					<!-- Related Product 2 -->
-					<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-						<div class="relative">
-							<img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Outdoor Decking" class="w-full h-48 object-cover">
-							<div class="absolute top-3 right-3 flex flex-col space-y-2">
-								<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-									<i class="ri-heart-line"></i>
-								</button>
-							</div>
-							<div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
-								NEW
-							</div>
-						</div>
-						<div class="p-5">
-							<h3 class="font-bold mb-1">Composite Decking</h3>
-							<p class="text-gray-400 text-sm mb-4">Low-maintenance outdoor solution</p>
-							<div class="flex justify-between items-center">
-								<span class="font-bold text-lg">$12.99<small class="text-gray-400 text-sm font-normal">/sqft</small></span>
-								<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-									<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-					
-					<!-- Related Product 3 -->
-					<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-						<div class="relative">
-							<img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Wall Panels" class="w-full h-48 object-cover">
-							<div class="absolute top-3 right-3 flex flex-col space-y-2">
-								<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-									<i class="ri-heart-line"></i>
-								</button>
-							</div>
-						</div>
-						<div class="p-5">
-							<h3 class="font-bold mb-1">Acoustic Wall Panels</h3>
-							<p class="text-gray-400 text-sm mb-4">Sound-absorbing decorative panels</p>
-							<div class="flex justify-between items-center">
-								<span class="font-bold text-lg">$45.00<small class="text-gray-400 text-sm font-normal">/panel</small></span>
-								<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-									<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-					
-					<!-- Related Product 4 -->
-					<div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
-						<div class="relative">
-							<img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Concrete Blocks" class="w-full h-48 object-cover">
-							<div class="absolute top-3 right-3 flex flex-col space-y-2">
-								<button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
-									<i class="ri-heart-line"></i>
-								</button>
-							</div>
-						</div>
-						<div class="p-5">
-							<h3 class="font-bold mb-1">Decorative Concrete Blocks</h3>
-							<p class="text-gray-400 text-sm mb-4">Modern architectural elements</p>
-							<div class="flex justify-between items-center">
-								<span class="font-bold text-lg">$8.25<small class="text-gray-400 text-sm font-normal">/block</small></span>
-								<button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
-									<i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-	</main>
-	
-	<!-- Footer -->
-	<footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800/50 mt-20">
-		<div class="container mx-auto px-4">
-			<div class="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
-				<!-- Column 1 -->
-				<div class="md:col-span-2">
-					<div class="flex items-center space-x-2 mb-6 group">
-						<i class="ri-home-gear-line text-accent-yellow text-2xl transition group-hover:rotate-12"></i>
-						<h3 class="text-xl font-bold group-hover:text-accent-yellow transition">Build<span class="text-gradient">Craft</span></h3>
-					</div>
-					<p class="text-gray-400 mb-6">Premium building materials for professionals and homeowners who demand the best in quality, sustainability, and innovation.</p>
-					<div class="flex space-x-4">
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
-							<i class="ri-facebook-fill"></i>
-						</a>
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
-							<i class="ri-twitter-fill"></i>
-						</a>
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
-							<i class="ri-instagram-line"></i>
-						</a>
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
-							<i class="ri-linkedin-fill"></i>
-						</a>
-						<a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
-							<i class="ri-youtube-fill"></i>
-						</a>
-					</div>
-				</div>
-				
-				<!-- Column 2 -->
-				<div>
-					<h4 class="text-lg font-bold mb-6 text-white">Company</h4>
-					<ul class="space-y-3">
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> About Us
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Our Team
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Careers
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> News
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Sustainability
-							</a></li>
-					</ul>
-				</div>
-				
-				<!-- Column 3 -->
-				<div>
-					<h4 class="text-lg font-bold mb-6 text-white">Resources</h4>
-					<ul class="space-y-3">
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Blog
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Guides
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Videos
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> FAQ
-							</a></li>
-						<li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
-								<i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Support
-							</a></li>
-					</ul>
-				</div>
-				
-				<!-- Column 4 -->
-				<div>
-					<h4 class="text-lg font-bold mb-6 text-white">Contact</h4>
-					<ul class="space-y-4">
-						<li class="flex items-start">
-							<i class="ri-map-pin-line text-accent-yellow mt-1 mr-3"></i>
-							<span class="text-gray-400">123 Construction Ave, Build City, BC 12345</span>
-						</li>
-						<li class="flex items-center">
-							<i class="ri-phone-line text-accent-yellow mr-3"></i>
-							<span class="text-gray-400">(555) 123-4567</span>
-						</li>
-						<li class="flex items-center">
-							<i class="ri-mail-line text-accent-yellow mr-3"></i>
-							<span class="text-gray-400">info@buildcraft.com</span>
-						</li>
-						<li class="flex items-center">
-							<i class="ri-time-line text-accent-yellow mr-3"></i>
-							<span class="text-gray-400">Mon-Fri: 8AM-6PM</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-			
-			<div class="border-t border-gray-800/50 pt-8 flex flex-col md:flex-row justify-between items-center">
-				<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 BuildCraft. All rights reserved.</p>
-				<div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-					<a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Privacy Policy</a>
-					<a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Terms of Service</a>
-					<a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Shipping Policy</a>
-					<a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Cookie Policy</a>
-				</div>
-			</div>
-		</div>
-	</footer>
-	
-	<script>
-		// Simple tab functionality
-		const tabs = document.querySelectorAll('[data-tabs-target]');
-		const tabContents = document.querySelectorAll('[role="tabpanel"]');
-		
-		tabs.forEach(tab => {
-			tab.addEventListener('click', () => {
-				const target = document.querySelector(tab.dataset.tabsTarget);
-				
-				// Hide all tab contents
-				tabContents.forEach(content => {
-					content.classList.add('hidden');
-				});
-				
-				// Show selected tab content
-				target.classList.remove('hidden');
-				
-				// Update active tab styling
-				tabs.forEach(t => {
-					t.classList.remove('border-accent-yellow', 'text-accent-yellow');
-				});
-				tab.classList.add('border-accent-yellow', 'text-accent-yellow');
-			});
-		});
-		
-		// Set first tab as active by default
-		if (tabs.length > 0) {
-			tabs[0].classList.add('border-accent-yellow', 'text-accent-yellow');
-			const firstTabContent = document.querySelector(tabs[0].dataset.tabsTarget);
-			if (firstTabContent) firstTabContent.classList.remove('hidden');
-		}
-		
-		// Image gallery functionality
-		function changeMainImage(src) {
-			document.getElementById('main-product-image').src = src;
-			
-			// Update active thumbnail
-			const thumbnails = document.querySelectorAll('.product-gallery-thumbnail');
-			thumbnails.forEach(thumb => {
-				thumb.classList.remove('active');
-				if (thumb.querySelector('img').src.replace('200', '800') === src) {
-					thumb.classList.add('active');
-				}
-			});
-		}
-		
-		
-		
-		function enhancedAutoGenerateBreadcrumbs(options = {}) {
-			const {
-				customLabels = {},
-					usePageTitle = true,
-					titleSeparator = '|',
-					includeHome = true
-			} = options;
-			
-			const path = window.location.pathname;
-			const segments = path.split('/').filter(segment => segment !== '');
-			const breadcrumbContainer = document.querySelector('.breadcrumb-nav ol');
-			const homeItem = breadcrumbContainer.querySelector('li:first-child');
-			
-			breadcrumbContainer.innerHTML = '';
-			if (includeHome && homeItem) {
-				breadcrumbContainer.appendChild(homeItem);
-			}
-			
-			let accumulatedPath = '';
-			
-			segments.forEach((segment, index) => {
-				accumulatedPath += `/${segment}`;
-				const isLast = index === segments.length - 1;
-				const li = document.createElement('li');
-				
-				let label;
-				if (customLabels[segment] || customLabels[accumulatedPath]) {
-					label = customLabels[segment] || customLabels[accumulatedPath];
-				} else if (isLast && usePageTitle) {
-					label = extractTitleFromPage(titleSeparator);
-				} else {
-					label = formatSegment(segment);
-				}
-				
-				if (isLast) {
-					li.setAttribute('aria-current', 'page');
-					li.innerHTML = `
-        <div class="flex items-center">
-          <i class="ri-arrow-right-s-line text-gray-500 mx-1 md:mx-2"></i>
-          <span class="ml-1 text-sm font-medium text-accent-yellow md:ml-2">${label}</span>
+  <!-- Header/Navigation -->
+  <header class="bg-primary-black/70 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800/40">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2 group">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="text-accent-yellow text-2xl transform transition-transform group-hover:-translate-y-0.5">
+          <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
+        </svg>
+        <h1 class="text-xl font-bold group-hover:tracking-widest transition-all">SPIC<span class="text-gradient">BM</span></h1>
+      </div>
+      
+      <nav class="hidden md:flex space-x-6">
+        <a href="/" class="relative group">
+          <span class="hover:text-accent-yellow transition">Home</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="/products" class="relative group">
+          <span class="hover:text-accent-yellow transition">Products</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="/about" class="relative group">
+          <span class="hover:text-accent-yellow transition">About</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#/categories" class="relative group">
+          <span class="hover:text-accent-yellow transition">Categories</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#/testimonials" class="relative group">
+          <span class="hover:text-accent-yellow transition">Testimonials</span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-yellow transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </nav>
+      
+      <div class="flex items-center space-x-2">
+        <button id="language_dialog" class="p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
+          <i class="ri-translate-2 ri-lg size-5 group-hover:text-accent-yellow transition"></i>
+        </button>
+        <button class="p-2 rounded-full hover:bg-primary-light transition-all duration-300 group relative">
+          <i class="ri-shopping-cart-2-line ri-lg size-5 group-hover:text-accent-yellow transition"></i>
+          <span class="absolute -top-1 -right-1 bg-accent-yellow text-primary-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">3</span>
+        </button>
+        <button id="mobile_menu_open" class="md:hidden p-2 rounded-full hover:bg-primary-light transition-all duration-300 group">
+          <i class="ri-menu-3-line ri-lg size-5 group-hover:text-accent-yellow transition"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- No Product Selected Component -->
+  <div class="min-h-[50vh] flex items-center justify-center py-12">
+    <div class="max-w-lg mx-auto px-4 text-center backdrop-blur-sm">
+      <!-- Icon -->
+      <div class="w-20 h-20 bg-accent-yellow/10 border-2 border-accent-yellow/30 rounded-full flex items-center justify-center mx-auto mb-6">
+        <i class="ri-search-line text-3xl text-accent-yellow"></i>
+      </div>
+      
+      <!-- Heading -->
+      <h2 class="text-2xl font-bold mb-3">No Product Selected</h2>
+      
+      <!-- Description -->
+      <p class="text-gray-400 mb-6">
+        Please select a product from our catalog to view detailed information, specifications, and purchasing options.
+      </p>
+      
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/products" class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-medium py-2 px-6 rounded-lg transition flex items-center justify-center">
+          <i class="ri-store-2-line mr-2"></i> Browse Products
+        </a>
+        <a href="/categories" class="bg-transparent hover:bg-white/10 border border-gray-700 text-white font-medium py-2 px-6 rounded-lg transition flex items-center justify-center">
+          <i class="ri-list-check mr-2"></i> View Categories
+        </a>
+      </div>
+      
+      <!-- Additional Help -->
+      <div class="mt-8 pt-6 border-t border-gray-800/30">
+        <p class="text-sm text-gray-500 mb-3">Need help finding what you're looking for?</p>
+        <a href="/contact" class="inline-flex items-center text-accent-yellow text-sm group">
+          <i class="ri-customer-service-2-line mr-2"></i> Contact Our Support Team
+          <i class="ri-arrow-right-line ml-1 transition-transform group-hover:translate-x-1"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Product Details Section -->
+  <main class="py-5">
+    <div class="container mx-auto px-4">
+      <!-- Breadcrumb Navigation -->
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 md:space-x-3">
+          <!-- Home Link (always present) -->
+          <li class="inline-flex items-center">
+            <a href="/" class="inline-flex items-center text-sm font-medium text-gray-400 hover:text-accent-yellow transition group">
+              <i class="ri-home-4-line mr-2 group-hover:text-accent-yellow transition"></i>
+              Home
+            </a>
+          </li>
+          <!-- Dynamic breadcrumbs will be injected here -->
+        </ol>
+      </nav>
+      
+      <!-- Product Content -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Product Gallery -->
+        <div class="lg:sticky lg:top-24 self-start">
+          <div class="_carousel overflow-hidden">
+            <div class="_carousel_viewport overflow-hidden">
+              <div class="flex">
+              </div>
+              
+              <div class="flex justify-between items-center px-4 mt-3">
+                <div class="flex gap-2 md:gap-4">
+                  <button class="_carousel_btn_prev w-10 h-10 bg-primary-black rounded-full flex items-center justify-center border border-gray-800 hover:bg-accent-yellow hover:text-primary-black transition-all shadow-lg">
+                    <i class="ri-arrow-left-s-line text-xl"></i>
+                  </button>
+                  
+                  <button class="_carousel_btn_next w-10 h-10 bg-primary-black rounded-full flex items-center justify-center border border-gray-800 hover:bg-accent-yellow hover:text-primary-black transition-all shadow-lg">
+                    <i class="ri-arrow-right-s-line text-xl"></i>
+                  </button>
+                </div>
+                
+                <div class="_carousel_dots flex justify-center gap-2">
+                  <!-- Dots will be injected here -->
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      `;
-				} else {
-					li.innerHTML = `
-        <div class="flex items-center">
-          <i class="ri-arrow-right-s-line text-gray-500 mx-1 md:mx-2"></i>
-          <a href="${accumulatedPath}" class="ml-1 text-sm font-medium text-gray-400 hover:text-accent-yellow transition md:ml-2">${label}</a>
+        
+        <!-- Product Info -->
+        <div>
+          <!-- Product Header -->
+          <div class="mb-6">
+            <span class="inline-block bg-accent-yellow/20 text-accent-yellow px-3 py-1 rounded-full text-xs font-medium mb-3">BESTSELLER</span>
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Premium Oak Hardwood Flooring</h1>
+            <div class="flex items-center mb-4">
+              <div class="flex text-accent-yellow mr-3">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-fill"></i>
+              </div>
+              <span class="text-gray-400 text-sm">4.7 (128 reviews)</span>
+            </div>
+            <p class="text-gray-300">Experience the timeless elegance and durability of our premium oak hardwood flooring. Perfect for both traditional and contemporary spaces.</p>
+          </div>
+          
+          <!-- Pricing -->
+          <div class="bg-primary-light/50 border border-gray-800/50 rounded-xl p-6 mb-8">
+            <div class="flex items-baseline mb-4">
+              <span class="text-3xl font-bold">$24.99</span>
+              <span class="text-gray-400 ml-2">/sqft</span>
+              <span class="bg-green-900/50 text-green-400 text-xs font-medium px-2 py-0.5 rounded ml-3">In Stock</span>
+            </div>
+            <div class="flex items-center text-gray-400 text-sm mb-6">
+              <i class="ri-truck-line mr-2"></i>
+              <span>Free shipping on orders over $500</span>
+            </div>
+            
+            <!-- Quantity Selector -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Quantity</label>
+              <div class="flex">
+                <button class="w-10 h-10 bg-primary-black border border-gray-700 rounded-l-lg flex items-center justify-center hover:bg-gray-800 transition">
+                  <i class="ri-subtract-line"></i>
+                </button>
+                <input type="number" value="1" min="1" class="w-16 h-10 bg-primary-black border-t border-b border-gray-700 text-center text-white">
+                <button class="w-10 h-10 bg-primary-black border border-gray-700 rounded-r-lg flex items-center justify-center hover:bg-gray-800 transition">
+                  <i class="ri-add-line"></i>
+                </button>
+                <span class="ml-3 text-sm text-gray-400 flex items-center">(Minimum order: 20 sqft)</span>
+              </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button class="bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center">
+                <i class="ri-shopping-cart-2-line mr-2"></i> Add to Cart
+              </button>
+              <button class="bg-transparent hover:bg-white/10 border border-gray-700 text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center">
+                <i class="ri-heart-line mr-2"></i> Save for Later
+              </button>
+            </div>
+          </div>
+          
+          <!-- Product Tabs -->
+          <div class="border-b border-gray-800 mb-6">
+            <ul class="flex flex-wrap -mb-px" id="product-tabs" role="tablist">
+              <li class="mr-2" role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-accent-yellow hover:border-accent-yellow/50 transition" id="details-tab" data-tabs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">
+                  Details
+                </button>
+              </li>
+              <li class="mr-2" role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-accent-yellow hover:border-accent-yellow/50 transition" id="specs-tab" data-tabs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="false">
+                  Specifications
+                </button>
+              </li>
+              <li class="mr-2" role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-accent-yellow hover:border-accent-yellow/50 transition" id="reviews-tab" data-tabs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">
+                  Reviews
+                </button>
+              </li>
+              <li role="presentation">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-accent-yellow hover:border-accent-yellow/50 transition" id="shipping-tab" data-tabs-target="#shipping" type="button" role="tab" aria-controls="shipping" aria-selected="false">
+                  Shipping
+                </button>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Tab Content -->
+          <div id="product-tab-content">
+            <!-- Details Tab -->
+            <div class="hidden p-4 rounded-lg bg-primary-light/20" id="details" role="tabpanel" aria-labelledby="details-tab">
+              <h3 class="text-xl font-bold mb-4">Product Description</h3>
+              <div class="prose prose-invert max-w-none text-gray-300">
+                <p>Our premium oak hardwood flooring is crafted from sustainably sourced white oak, offering exceptional durability and a beautiful natural grain pattern. Each plank is precision-milled for a perfect fit and finished with a ultra-durable matte coating that resists scratches and wear while maintaining the wood's natural beauty.</p>
+                <ul class="list-disc pl-5 space-y-2 mt-4">
+                  <li>100% solid white oak construction</li>
+                  <li>3/4" thickness for superior stability</li>
+                  <li>Pre-finished with 7-layer UV-cured aluminum oxide coating</li>
+                  <li>Available in widths from 3" to 7"</li>
+                  <li>Low-VOC, environmentally friendly finish</li>
+                  <li>25-year residential warranty</li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Specifications Tab -->
+            <div class="hidden p-4 rounded-lg bg-primary-light/20" id="specs" role="tabpanel" aria-labelledby="specs-tab">
+              <h3 class="text-xl font-bold mb-4">Technical Specifications</h3>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-400">
+                  <tbody>
+                    <tr class="specs-table-row border-b border-gray-800">
+                      <th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Material</th>
+                      <td class="px-4 py-3">Solid White Oak</td>
+                    </tr>
+                    <tr class="specs-table-row border-b border-gray-800">
+                      <th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Thickness</th>
+                      <td class="px-4 py-3">3/4" (19mm)</td>
+                    </tr>
+                    <tr class="specs-table-row border-b border-gray-800">
+                      <th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Width</th>
+                      <td class="px-4 py-3">3", 5", 7" options</td>
+                    </tr>
+                    <tr class="specs-table-row border-b border-gray-800">
+                      <th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Length</th>
+                      <td class="px-4 py-3">12" - 84" random lengths</td>
+                    </tr>
+                    <tr class="specs-table-row border-b border-gray-800">
+                      <th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Finish</th>
+                      <td class="px-4 py-3">Matte UV-cured aluminum oxide</td>
+                    </tr>
+                    <tr class="specs-table-row border-b border-gray-800">
+                      <th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Janka Hardness</th>
+                      <td class="px-4 py-3">1360 (excellent durability)</td>
+                    </tr>
+                    <tr class="specs-table-row border-b border-gray-800">
+                      <th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Moisture Content</th>
+                      <td class="px-4 py-3">6-8% at time of shipping</td>
+                    </tr>
+                    <tr class="specs-table-row">
+                      <th scope="row" class="px-4 py-3 font-medium text-gray-300 whitespace-nowrap">Warranty</th>
+                      <td class="px-4 py-3">25-year residential, 10-year commercial</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <!-- Reviews Tab -->
+            <div class="hidden p-4 rounded-lg bg-primary-light/20" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+              <h3 class="text-xl font-bold mb-6">Customer Reviews</h3>
+              
+              <!-- Review Summary -->
+              <div class="bg-primary-light rounded-xl p-6 mb-8">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <div class="mb-4 md:mb-0">
+                    <div class="text-4xl font-bold mb-1">4.7</div>
+                    <div class="flex text-accent-yellow mb-2">
+                      <i class="ri-star-fill"></i>
+                      <i class="ri-star-fill"></i>
+                      <i class="ri-star-fill"></i>
+                      <i class="ri-star-fill"></i>
+                      <i class="ri-star-half-fill"></i>
+                    </div>
+                    <div class="text-sm text-gray-400">Based on 128 reviews</div>
+                  </div>
+                  <div class="w-full md:w-auto">
+                    <button class="w-full md:w-auto bg-accent-yellow hover:bg-accent-dark text-primary-black font-bold py-2 px-6 rounded-lg transition">
+                      Write a Review
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Reviews -->
+              <div class="space-y-6">
+                <!-- Review 1 -->
+                <div class="border-b border-gray-800 pb-6">
+                  <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-700 mr-3 overflow-hidden">
+                      <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                      <h4 class="font-medium">Sarah Johnson</h4>
+                      <div class="flex items-center">
+                        <div class="flex text-accent-yellow mr-2">
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                        </div>
+                        <span class="text-gray-400 text-xs">2 weeks ago</span>
+                      </div>
+                    </div>
+                  </div>
+                  <h5 class="font-medium mb-2">Beautiful and Durable</h5>
+                  <p class="text-gray-300 text-sm">We installed this flooring throughout our entire first floor and couldn't be happier. The quality is exceptional and it has held up perfectly to our two dogs and active kids. The matte finish hides scratches beautifully.</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="border-b border-gray-800 pb-6">
+                  <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-700 mr-3 overflow-hidden">
+                      <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                      <h4 class="font-medium">Michael Chen</h4>
+                      <div class="flex items-center">
+                        <div class="flex text-accent-yellow mr-2">
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-half-fill text-sm"></i>
+                        </div>
+                        <span class="text-gray-400 text-xs">1 month ago</span>
+                      </div>
+                    </div>
+                  </div>
+                  <h5 class="font-medium mb-2">Great product, professional service</h5>
+                  <p class="text-gray-300 text-sm">As a contractor, I've used many hardwood products and this is among the best. The milling is precise making installation straightforward. My clients love the natural variation in the grain. Only minor complaint is some boards had slight color variation.</p>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="pb-6">
+                  <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-700 mr-3 overflow-hidden">
+                      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                      <h4 class="font-medium">Emma Rodriguez</h4>
+                      <div class="flex items-center">
+                        <div class="flex text-accent-yellow mr-2">
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                          <i class="ri-star-fill text-sm"></i>
+                        </div>
+                        <span class="text-gray-400 text-xs">2 months ago</span>
+                      </div>
+                    </div>
+                  </div>
+                  <h5 class="font-medium mb-2">Worth every penny</h5>
+                  <p class="text-gray-300 text-sm">After researching for months, we chose this flooring and have zero regrets. It's transformed our home. The oak has such character and the finish is holding up beautifully to daily life. Delivery was prompt and the ordering process was simple.</p>
+                </div>
+              </div>
+              
+              <!-- Load More -->
+              <div class="text-center mt-8">
+                <button class="bg-primary-light hover:bg-primary-light/80 text-white font-medium py-2 px-6 rounded-lg transition border border-gray-800">
+                  Load More Reviews
+                </button>
+              </div>
+            </div>
+            
+            <!-- Shipping Tab -->
+            <div class="hidden p-4 rounded-lg bg-primary-light/20" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
+              <h3 class="text-xl font-bold mb-4">Shipping & Delivery Information</h3>
+              <div class="prose prose-invert max-w-none text-gray-300 space-y-4">
+                <p>We offer fast and reliable shipping options to get your materials to your job site or home as quickly as possible.</p>
+                
+                <h4 class="font-bold text-lg text-gray-200">Shipping Options</h4>
+                <ul class="list-disc pl-5 space-y-2">
+                  <li><strong>Standard Shipping:</strong> 3-5 business days (Free on orders over $500)</li>
+                  <li><strong>Express Shipping:</strong> 2-3 business days ($25 flat rate)</li>
+                  <li><strong>White Glove Delivery:</strong> Curbside or in-home delivery available (Price varies by location)</li>
+                </ul>
+                
+                <h4 class="font-bold text-lg text-gray-200">Returns Policy</h4>
+                <p>Unopened, unused materials may be returned within 30 days of delivery for a full refund. Special order items and cut materials cannot be returned. Return shipping is the customer's responsibility.</p>
+                
+                <h4 class="font-bold text-lg text-gray-200">International Shipping</h4>
+                <p>We currently ship to the continental US only. For international inquiries, please contact our sales team.</p>
+                
+                <div class="bg-primary-light rounded-xl p-4 mt-6">
+                  <div class="flex items-start">
+                    <i class="ri-customer-service-2-line text-accent-yellow text-2xl mr-3"></i>
+                    <div>
+                      <h5 class="font-bold mb-1">Need help with your order?</h5>
+                      <p class="text-sm text-gray-400">Our customer service team is available Monday-Friday, 8AM-6PM EST to answer any questions about shipping or delivery.</p>
+                      <a href="#" class="inline-flex items-center text-accent-yellow text-sm mt-2 group">
+                        Contact Support
+                        <i class="ri-arrow-right-line ml-1 transition-transform group-hover:translate-x-1"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      `;
-				}
-				
-				breadcrumbContainer.appendChild(li);
-			});
-			
-			if (segments.length === 0 && includeHome) {
-				const homeLi = breadcrumbContainer.querySelector('li:first-child');
-				homeLi.setAttribute('aria-current', 'page');
-				homeLi.querySelector('a').classList.remove('text-gray-400', 'hover:text-accent-yellow');
-				homeLi.querySelector('a').classList.add('text-accent-yellow');
-			}
-		}
-		
-		function extractTitleFromPage(separator = '|') {
-			const title = document.title.split(separator)[0].trim();
-			return title || formatSegment(window.location.pathname.split('/').pop());
-		}
-		
-		document.addEventListener('DOMContentLoaded', () => {
-			enhancedAutoGenerateBreadcrumbs({
-				customLabels: {
-					'/products': 'Our Products',
-					'flooring': 'Flooring Solutions'
-				},
-				titleSeparator: '|'
-			});
-		});
-	</script>
+      </div>
+      
+      <!-- Related Products -->
+      <section class="mt-20">
+        <h2 class="text-2xl font-bold mb-8">Related <span class="text-gradient">Products</span></h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Related Product 1 -->
+          <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Copper Piping" class="w-full h-48 object-cover">
+              <div class="absolute top-3 right-3 flex flex-col space-y-2">
+                <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+                  <i class="ri-heart-line"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-bold mb-1">Copper Piping</h3>
+              <p class="text-gray-400 text-sm mb-4">1/2 inch diameter</p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-lg">$8.75<small class="text-gray-400 text-sm font-normal">/ft</small></span>
+                <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+                  <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Related Product 2 -->
+          <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Outdoor Decking" class="w-full h-48 object-cover">
+              <div class="absolute top-3 right-3 flex flex-col space-y-2">
+                <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+                  <i class="ri-heart-line"></i>
+                </button>
+              </div>
+              <div class="absolute bottom-3 left-3 bg-accent-yellow text-primary-black text-xs font-bold px-2 py-1 rounded">
+                NEW
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-bold mb-1">Composite Decking</h3>
+              <p class="text-gray-400 text-sm mb-4">Low-maintenance outdoor solution</p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-lg">$12.99<small class="text-gray-400 text-sm font-normal">/sqft</small></span>
+                <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+                  <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Related Product 3 -->
+          <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Wall Panels" class="w-full h-48 object-cover">
+              <div class="absolute top-3 right-3 flex flex-col space-y-2">
+                <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+                  <i class="ri-heart-line"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-bold mb-1">Acoustic Wall Panels</h3>
+              <p class="text-gray-400 text-sm mb-4">Sound-absorbing decorative panels</p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-lg">$45.00<small class="text-gray-400 text-sm font-normal">/panel</small></span>
+                <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+                  <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Related Product 4 -->
+          <div class="bg-primary-light rounded-xl overflow-hidden card-hover border border-gray-800/50 hover:border-accent-yellow/30">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Concrete Blocks" class="w-full h-48 object-cover">
+              <div class="absolute top-3 right-3 flex flex-col space-y-2">
+                <button class="w-9 h-9 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-accent-yellow hover:text-primary-black transition">
+                  <i class="ri-heart-line"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-bold mb-1">Decorative Concrete Blocks</h3>
+              <p class="text-gray-400 text-sm mb-4">Modern architectural elements</p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-lg">$8.25<small class="text-gray-400 text-sm font-normal">/block</small></span>
+                <button class="w-10 h-10 bg-accent-yellow/10 text-accent-yellow rounded-full flex items-center justify-center hover:bg-accent-yellow hover:text-primary-black transition group">
+                  <i class="ri-shopping-cart-line group-hover:scale-110 transition"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800/50 mt-20">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
+        <!-- Column 1 -->
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-6 group">
+            <i class="ri-home-gear-line text-accent-yellow text-2xl transition group-hover:rotate-12"></i>
+            <h3 class="text-xl font-bold group-hover:text-accent-yellow transition">Build<span class="text-gradient">Craft</span></h3>
+          </div>
+          <p class="text-gray-400 mb-6">Premium building materials for professionals and homeowners who demand the best in quality, sustainability, and innovation.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+              <i class="ri-facebook-fill"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+              <i class="ri-twitter-fill"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+              <i class="ri-instagram-line"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+              <i class="ri-linkedin-fill"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-accent-yellow hover:text-primary-black rounded-full flex items-center justify-center text-gray-300 transition">
+              <i class="ri-youtube-fill"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Column 2 -->
+        <div>
+          <h4 class="text-lg font-bold mb-6 text-white">Company</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> About Us
+              </a></li>
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Our Team
+              </a></li>
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Careers
+              </a></li>
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> News
+              </a></li>
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Sustainability
+              </a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 3 -->
+        <div>
+          <h4 class="text-lg font-bold mb-6 text-white">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Blog
+              </a></li>
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Guides
+              </a></li>
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Videos
+              </a></li>
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> FAQ
+              </a></li>
+            <li><a href="#" class="text-gray-400 hover:text-accent-yellow transition flex items-center group">
+                <i class="ri-arrow-right-s-line opacity-0 group-hover:opacity-100 mr-1 transition"></i> Support
+              </a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 4 -->
+        <div>
+          <h4 class="text-lg font-bold mb-6 text-white">Contact</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i class="ri-map-pin-line text-accent-yellow mt-1 mr-3"></i>
+              <span class="text-gray-400">123 Construction Ave, Build City, BC 12345</span>
+            </li>
+            <li class="flex items-center">
+              <i class="ri-phone-line text-accent-yellow mr-3"></i>
+              <span class="text-gray-400">(555) 123-4567</span>
+            </li>
+            <li class="flex items-center">
+              <i class="ri-mail-line text-accent-yellow mr-3"></i>
+              <span class="text-gray-400">info@buildcraft.com</span>
+            </li>
+            <li class="flex items-center">
+              <i class="ri-time-line text-accent-yellow mr-3"></i>
+              <span class="text-gray-400">Mon-Fri: 8AM-6PM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800/50 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 BuildCraft. All rights reserved.</p>
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          <a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Terms of Service</a>
+          <a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Shipping Policy</a>
+          <a href="#" class="text-gray-500 hover:text-accent-yellow text-sm transition">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+
+  </script>
+  <script type="module" src="/assets/js/product-gallery.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>
